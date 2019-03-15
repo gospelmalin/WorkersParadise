@@ -1,14 +1,22 @@
+<!--
+
+This header should allows be included at the top of a new html file in the following syntax
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html  xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_header :: header">...</div>
+
+<YOUR CONTENT HERE>
+
+</YOUR CONTENT HERE>
+-->
+
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head  th:fragment="header">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>THIS IS A TEST</title>
 
 
     <!-- Includes bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-
-</body>
-</html>
