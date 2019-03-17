@@ -1,6 +1,6 @@
 <!--
 
-This header should allows be included at the top of a new html file in the following syntax
+This header should always be included at the top of a new html file in the following syntax
 NEVER add head that in
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org">
@@ -12,7 +12,7 @@ NEVER add head that in
 -->
 
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head  th:fragment="header (title)">
+<head  th:fragment="headtag (title)">
     <meta charset="UTF-8">
     <title th:text="${title}">Title</title>
 
@@ -23,3 +23,4 @@ NEVER add head that in
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/custom.css">
 </head>
+

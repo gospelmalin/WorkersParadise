@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_header :: header(title=${'Start | home'})"></div>
-
+<div th:replace="fragments/_headtag :: headtag(title=${'Start | home'})"></div>
 <body>
-<h1>WorkerParadise</h1>
-<p>Test</p>
+
+<div th:replace="fragments/_navbar"></div>
+
+<div class="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Worker paradise</h1>
+            <p class="lead text-muted">A website for recruiting</p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">Recruit new employees</a>
+                <a href="#" class="btn btn-secondary my-2">Create your profile</a>
+            </p>
+        </div>
+    </section>
+
+</div>
+
+<div th:replace="fragments/_footer"></div>
+
 </body>
 </html>
