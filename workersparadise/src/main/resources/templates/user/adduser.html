@@ -1,0 +1,30 @@
+<!doctype html>
+<html data-layout-decorator="default">
+<head>
+</head>
+<body>
+	<div class="col-sm-8" data-layout-fragment="content">
+		<h1>Form</h1>
+		<form data-th-action="@{/users/adduser}" data-th-object="${user}"
+			method="post">
+			<input type="hidden" data-th-field="*{id}" />
+			
+			<p>
+				Förnamn: <input type="text" data-th-field="*{fName}" />
+			</p>
+			<p>
+				Efternamn: <input type="text" data-th-field="*{lName}" />
+			</p>
+			<p>
+				<input type="submit" value="Submit" /> <input type="reset"
+					value="Reset" />
+			</p>
+		</form>
+		
+	</div>
+	<div data-layout-decorator="scripts"></div>
+</body>
+</html>
+
+
+

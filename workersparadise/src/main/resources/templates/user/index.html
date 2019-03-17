@@ -1,0 +1,30 @@
+<!doctype html>
+<html data-layout-decorator="default">
+<head>
+</head>
+<body>
+	<div class="col" data-layout-fragment="content">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Förnamn</th>
+					<th scope="col">Efternamn</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="user : ${users}">
+					<td data-th-text="${user.fName}">fnamne</td>
+					<td data-th-text="${user.lName}">lnamne</td>
+					<td scope="row">
+						<a data-th-href="@{'/users/edit/'+${user.id}}">Redigera | </a>
+						<a data-th-href="@{'/users/remove/'+${user.id}}">Ta bort</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a data-th-href="@{'/users/adduser'}">Skapa ny användare</a>
+	</div>
+	<div data-layout-decorator="scripts"></div>
+</body>
+</html>
