@@ -9,7 +9,7 @@ public class HomeController {
 
 	// Main entrance to webapplication
 	//@RequestMapping(value = {"/","home"})
-	@GetMapping("/")
+	@GetMapping("/home2")
 	public String Home() {
 		return "home/index";
 	}
