@@ -1,9 +1,9 @@
 <!doctype html>
-<html data-layout-decorator="default">
-<head>
-</head>
+<html>
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
 <body>
-	<div class="col" data-layout-fragment="content">
+<div th:replace="fragments/_navbar"></div>
+	<div class="col-5" data-layout-fragment="content">
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -17,11 +17,14 @@
 					<td data-th-text="${company.companyName}">Namn</td>
 					<td data-th-text="${company.companyDescription}">Beskrivning</td>
 					<td scope="row">
+						<a th:href="@{/companies/edit/{companyid}/(companyid=${company.idCompany})}">Ändra</a> |
+						<a th:href="@{/companies/remove/{companyid}/(companyid=${company.idCompany})}">Ta bort</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div data-layout-decorator="scripts"></div>
+	<div th:replace="fragments/_footer"></div>
 </body>
 </html>
