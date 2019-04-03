@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html data-layout-decorator="default">
+<html>
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
 <head>
 </head>
 <body>
+<div th:replace="fragments/_navbar"></div>
 	<div class="col" data-layout-fragment="content">
 		<table class="table">
 			<thead class="thead-dark">
@@ -23,11 +25,14 @@
 					<td data-th-text="${person.gender}">Kön</td>
 					<td data-th-text="${person.birthdate}">Födelsedatum</td>
 					<td scope="row">
+							<a th:href="@{/persons/edit/{personid}/(personid=${person.idPerson})}">Ändra</a> |
+						   <a th:href="@{/persons/remove/{personid}/(personid=${person.idPerson})}">Ta bort</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div data-layout-decorator="scripts"></div>
+	<div th:replace="fragments/_footer"></div>
 </body>
 </html>
