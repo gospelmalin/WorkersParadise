@@ -31,4 +31,18 @@ public class PersonService {
 	public void deletePerson(int id) {
 		personRepository.deleteById(id);
 	}
+	
+	/*
+	public void saveOrUpdate(Person person) {
+
+		if (personRepository.findById(person.getIdPerson())==null) {
+			personRepository.save(person);
+		} 
+
+		else {
+			personRepository.update(person);
+		}
+		 
+	}*/
+
 }
