@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-layout-decorator="default">
+<head>
+</head>
+<body>
+	<div class="col" data-layout-fragment="content">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Förnamn</th>
+					<th scope="col">Mellannamn</th>
+					<th scope="col">Efternamn</th>
+					<th scope="col">Kön</th>
+					<th scope="col">Födelsedatum</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="person : ${persons}">
+					<td data-th-text="${person.firstName}">Förnamn</td>
+					<td data-th-text="${person.middleName}">Mellannamn</td>
+					<td data-th-text="${person.lastName}">Efternamn</td>
+					<td data-th-text="${person.gender}">Kön</td>
+					<td data-th-text="${person.birthdate}">Födelsedatum</td>
+					<td scope="row">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div data-layout-decorator="scripts"></div>
+</body>
+</html>
