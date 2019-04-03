@@ -1,0 +1,27 @@
+<!doctype html>
+<html data-layout-decorator="default">
+<head>
+</head>
+<body>
+	<div class="col" data-layout-fragment="content">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Namn</th>
+					<th scope="col">Beskrivning</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="company : ${companies}">
+					<td data-th-text="${company.companyName}">Namn</td>
+					<td data-th-text="${company.companyDescription}">Beskrivning</td>
+					<td scope="row">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div data-layout-decorator="scripts"></div>
+</body>
+</html>
