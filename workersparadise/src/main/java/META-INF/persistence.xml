@@ -7,13 +7,12 @@
 		<class>entities.CertificationPK</class>
 		<class>entities.Company</class>
 		<class>entities.Competence</class>
-		<class>entities.CompetencePK</class>
 		<class>entities.CompetenceCategory</class>
+		<class>entities.CompetencePK</class>
 		<class>entities.Education</class>
 		<class>entities.EducationPK</class>
 		<class>entities.Email</class>
 		<class>entities.EmailPK</class>
-		<class>entities.Person</class>
 		<class>entities.Phone</class>
 		<class>entities.PhonePK</class>
 		<class>entities.ProfessionalExperience</class>
@@ -26,5 +25,6 @@
 		<class>entities.User</class>
 		<class>entities.Webpage</class>
 		<class>entities.WebpagePK</class>
+		<class>entities.Person</class>
 	</persistence-unit>
 </persistence>

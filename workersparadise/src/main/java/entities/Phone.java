@@ -27,7 +27,7 @@ public class Phone implements Serializable {
 	private int phoneNumber;
 
 	@Column(name="primary_contact_number")
-	private byte primaryContactNumber;
+	private boolean primaryContactNumber;
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
@@ -74,11 +74,11 @@ public class Phone implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public byte getPrimaryContactNumber() {
+	public boolean getPrimaryContactNumber() {
 		return this.primaryContactNumber;
 	}
 
-	public void setPrimaryContactNumber(byte primaryContactNumber) {
+	public void setPrimaryContactNumber(boolean primaryContactNumber) {
 		this.primaryContactNumber = primaryContactNumber;
 	}
 

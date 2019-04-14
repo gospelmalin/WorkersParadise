@@ -52,12 +52,7 @@ public class Education implements Serializable {
 	private Date educationStartYear;
 
 	@Column(name="is_program")
-	private byte isProgram;
-
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	@JoinColumn(name="id_person",insertable=false, updatable=false)
-	private Person person;
+	private boolean isProgram;
 
 	public Education() {
 	}
@@ -150,20 +145,12 @@ public class Education implements Serializable {
 		this.educationStartYear = educationStartYear;
 	}
 
-	public byte getIsProgram() {
+	public boolean getIsProgram() {
 		return this.isProgram;
 	}
 
-	public void setIsProgram(byte isProgram) {
+	public void setIsProgram(boolean isProgram) {
 		this.isProgram = isProgram;
-	}
-
-	public Person getPerson() {
-		return this.person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
 	}
 
 }
