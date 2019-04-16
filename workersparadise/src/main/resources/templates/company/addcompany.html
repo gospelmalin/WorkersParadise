@@ -1,0 +1,28 @@
+<!doctype html>
+<html data-layout-decorator="default">
+<head>
+</head>
+<body>
+	<div class="col-sm-8" data-layout-fragment="content">
+		<h1>Form</h1>
+		<form data-th-action="@{/companies/addcompany}" data-th-object="${company}"
+			method="post">
+			<input type="hidden" data-th-field="*{idCompany}" />
+			
+			<p>
+				Namn: <input type="text" data-th-field="*{companyName}" />
+			</p>
+			<p>
+				Beskrivning: <input type="text" data-th-field="*{companyDescription}" />
+			</p>
+			<p>
+				<input type="submit" value="Submit" /> <input type="reset"
+					value="Reset" />
+			</p>
+		</form>
+		
+	</div>
+	<div data-layout-decorator="scripts"></div>
+</body>
+</html>
+
