@@ -3,10 +3,12 @@ package com.yhsipi.workersparadise.service;
 import java.util.List;
 
 import java.util.Optional;
+
+import com.yhsipi.workersparadise.entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.yhsipi.workersparadise.repository.PersonRepository;
-import entities.Person;
+
 
 @Service
 public class PersonService {

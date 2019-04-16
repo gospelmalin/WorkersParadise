@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -51,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .frameOptions().sameOrigin()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/webjars/**","/assets/**").permitAll()
+                .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
                 .antMatchers("/", "/register", "/login").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
@@ -79,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     //Kommer användas för att kunna hålla en remember me token för användare. TODO: Detta behöver testas och implementeras bättre
-    PersistentTokenRepository persistentTokenRepository(){
+    PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
         tokenRepositoryImpl.setDataSource(dataSource);
         return tokenRepositoryImpl;

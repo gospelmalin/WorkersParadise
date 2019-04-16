@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
+    //TODO: Kan denna tas bort?
 	// Main entrance to webapplication
 	//@RequestMapping(value = {"/","home"})
 	@GetMapping("/home2")

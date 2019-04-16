@@ -7,92 +7,92 @@ import java.sql.Timestamp;
 
 /**
  * The persistent class for the user database table.
- * 
+ *
  */
 @Entity
 @Table(name="users")
 @NamedQuery(name="user.findAll", query="SELECT u FROM Users u")
 
 public class Users implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_user")
-	private int idUser;
+    @Id
+    @Column(name="id_user")
+    private int idUser;
 
-	@Column(name="date_created")
-	private Timestamp dateCreated;
+    @Column(name="date_created")
+    private Timestamp dateCreated;
 
-	private String enabled;
+    private String enabled;
 
-	private String password;
+    private String password;
 
-	private String url;
+    private String url;
 
-	private String username;
+    private String username;
 
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	@JoinColumn(name="id_person")
-	private Person person;
+    //bi-directional many-to-one association to Person
+    @ManyToOne
+    @JoinColumn(name="id_person")
+    private Person person;
 
-	public Users() {
-	}
+    public Users() {
+    }
 
-	public int getIdUser() {
-		return this.idUser;
-	}
+    public int getIdUser() {
+        return this.idUser;
+    }
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 
-	public Timestamp getDateCreated() {
-		return this.dateCreated;
-	}
+    public Timestamp getDateCreated() {
+        return this.dateCreated;
+    }
 
-	public void setDateCreated(Timestamp dateCreated) {
-		this.dateCreated = dateCreated;
-	}
+    public void setDateCreated(Timestamp dateCreated) {
+        this.dateCreated = dateCreated;
+    }
 
-	public String getEnabled() {
-		return this.enabled;
-	}
+    public String getEnabled() {
+        return this.enabled;
+    }
 
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
-	}
+    public void setEnabled(String enabled) {
+        this.enabled = enabled;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getUrl() {
-		return this.url;
-	}
+    public String getUrl() {
+        return this.url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public String getUsername() {
-		return this.username;
-	}
+    public String getUsername() {
+        return this.username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public Person getPerson() {
-		return this.person;
-	}
+    public Person getPerson() {
+        return this.person;
+    }
 
-	public void setPerson(Person person) {
-		this.person = person;
-	}
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
 }

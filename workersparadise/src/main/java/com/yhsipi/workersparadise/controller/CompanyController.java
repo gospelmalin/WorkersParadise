@@ -2,6 +2,7 @@ package com.yhsipi.workersparadise.controller;
 
 import javax.validation.Valid;
 
+import com.yhsipi.workersparadise.entities.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.yhsipi.workersparadise.service.CompanyService;
 
-import entities.Company;
+
 
 @Controller
 @RequestMapping(value = "/companies")
