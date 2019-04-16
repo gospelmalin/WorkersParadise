@@ -18,6 +18,7 @@ import com.yhsipi.workersparadise.service.UserService;
 @Controller
 @RequestMapping(value = "/users")
 public class UserController {
+	/*
 
 	@Autowired
 	private UserService userService;
@@ -40,7 +41,7 @@ public class UserController {
 	// Add -> AddForm
     @GetMapping("/adduser")
     public String addForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new Users());
         return "/user/adduser";
     }
 
@@ -53,7 +54,7 @@ public class UserController {
     
     // Save
     @PostMapping("/adduser")
-    public String saveUser(@Valid User user, BindingResult result, Model model){
+    public String saveUser(@Valid Users user, BindingResult result, Model model){
     	
     	if (result.hasErrors()) {
     		return "/user/adduser";
@@ -71,5 +72,5 @@ public class UserController {
 		return "redirect:/users/";
 	}
     
-    
+    */
 }
