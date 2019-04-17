@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="workersparadise">
-		<class>entities.Address</class>
-		<class>entities.AddressPK</class>
-		<class>entities.Certification</class>
-		<class>entities.CertificationPK</class>
-		<class>entities.Company</class>
-		<class>entities.Competence</class>
-		<class>entities.CompetenceCategory</class>
-		<class>entities.CompetencePK</class>
-		<class>entities.Education</class>
-		<class>entities.EducationPK</class>
-		<class>entities.Email</class>
-		<class>entities.EmailPK</class>
-		<class>entities.Phone</class>
-		<class>entities.PhonePK</class>
-		<class>entities.ProfessionalExperience</class>
-		<class>entities.ProfessionalExperiencePK</class>
-		<class>entities.Project</class>
-		<class>entities.Reference</class>
-		<class>entities.ReferencePK</class>
-		<class>entities.Relation</class>
-		<class>entities.Type</class>
-		<class>entities.User</class>
-		<class>entities.Webpage</class>
-		<class>entities.WebpagePK</class>
-		<class>entities.Person</class>
+		<class>com.yhsipi.workersparadise.entities.Address</class>
+		<class>com.yhsipi.workersparadise.entities.AddressPK</class>
+		<class>com.yhsipi.workersparadise.entities.Certification</class>
+		<class>com.yhsipi.workersparadise.entities.CertificationPK</class>
+		<class>com.yhsipi.workersparadise.entities.Company</class>
+		<class>com.yhsipi.workersparadise.entities.Competence</class>
+		<class>com.yhsipi.workersparadise.entities.CompetenceCategory</class>
+		<class>com.yhsipi.workersparadise.entities.CompetencePK</class>
+		<class>com.yhsipi.workersparadise.entities.Education</class>
+		<class>com.yhsipi.workersparadise.entities.EducationPK</class>
+		<class>com.yhsipi.workersparadise.entities.Email</class>
+		<class>com.yhsipi.workersparadise.entities.EmailPK</class>
+		<class>com.yhsipi.workersparadise.entities.Phone</class>
+		<class>com.yhsipi.workersparadise.entities.PhonePK</class>
+		<class>com.yhsipi.workersparadise.entities.ProfessionalExperience</class>
+		<class>com.yhsipi.workersparadise.entities.ProfessionalExperiencePK</class>
+		<class>com.yhsipi.workersparadise.entities.Project</class>
+		<class>com.yhsipi.workersparadise.entities.Reference</class>
+		<class>com.yhsipi.workersparadise.entities.ReferencePK</class>
+		<class>com.yhsipi.workersparadise.entities.Relation</class>
+		<class>com.yhsipi.workersparadise.entities.Type</class>
+		<class>com.yhsipi.workersparadise.entities.Users</class>
+		<class>com.yhsipi.workersparadise.entities.Webpage</class>
+		<class>com.yhsipi.workersparadise.entities.WebpagePK</class>
+		<class>com.yhsipi.workersparadise.entities.Person</class>
 	</persistence-unit>
 </persistence>

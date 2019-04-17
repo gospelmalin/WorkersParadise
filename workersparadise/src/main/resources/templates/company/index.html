@@ -1,5 +1,5 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
 <body>
 <div th:replace="fragments/_navbar"></div>
@@ -24,7 +24,6 @@
 			</tbody>
 		</table>
 	</div>
-	<div data-layout-decorator="scripts"></div>
 	<div th:replace="fragments/_footer"></div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.yhsipi.workersparadise.entities;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -29,11 +31,6 @@ public class Address implements Serializable {
 
 	@Column(name="zip_code")
 	private int zipCode;
-
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	@JoinColumn(name="id_person",insertable=false, updatable=false)
-	private Person person;
 
 	//bi-directional many-to-one association to Type
 	@ManyToOne
@@ -91,13 +88,6 @@ public class Address implements Serializable {
 		this.zipCode = zipCode;
 	}
 
-	public Person getPerson() {
-		return this.person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
 
 	public Type getType() {
 		return this.type;
