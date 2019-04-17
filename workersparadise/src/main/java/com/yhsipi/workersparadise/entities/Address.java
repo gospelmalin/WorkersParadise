@@ -37,6 +37,16 @@ public class Address implements Serializable {
 	@JoinColumn(name="id_type")
 	private Type type;
 
+	@ManyToOne
+	@JoinColumn(name="id_person",insertable=false, updatable=false)
+	private Person person;
+	
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", city=" + city + ", co=" + co + ", county=" + county + ", streetAddress="
+				+ streetAddress + ", zipCode=" + zipCode + ", type=" + type + ", person=" + person + "]";
+	}
+
 	public Address() {
 	}
 
@@ -57,7 +67,7 @@ public class Address implements Serializable {
 	}
 
 	public String getCo() {
-		return this.co;
+		return this.co != null ? "C/o " + this.co + " ·" : null;
 	}
 
 	public void setCo(String co) {
