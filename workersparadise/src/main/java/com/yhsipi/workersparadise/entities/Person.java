@@ -3,6 +3,7 @@ package com.yhsipi.workersparadise.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -32,7 +33,10 @@ public class Person implements Serializable {
 
 	@Column(name="middle_name")
 	private String middleName;
-
+	
+	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+	private List<Phone> phones;
+	
 	public Person() {
 	}
 
@@ -82,6 +86,19 @@ public class Person implements Serializable {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {	
+		this.phones = phones;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [idPerson=" + idPerson + ", birthdate=" + birthdate + ", firstName=" + firstName + ", gender="
+				+ gender + ", lastName=" + lastName + ", middleName=" + middleName + ", phones=" + phones + "]";
 	}
 
 }

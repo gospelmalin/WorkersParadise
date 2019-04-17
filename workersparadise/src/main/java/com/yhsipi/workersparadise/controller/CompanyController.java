@@ -25,6 +25,7 @@ public class CompanyController {
 	// FindAll
 	@RequestMapping(value = "/")
 	public String getCompanies(Model model) {
+		companyService.findAll().forEach(c -> System.out.println(c.toString()));
 		model.addAttribute("companies", companyService.findAll());
 		return "/company/index";
 	}
