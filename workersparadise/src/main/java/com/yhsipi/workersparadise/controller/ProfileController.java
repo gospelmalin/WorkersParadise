@@ -15,4 +15,10 @@ public class ProfileController {
     public String Profile() {
         return "profile/profile";
     }
+
+
+    @GetMapping("/register")
+    public String RegisterNewUser() {
+        return "user/register";
+    }
 }
