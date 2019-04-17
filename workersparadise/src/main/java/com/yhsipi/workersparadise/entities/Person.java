@@ -37,7 +37,19 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Phone> phones;
 	
-	public Person() {
+	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+	private List<Address> address;
+	
+	//bi-directional one-to-one association to About 
+	@OneToOne(mappedBy="person", cascade={CascadeType.ALL}) 
+	private About about;
+	
+	public About getAbout() {
+		return about;
+	}
+
+	public void setAbout(About about) {
+		this.about = about;
 	}
 
 	public int getIdPerson() {
@@ -94,7 +106,16 @@ public class Person implements Serializable {
 	public void setPhones(List<Phone> phones) {	
 		this.phones = phones;
 	}
+	public List<Address> getAddress() {
+		return address;
+	}
 
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
+
+	public Person() {
+	}
 	@Override
 	public String toString() {
 		return "Person [idPerson=" + idPerson + ", birthdate=" + birthdate + ", firstName=" + firstName + ", gender="

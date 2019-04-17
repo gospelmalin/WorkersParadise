@@ -26,5 +26,6 @@
 		<class>com.yhsipi.workersparadise.entities.Webpage</class>
 		<class>com.yhsipi.workersparadise.entities.WebpagePK</class>
 		<class>com.yhsipi.workersparadise.entities.Person</class>
+		<class>com.yhsipi.workersparadise.entities.About</class>
 	</persistence-unit>
 </persistence>
