@@ -30,7 +30,8 @@ public class ExperienceController {
 		return "/experience/index";
 	}
 	@RequestMapping(value = "/{id}")
-	public String getExperiencesByPerson(@PathVariable int personId, Model model) {	
+	public String getExperiencesByPerson(@PathVariable String id, Model model) {
+		int personId = Integer.parseInt(id);
 		model.addAttribute("experiences", experienceService.findByPerson(personId));
 		return "/experience/index";
 	}	
