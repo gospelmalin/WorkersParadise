@@ -121,5 +121,9 @@ public class Person implements Serializable {
 		return "Person [idPerson=" + idPerson + ", birthdate=" + birthdate + ", firstName=" + firstName + ", gender="
 				+ gender + ", lastName=" + lastName + ", middleName=" + middleName + ", phones=" + phones + "]";
 	}
+	
+	public String getFullName() {
+		return this.firstName + " "+ this.lastName;
+	}
 
 }
