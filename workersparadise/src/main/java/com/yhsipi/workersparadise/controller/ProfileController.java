@@ -40,10 +40,18 @@ public class ProfileController {
     }
 
 
+
+    /*
+
+        USER LOGIN OCH REGISTERING
+
+     */
     @GetMapping("/account/register")
     public String RegisterNewUser() {
         return "account/register";
     }
+
+    
 }
 
 /*
