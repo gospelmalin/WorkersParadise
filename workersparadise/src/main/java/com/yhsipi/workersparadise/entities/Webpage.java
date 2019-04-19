@@ -49,6 +49,16 @@ public class Webpage implements Serializable {
 	public String getLink() {
 		return this.link;
 	}
+	
+	//TODO TEST
+	public String getLinkedInLink() {
+		if (this.getType().getIdType()==5) {
+		return this.link;
+		}
+		//else return "www.instagram.com";
+		else return null;
+		
+	}
 
 	public void setLink(String link) {
 		this.link = link;
