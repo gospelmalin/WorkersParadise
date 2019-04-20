@@ -51,24 +51,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers()
                 .frameOptions().sameOrigin()
                 .and()
+
+                //Regler vi sätter. Kan vara permitall, denyall eller baserat på hasrole
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
                 .antMatchers("/", "/account/register", "/login", "/custom.js").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
+
+
+                //Form hanteringen
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/home")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()
+
+                //Vad händer vid logout
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .deleteCookies("my-remember-me-cookie")
                 .permitAll()
                 .and()
+
+                //Sätter en remember me token, OM vi vill det
                 .rememberMe()
                 //.key("my-secure-key")
                 .rememberMeCookieName("my-remember-me-cookie")
@@ -78,6 +87,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
         ;
     }
+
+
+    //
 
     //Kommer användas för att kunna hålla en remember me token för användare. TODO: Detta behöver testas och implementeras bättre
     PersistentTokenRepository persistentTokenRepository() {

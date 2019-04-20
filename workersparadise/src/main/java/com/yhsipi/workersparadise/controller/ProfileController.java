@@ -51,7 +51,7 @@ public class ProfileController {
         return "account/register";
     }
 
-    
+
 }
 
 /*
