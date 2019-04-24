@@ -1,10 +1,13 @@
 package com.yhsipi.workersparadise.repository;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import com.yhsipi.workersparadise.entities.ProfessionalExperience;
+import com.yhsipi.workersparadise.entities.ProfessionalExperiencePK;
 
 public interface ExperienceRepository extends JpaRepository<ProfessionalExperience, Integer>{
 
@@ -17,4 +20,6 @@ public interface ExperienceRepository extends JpaRepository<ProfessionalExperien
      */
 	 @Query(FIND_BY_PERSON_QUERY)
 	 public List<ProfessionalExperience> findByPerson(@Param("id") int id);
+
+	public Optional<ProfessionalExperience> findById(ProfessionalExperiencePK id);
 }

@@ -3,6 +3,8 @@ package com.yhsipi.workersparadise.service;
 import java.util.List;
 import java.util.Optional;
 import com.yhsipi.workersparadise.entities.ProfessionalExperience;
+import com.yhsipi.workersparadise.entities.ProfessionalExperiencePK;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.yhsipi.workersparadise.repository.ExperienceRepository;
@@ -21,7 +23,7 @@ public class ExperienceService {
 		return experienceRepository.findByPerson(personId);
 	}
 
-	public Optional<ProfessionalExperience> findOne(Integer id) {
+	public Optional<ProfessionalExperience> findOne(ProfessionalExperiencePK id) {
 		return experienceRepository.findById(id);
 	}
 

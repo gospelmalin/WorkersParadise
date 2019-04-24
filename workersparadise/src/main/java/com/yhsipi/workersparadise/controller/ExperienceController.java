@@ -3,6 +3,8 @@ package com.yhsipi.workersparadise.controller;
 import javax.validation.Valid;
 
 import com.yhsipi.workersparadise.entities.ProfessionalExperience;
+import com.yhsipi.workersparadise.entities.ProfessionalExperiencePK;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,24 +31,35 @@ public class ExperienceController {
 		model.addAttribute("experiences", experienceService.findAll());
 		return "/experience/index";
 	}
-	@RequestMapping(value = "/{id}")
+	@RequestMapping(value = "/person/{id}")
 	public String getExperiencesByPerson(@PathVariable String id, Model model) {
 		int personId = Integer.parseInt(id);
 		model.addAttribute("experiences", experienceService.findByPerson(personId));
 		return "/experience/index";
 	}	
+	
 	// Add -> AddForm
-    @GetMapping("/add")
+	@GetMapping("/add")
     public String addExperience(Model model) {
-        model.addAttribute("experience", new ProfessionalExperience());
+		System.out.println("adding experience..");
+		ProfessionalExperience pe = new ProfessionalExperience();
+		pe.setTitle("IT-UTvecklare");
+		System.out.println(pe.toString());
+        model.addAttribute("experience", pe);
         return "/experience/edit";
     }
 
     // Edit -> AddForm
-    @GetMapping("/edit/{id}")
-    public String editExperience(@PathVariable int id, Model model) {
-        model.addAttribute("experience", experienceService.findOne(id));
-        return "/experience/edit";
+    @GetMapping("/edit/{personid}/{experienceid}")
+    public String editExperience(@PathVariable int personid,@PathVariable int experienceid , Model model) {
+       
+    	ProfessionalExperiencePK pk = new ProfessionalExperiencePK();
+    	pk.setIdProfExperience(experienceid);
+    	pk.setIdPerson(personid);
+                	
+    	model.addAttribute("experience", experienceService.findOne(pk).get());
+    	
+    	return "/experience/edit";
     }    
     
     // Save
