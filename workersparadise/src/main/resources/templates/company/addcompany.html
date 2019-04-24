@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-layout-decorator="default">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
 <body>
@@ -22,7 +22,8 @@
 		</form>
 		
 	</div>
-	<div data-layout-decorator="scripts"></div>
+	</div>
+	<div th:replace="fragments/_footer"></div>
 </body>
 </html>
 
