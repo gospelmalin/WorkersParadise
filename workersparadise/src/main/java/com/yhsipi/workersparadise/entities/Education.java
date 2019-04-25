@@ -59,7 +59,7 @@ public class Education implements Serializable {
 	private Date educationStartYear;
 
 	@Column(name="is_program")
-	private byte isProgram;
+	private boolean isProgram;
 
 	private String school;
 
@@ -177,11 +177,11 @@ public class Education implements Serializable {
 		this.educationStartYear = educationStartYear;
 	}
 
-	public byte getIsProgram() {
+	public boolean getIsProgram() {
 		return this.isProgram;
 	}
 
-	public void setIsProgram(byte isProgram) {
+	public void setIsProgram(boolean isProgram) {
 		this.isProgram = isProgram;
 	}
 
