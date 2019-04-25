@@ -19,13 +19,16 @@
 			</thead>
 			<tbody>
 				<tr data-th-each="experience : ${experiences}">
-					<td data-th-text="${experience.getId().getIdProfExperience()}">Person</td>
+					<td data-th-text="${experience.getId().getIdProfExperience()}">id</td>
 					<td data-th-text="${experience.person.getFullName()}">Person</td>
 					<td data-th-text="${experience.company.companyName}">Företag</td>
 					<td data-th-text="${experience.title}">Titel</td>
 					<td data-th-text="${experience.description}">Beskrivning</td>
 					<td data-th-text="${experience.startDate}">Start</td>
 					<td data-th-text="${experience.endDate}">Slut</td>
+					<td scope="row">
+						<a th:href="@{/experience/edit/{personid}/{experienceid}/(personid=${experience.getId().getIdPerson()},experienceid=${experience.getId().getIdProfExperience()})}">Ändra</a> |
+					</td>
 				</tr>
 			</tbody>
 		</table>
