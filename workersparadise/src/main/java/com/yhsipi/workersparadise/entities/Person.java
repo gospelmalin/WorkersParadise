@@ -46,6 +46,9 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Webpage> webpage;
 	
+	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+	private List<Education> education;
+	
 	//bi-directional one-to-one association to About 
 	@OneToOne(mappedBy="person", cascade={CascadeType.ALL}) 
 	private About about;
@@ -137,6 +140,14 @@ public class Person implements Serializable {
 		this.webpage = webpage;
 	}
 
+
+	public List<Education> getEducation() {
+		return education;
+	}
+
+	public void setEducation(List<Education> education) {
+		this.education = education;
+	}
 
 	public Person() {
 	}
