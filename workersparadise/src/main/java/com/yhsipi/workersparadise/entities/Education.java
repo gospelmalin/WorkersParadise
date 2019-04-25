@@ -36,6 +36,12 @@ public class Education implements Serializable {
 
 	@Column(name="education_name")
 	private String educationName;
+	
+	@Column(name="education_description")
+	private String educationDescription;
+	
+	@Column(name="school")
+	private String school;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="education_start_date")
