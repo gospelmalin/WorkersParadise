@@ -9,8 +9,6 @@
 		<class>com.yhsipi.workersparadise.entities.Competence</class>
 		<class>com.yhsipi.workersparadise.entities.CompetenceCategory</class>
 		<class>com.yhsipi.workersparadise.entities.CompetencePK</class>
-		<class>com.yhsipi.workersparadise.entities.Education</class>
-		<class>com.yhsipi.workersparadise.entities.EducationPK</class>
 		<class>com.yhsipi.workersparadise.entities.Email</class>
 		<class>com.yhsipi.workersparadise.entities.EmailPK</class>
 		<class>com.yhsipi.workersparadise.entities.Phone</class>
@@ -27,5 +25,6 @@
 		<class>com.yhsipi.workersparadise.entities.WebpagePK</class>
 		<class>com.yhsipi.workersparadise.entities.Person</class>
 		<class>com.yhsipi.workersparadise.entities.About</class>
+		<class>com.yhsipi.workersparadise.entities.Education</class>
 	</persistence-unit>
 </persistence>
