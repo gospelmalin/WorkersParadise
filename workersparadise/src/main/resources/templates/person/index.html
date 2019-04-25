@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<meta charset="utf-8">
 <div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+
 <head>
 </head>
 <body>
@@ -32,7 +34,6 @@
 			</tbody>
 		</table>
 	</div>
-	<a th:href="@{/persons/addperson}">Skapa ny person</a>
 	<div th:replace="fragments/_footer"></div>
 </body>
 </html>
