@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<body>
+<div th:replace="fragments/_navbar"></div>
+	<div class="col-10" data-layout-fragment="content">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Person</th>
+					<th scope="col">Företag</th>
+					<th scope="col">Titel</th>
+					<th scope="col">Beskrivning</th>
+					<th scope="col">Startdatum</th>
+					<th scope="col">Slutdatum</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="experience : ${experiences}">
+					<td data-th-text="${experience.getId().getIdProfExperience()}">Person</td>
+					<td data-th-text="${experience.person.getFullName()}">Person</td>
+					<td data-th-text="${experience.company.companyName}">Företag</td>
+					<td data-th-text="${experience.title}">Titel</td>
+					<td data-th-text="${experience.description}">Beskrivning</td>
+					<td data-th-text="${experience.startDate}">Start</td>
+					<td data-th-text="${experience.endDate}">Slut</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragments/_footer"></div>
+</body>
+</html>
