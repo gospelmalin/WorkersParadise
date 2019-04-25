@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yhsipi.workersparadise.entities.Education;
+import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.repository.EducationRepository;
 
 @Service
@@ -19,11 +20,14 @@ public class EducationService {
 		return educationRepository.findAll();
 	}
 	
-	public Optional<Education> findOne(Integer id) {
+	public List<Education> findByPerson(int personId) {
+		return educationRepository.findByPerson(personId);
+	}
+	
+	public Optional<Education> findOne(EducationPK id) {
 		return educationRepository.findById(id);
 	}
 	
-	// TODO findByPerson(int personId)
 
 	public void saveEducation(Education education) {
 		educationRepository.save(education);
