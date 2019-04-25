@@ -58,6 +58,8 @@ public class EducationController {
     public String addForm(Model model) {
     	System.out.println("adding education..");
     	Education ed = new Education();
+    	ed.setEducationName("Testutbildningsnamn");
+    	System.out.println(ed.toString());
     //    model.addAttribute("education", new Education());
     	model.addAttribute("education", ed);
         return "/education/addedit";
