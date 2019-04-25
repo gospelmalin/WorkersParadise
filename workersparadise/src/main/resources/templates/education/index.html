@@ -18,11 +18,11 @@
 						<th scope="col">Efternamn</th>
 						<th scope="col">Utbildningsnamn</th>
 						<th scope="col">Beskrivning</th>
-						<!-- <th scope="col">Lärosäte</th> -->
+						<th scope="col">Lärosäte</th>
 						<th scope="col">Startdatum</th>
-						<!-- <th scope="col">Slutdatum</th> -->
-						 <th scope="col">Nivå</th> 
-						<!-- <th scope="col">Betyg</th> -->
+						<th scope="col">Slutdatum</th>
+						<th scope="col">Nivå</th> 
+						<th scope="col">Betyg</th>
 						 <th scope="col">Program?</th>
 						<th></th>
 					</tr>
@@ -36,12 +36,12 @@
 						<td data-th-text="${education.person.getLastName()}">Efternamn</td>
 						<td data-th-text="${education.educationName}">Utbildningsnamn</td>
 					   <td data-th-text="${education.educationDescription}">Beskrivning</td>
-					  <!-- <td data-th-text="$education.school}">Lärosäte</td> -->
+					   <td data-th-text="${education.school}">Lärosäte</td>
 						<td data-th-text="${education.educationStartDate}">Startdatum</td>
-					<!--	<td data-th-text="$education.educationEndDate}">Slutdatum</td> -->
-							<td data-th-text="${education.educationLevel}">Nivå</td>
-					<!--		<td data-th-text="$education.educationGrade}">Betyg</td> -->
-							<td data-th-text="${education.isProgram}">Program</td>
+					  	<td data-th-text="${education.educationEndDate}">Slutdatum</td>
+						<td data-th-text="${education.educationLevel}">Nivå</td>
+					 	<td data-th-text="${education.educationGrade}">Betyg</td>
+						<td data-th-text="${education.isProgram}">Program</td>
 						<td scope="row">
 								<a th:href="@{/educations/addedit/{educationid}/(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
 							 <!--  <a th:href="@{/educations/remove/{educationid}/(educationid=${education.idEducation})}">Ta bort</a> -->
