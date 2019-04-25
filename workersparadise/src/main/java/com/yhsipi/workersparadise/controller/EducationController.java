@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yhsipi.workersparadise.entities.Education;
+import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.service.EducationService;
 
 
@@ -45,21 +46,32 @@ public class EducationController {
 	// TODO
 	// FindAllByPerson --> All other (add, edit, delete) should be based on this)
 	
-	// TODO
-	// FindByID 
+	@RequestMapping(value = "/person/{id}")
+	public String getEducationsByPerson(@PathVariable String id, Model model) {
+		int personId = Integer.parseInt(id);
+		model.addAttribute("educations", educationService.findByPerson(personId));
+		return "/education/index";
+	}	
 	
 	// Add -> AddForm
     @GetMapping("/add")
     public String addForm(Model model) {
-        model.addAttribute("education", new Education());
-        return "/education/add";
+    	System.out.println("adding education..");
+    	Education ed = new Education();
+    //    model.addAttribute("education", new Education());
+    	model.addAttribute("education", ed);
+        return "/education/addedit";
     }
 
     // Edit -> AddForm
-    @GetMapping("/edit/{id}")
-    public String editEducation(@PathVariable int id, Model model) {
-        model.addAttribute("education", educationService.findOne(id));
-        return "/education/add";
+    @GetMapping("/edit/{personid}/{educationid}")
+    public String editEducation(@PathVariable int personid, @PathVariable int educationid, Model model) {
+      EducationPK edpk = new EducationPK();
+      edpk.setIdEducation(educationid);
+      edpk.setIdPerson(personid);
+      model.addAttribute("education", educationService.findOne(edpk).get());
+    //	model.addAttribute("education", educationService.findOne(id));
+        return "/education/addedit";
     }    
     
     // Save
@@ -67,7 +79,7 @@ public class EducationController {
     public String saveEducation(@Valid Education education, BindingResult result, Model model){
     	
     	if (result.hasErrors()) {
-    		return "/education/edit";
+    		return "/education/addedit";
     	}
     	
     	educationService.saveEducation(education);
