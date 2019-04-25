@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import com.yhsipi.workersparadise.entities.ProfessionalExperience;
 import com.yhsipi.workersparadise.entities.ProfessionalExperiencePK;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,13 +30,14 @@ public class ExperienceController {
 		model.addAttribute("experiences", experienceService.findAll());
 		return "/experience/index";
 	}
+
 	@RequestMapping(value = "/person/{id}")
 	public String getExperiencesByPerson(@PathVariable String id, Model model) {
 		int personId = Integer.parseInt(id);
 		model.addAttribute("experiences", experienceService.findByPerson(personId));
 		return "/experience/index";
 	}	
-	
+
 	// Add -> AddForm
 	@GetMapping("/add")
     public String addExperience(Model model) {

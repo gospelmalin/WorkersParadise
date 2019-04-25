@@ -38,6 +38,20 @@ public class ProfileController {
     	model.addAttribute("person", personService.findOne(id).get());
         return "profile/profile";
     }
+
+
+
+    /*
+
+        USER LOGIN OCH REGISTERING
+
+     */
+    @GetMapping("/account/register")
+    public String RegisterNewUser() {
+        return "account/register";
+    }
+
+
 }
 
 /*

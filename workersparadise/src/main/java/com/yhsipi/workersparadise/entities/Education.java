@@ -14,9 +14,16 @@ import java.util.Date;
 @NamedQuery(name="Education.findAll", query="SELECT e FROM Education e")
 public class Education implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@EmbeddedId
 	private EducationPK id;
+
+	@Column(name="education_description")
+	private String educationDescription;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="education_end_date")
+	private Date educationEndDate;
 
 	@Column(name="education_end_day")
 	private byte educationEndDay;
@@ -54,15 +61,40 @@ public class Education implements Serializable {
 	@Column(name="is_program")
 	private boolean isProgram;
 
+	private String school;
+
+	//bi-directional many-to-one association to Person
+	@ManyToOne
+	@JoinColumn(name="id_person",insertable=false, updatable=false)
+	private Person person;
+
+	
 	public Education() {
 	}
-
+	
 	public EducationPK getId() {
 		return this.id;
 	}
 
 	public void setId(EducationPK id) {
 		this.id = id;
+	}
+	
+
+	public String getEducationDescription() {
+		return this.educationDescription;
+	}
+
+	public void setEducationDescription(String educationDescription) {
+		this.educationDescription = educationDescription;
+	}
+
+	public Date getEducationEndDate() {
+		return this.educationEndDate;
+	}
+
+	public void setEducationEndDate(Date educationEndDate) {
+		this.educationEndDate = educationEndDate;
 	}
 
 	public byte getEducationEndDay() {
@@ -152,5 +184,22 @@ public class Education implements Serializable {
 	public void setIsProgram(boolean isProgram) {
 		this.isProgram = isProgram;
 	}
+
+	public String getSchool() {
+		return this.school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	
+	public Person getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 
 }
