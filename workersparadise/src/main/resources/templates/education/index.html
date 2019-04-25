@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Utbildning</title>
+</head>
+<body>
+	<div th:replace="fragments/_navbar"></div>
+		<div class="col" data-layout-fragment="content">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<!--<th scope="col">Person</th> -->
+						<th scope="col">Personid</th>
+						<th scope="col">Förnamn</th>
+						<th scope="col">Efternamn</th>
+						<th scope="col">Utbildningsnamn</th>
+						<th scope="col">Beskrivning</th>
+						<th scope="col">Lärosäte</th>
+						<th scope="col">Startdatum</th>
+						<th scope="col">Slutdatum</th>
+						<th scope="col">Nivå</th> 
+						<th scope="col">Betyg</th>
+						 <th scope="col">Program?</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="education : ${educations}">
+						<td data-th-text="${education.getId().getIdEducation()}">Id</td>
+						<!--<td data-th-text="${education.person.getFullName()}">Person</td> -->
+						<td data-th-text="${education.person.getIdPerson()}">Personid</td>
+						<td data-th-text="${education.person.getFirstName()}">Förnamn</td>
+						<td data-th-text="${education.person.getLastName()}">Efternamn</td>
+						<td data-th-text="${education.educationName}">Utbildningsnamn</td>
+					   <td data-th-text="${education.educationDescription}">Beskrivning</td>
+					   <td data-th-text="${education.school}">Lärosäte</td>
+						<td data-th-text="${education.educationStartDate}">Startdatum</td>
+					  	<td data-th-text="${education.educationEndDate}">Slutdatum</td>
+						<td data-th-text="${education.educationLevel}">Nivå</td>
+					 	<td data-th-text="${education.educationGrade}">Betyg</td>
+						<td data-th-text="${education.isProgram}">Program</td>
+						<td scope="row">
+								<a th:href="@{/educations/addedit/{educationid}/(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
+							 <!--  <a th:href="@{/educations/remove/{educationid}/(educationid=${education.idEducation})}">Ta bort</a> -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<a th:href="@{/educations/addedit}">Lägg till ny utbildning</a>
+		<div th:replace="fragments/_footer"></div>
+</body>
+</html>
