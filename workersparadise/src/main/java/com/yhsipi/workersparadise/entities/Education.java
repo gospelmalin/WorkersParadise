@@ -27,7 +27,13 @@ public class Education implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="education_end_year")
 	private Date educationEndYear;
-
+	//private byte educationEndYear;
+	
+/*
+	@Temporal(TemporalType.DATE)
+	@Column(name="education_end_date")
+	private Date educationEndDate;
+*/
 	@Column(name="education_grade")
 	private String educationGrade;
 
@@ -60,6 +66,11 @@ public class Education implements Serializable {
 	@Column(name="is_program")
 	private boolean isProgram;
 
+	//bi-directional many-to-one association to Person
+		@ManyToOne
+		@JoinColumn(name="id_person",insertable=false, updatable=false)
+		private Person person;
+	
 	public Education() {
 	}
 
@@ -70,7 +81,16 @@ public class Education implements Serializable {
 	public void setId(EducationPK id) {
 		this.id = id;
 	}
+	
+	/*
+	public Date getEducationEndDate() {
+		return this.educationEndDate;
+	}
 
+	public void setEducationEndDate(Date educationEndDate) {
+		this.educationEndDate = educationEndDate;
+	}
+*/
 	public byte getEducationEndDay() {
 		return this.educationEndDay;
 	}
@@ -87,10 +107,12 @@ public class Education implements Serializable {
 		this.educationEndMonth = educationEndMonth;
 	}
 
+	//public byte getEducationEndYear() {
 	public Date getEducationEndYear() {
 		return this.educationEndYear;
 	}
 
+	//public void setEducationEndYear(byte educationEndYear) {
 	public void setEducationEndYear(Date educationEndYear) {
 		this.educationEndYear = educationEndYear;
 	}
@@ -158,5 +180,35 @@ public class Education implements Serializable {
 	public void setIsProgram(boolean isProgram) {
 		this.isProgram = isProgram;
 	}
+
+	public String getEducationDescription() {
+		return educationDescription;
+	}
+
+	public void setEducationDescription(String educationDescription) {
+		this.educationDescription = educationDescription;
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
+	public void setProgram(boolean isProgram) {
+		this.isProgram = isProgram;
+	}
+
+	public Person getPerson() {
+		return this.person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+	
+	
 
 }
