@@ -167,4 +167,12 @@ public class ProfessionalExperience implements Serializable {
 		this.person = person;
 	}
 
+	@Override
+	public String toString() {
+		return "ProfessionalExperience [id=" + id + ", description=" + description + ", endDate=" + endDate
+				+ ", endDay=" + endDay + ", endMonth=" + endMonth + ", endYear=" + endYear + ", startDate=" + startDate
+				+ ", startDay=" + startDay + ", startMonth=" + startMonth + ", startYear=" + startYear + ", title="
+				+ title + ", company=" + company + ", person=" + person + "]";
+	}
+
 }

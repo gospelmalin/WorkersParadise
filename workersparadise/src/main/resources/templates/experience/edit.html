@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+
+<body>
+
+<div th:text="${experience.getTitle() }"></div>
+
+</body>
+</html>
+

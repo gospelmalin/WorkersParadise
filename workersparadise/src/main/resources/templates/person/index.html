@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
 <div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+
 <head>
 </head>
 <body>
@@ -9,21 +11,21 @@
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Förnamn</th>
+					<th scope="col">FÃ¶rnamn</th>
 					<th scope="col">Mellannamn</th>
 					<th scope="col">Efternamn</th>
-					<th scope="col">Kön</th>
-					<th scope="col">Födelsedatum</th>
+					<th scope="col">KÃ¶n</th>
+					<th scope="col">FÃ¶delsedatum</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr data-th-each="person : ${persons}">
-					<td data-th-text="${person.firstName}">Förnamn</td>
+					<td data-th-text="${person.firstName}">FÃ¶rnamn</td>
 					<td data-th-text="${person.middleName}">Mellannamn</td>
 					<td data-th-text="${person.lastName}">Efternamn</td>
-					<td data-th-text="${person.gender}">Kön</td>
-					<td data-th-text="${person.birthdate}">Födelsedatum</td>
+					<td data-th-text="${person.gender}">KÃ¶n</td>
+					<td data-th-text="${person.birthdate}">FÃ¶delsedatum</td>
 					<td scope="row">
 							<a th:href="@{/persons/edit/{personid}/(personid=${person.idPerson})}">Ã„ndra</a> |
 						   <a th:href="@{/persons/remove/{personid}/(personid=${person.idPerson})}">Ta bort</a>
@@ -32,7 +34,6 @@
 			</tbody>
 		</table>
 	</div>
-	<div data-layout-decorator="scripts"></div>
 	<div th:replace="fragments/_footer"></div>
 </body>
 </html>
