@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Regler vi sätter. Kan vara permitall, denyall eller baserat på hasrole
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
-                .antMatchers("/", "/account/register", "/login", "/custom.js").permitAll()
+                .antMatchers("/", "/account/register", "/login", "/custom.js", "/css/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
