@@ -160,8 +160,11 @@
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
           <div data-th-each="education : ${person.getEducation()}">
-            <h3 class="mb-0" th:text="${education.getEducationName()}"></h3>
-            <div class="subheading mb-3" th:text="${education.getSchool()}"></div>
+            <h3 class="mb-0" data-th-text="${education.getEducationName()}"></h3>
+            <div class="subheading mb-3" data-th-text="${education.getSchool()}"></div>
+            <p> Betyg:  <span data-th-text="${education.getEducationGrade()}"></p>
+             </div>
+         
             
           </div>
  
