@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+
+<head>
+</head>
+<body>
+<div th:replace="fragments/_navbar"></div>
+<div class="col" data-layout-fragment="content">
+	<table class="table">
+	<thead class="thead-dark">
+	<tr>
+		<th scope="col">Id</th>
+		<th scope="col">Id Person</th>
+		<th scope="col">About summary</th>
+		<th scope="col">Interests</th>
+	</tr>
+	</thead>
+	<tbody>
+		<tr data-th-each="about : ${abouts}">
+			<td data-th-text="${about.idabout}">Id</td>
+			<td data-th-text="${about.idperson}">Id Person</td>
+			<td data-th-text="${about.aboutsummary}">About summary</td>
+			<td data-th-text="${about.interests}">Interests</td>
+			
+		</tr>
+	</tbody>
+	</table>
+</div>
+<div th:replace="fragments/_footer"></div>
+</body>
+</html>
