@@ -162,6 +162,8 @@
           <div data-th-each="education : ${person.getEducation()}">
             <h3 class="mb-0" data-th-text="${education.getEducationName()}"></h3>
             <div class="subheading mb-3" data-th-text="${education.getSchool()}"></div>
+            <p> <span data-th-text="${education.getEducationDescription()}"></p>
+            <p> Nivå: <span data-th-text="${education.getEducationLevel()}"></p>
             <p> Betyg:  <span data-th-text="${education.getEducationGrade()}"></p>
              </div>
          
