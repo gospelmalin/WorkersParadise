@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yhsipi.workersparadise.entities.Education;
 import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.service.EducationService;
+import com.yhsipi.workersparadise.service.PersonService;
 
 
 @Controller
@@ -28,6 +29,8 @@ public class EducationController {
 		
 	@Autowired
 	private EducationService educationService;
+	@Autowired
+	private PersonService personService;
 	
 	 @InitBinder
 	    public void initBinder(WebDataBinder binder) {
