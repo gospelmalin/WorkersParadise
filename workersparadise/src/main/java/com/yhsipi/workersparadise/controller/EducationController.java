@@ -80,6 +80,10 @@ public class EducationController {
     @PostMapping("/add")
     public String saveEducation(@Valid Education education, BindingResult result, Model model){
     	
+    	EducationPK edPK = education.getId();
+    	System.out.println(edPK.getIdEducation() + edPK.getIdPerson());
+    	
+    	
     	if (result.hasErrors()) {
     		return "/education/addedit";
     	}
