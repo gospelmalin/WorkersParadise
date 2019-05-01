@@ -8,7 +8,40 @@
 <body>
 	<div class="col-sm-8" data-layout-fragment="content">
 		<h1>Lägg till/ändra utbildning</h1>
-			<div th:text="${education.getEducationName() }"></div>
+		
+		<form data-th-action="@{/educations/addedit}" data-th-object="${education}"
+			method="post">
+			  
+			  <!-- TODO education id, person id -->
+			<input type="hidden" data-th-field="*{id}" placeholder="id"/> 
+			
+			<!--  <input type="text" data-th-field="*{education.getId().getIdEducation().get()}" /> -->
+			Information om utbildningen: 
+			<p><input type="text" data-th-field="*{educationName}" placeholder="Utbildningsnamn"/> 
+			<input type="text" data-th-field="*{educationDescription}" placeholder="Beskrivning"/>
+			<input type="text" data-th-field="*{school}" placeholder="Lärosäte"/> 
+			</p>
+			Datum för utbildningen:
+			<p><input type="date" data-th-field="*{educationStartDate}" placeholder="Startdatum"/>
+			<input type="date" data-th-field="*{educationEndDate}" placeholder="Slutdatum"/>
+			</p>
+			Utbildningsnivå:
+			<p><input type="text" data-th-field="*{educationLevel}" placeholder="Nivå"/></p>
+			Betyg:
+			<p><input type="text" data-th-field="*{educationGrade}" placeholder="Betyg"/></p>
+			Utbildningsprogram?
+			<p><input type="text" data-th-field="*{isProgram}" placeholder="Utbildningsprogram?"/></p>
+			<p></p>
+			<!--  <input type="text" data-th-field="*{education.person.getIdPerson()}" />-->
+			
+	<!--  		<input type="text" "test" /> -->
+		
+		<!--	<div th:text="${education.getEducationName() }"></div> -->
+	<p>
+				<input type="submit" value="Submit" /> <input type="reset"
+					value="Reset" />
+			</p>
+	  </form>
 	
 		<a href="/educations/">Visa utbildningslista</a>
 	</div>
