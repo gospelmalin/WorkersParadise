@@ -34,7 +34,7 @@ public class EducationController {
 	
 	 @InitBinder
 	    public void initBinder(WebDataBinder binder) {
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd"); //yyyy-MM-dd'T'HH:mm:ssZ example
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); //yyyy-MM-dd'T'HH:mm:ssZ example
 	        dateFormat.setLenient(false);
 	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	    }
@@ -61,9 +61,9 @@ public class EducationController {
     public String addForm(Model model) {
     	System.out.println("adding education..");
     	Education ed = new Education();
-    	ed.setEducationName("Testutbildningsnamn");
+  //  	ed.setEducationName("Testutbildningsnamn");
     	System.out.println(ed.toString());
-    //    model.addAttribute("education", new Education());
+    //   model.addAttribute("education", new Education()); 
     	model.addAttribute("education", ed);
         return "/education/addedit";
     }
