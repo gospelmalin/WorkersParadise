@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yhsipi.workersparadise.entities.About;
 import com.yhsipi.workersparadise.service.AboutService;
+import com.yhsipi.workersparadise.service.PersonService;
 
 @Controller
 @RequestMapping(value = "/about")
@@ -20,11 +21,13 @@ public class AboutController {
 
 	@Autowired
 	private AboutService aboutService;
+	@Autowired
+	private PersonService personService;
 	
 	@GetMapping("/")
 	public String About(Model model) {
 		
-		model.addAttribute("about", aboutService.findAll());
+		model.addAttribute("abouts", aboutService.findAll());
 		return "about/index";
 	}
 	
@@ -39,11 +42,15 @@ public class AboutController {
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("about", new About());
+		
 		return "/about/add";
+		
 	}
 	
 	@PostMapping("/add")
 	public String saveAbout(@Valid About about, BindingResult result, Model model) {
+
+		about.setPerson(personService.findOne(about.getIdPerson()));
 		
 		if(result.hasErrors()) {
 			return "about/add";
@@ -53,4 +60,5 @@ public class AboutController {
 		
 		return "redirect:/about/";
 	}
+	
 }

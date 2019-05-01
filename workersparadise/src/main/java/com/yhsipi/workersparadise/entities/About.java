@@ -1,6 +1,8 @@
 package com.yhsipi.workersparadise.entities;
 
 import java.io.Serializable;
+import java.util.Optional;
+
 import javax.persistence.*;
 
 
@@ -66,4 +68,20 @@ public class About implements Serializable {
 		this.interests = interests;
 	}
 
+	@Override
+	public String toString() {
+		return "About [idAbout=" + idAbout + ", aboutSummary=" + aboutSummary + ", idPerson=" + idPerson + ", person="
+				+ person + ", interests=" + interests + "]";
+	}
+
+	public void setPerson(Optional<Person> person) {
+
+		if (person != null) {
+			
+			this.person = person.get();
+		}
+		
+	}
+
+	
 }

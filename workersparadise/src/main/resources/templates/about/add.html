@@ -9,12 +9,15 @@
 		<h1>Add About</h1>
 		<form data-th-action="@{/about/add}" data-th-object="${about}"
 			method="post">
-			<input type="hidden" data-th-field="*{idPerson}" />
+			
+			<input type="hidden" data-th-field="*{idAbout}" />
+			<input type="text" data-th-field="*{idPerson}" />
 			
 			<p>
 				About beskrivning:
-				<p><input type="text" data-th-field="*{aboutsummary}" /></p>
-				Intressen: <input type="text" data-th-field="*{middleName}" />
+				<p><input type="text" data-th-field="*{aboutSummary}" /></p>
+				Intressen: 
+				<input type="text" data-th-field="*{interests}" />
 				
 			</p>
 			<p>
