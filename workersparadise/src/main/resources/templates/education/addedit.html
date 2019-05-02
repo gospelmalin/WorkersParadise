@@ -14,23 +14,31 @@
 			  
 			  <!-- TODO education id, person id -->
 			<input type="hidden" data-th-field="*{id}" placeholder="id"/> 
-			
+			<!-- <p><input type="text" data-th-field="${education.person.getIdPerson()}" /></p>-->
 			<!--  <input type="text" data-th-field="*{education.getId().getIdEducation().get()}" /> -->
 			Information om utbildningen: 
 			<p><input type="text" data-th-field="*{educationName}" placeholder="Utbildningsnamn"/> 
-			<input type="text" data-th-field="*{educationDescription}" placeholder="Beskrivning"/>
 			<input type="text" data-th-field="*{school}" placeholder="Lärosäte"/> 
 			</p>
+			Beskrivning:
+			<p><input type="text" data-th-field="*{educationDescription}" placeholder="Beskrivning"/></p>
 			Datum för utbildningen:
-			<p><input type="date" data-th-field="*{educationStartDate}" placeholder="Startdatum"/>
+			<p><input type="date" data-th-field="*{educationStartDate}" placeholder="Startdatum"/> -
 			<input type="date" data-th-field="*{educationEndDate}" placeholder="Slutdatum"/>
 			</p>
 			Utbildningsnivå:
 			<p><input type="text" data-th-field="*{educationLevel}" placeholder="Nivå"/></p>
 			Betyg:
 			<p><input type="text" data-th-field="*{educationGrade}" placeholder="Betyg"/></p>
+			<!--  
 			Utbildningsprogram?
 			<p><input type="text" data-th-field="*{isProgram}" placeholder="Utbildningsprogram?"/></p>
+			-->
+			<div>
+				<label>Utbildningsprogram? </label>
+			<!--  <label th:for="${#ids.next('isProgram')}" th:text="#{Utbildningsprogram?}">Program</label> -->
+			  	<input type="checkbox" data-th-field="*{isProgram}" />
+			</div>
 			<p></p>
 			<!--  <input type="text" data-th-field="*{education.person.getIdPerson()}" />-->
 			
