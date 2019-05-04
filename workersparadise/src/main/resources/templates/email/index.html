@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Email</title>
+</head>
+<body>
+<div th:replace="fragments/_navbar"></div>
+		<div class="col" data-layout-fragment="content">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<!--<th scope="col">Person</th> -->
+						<th scope="col">Personid</th>
+						<th scope="col">Förnamn</th>
+						<th scope="col">Efternamn</th>
+						<th scope="col">Email</th>
+						<th scope="col">Typid</th>
+						<th scope="col">Emailtyp</th>						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="email : ${emails}">
+						<td data-th-text="${email.getId().getIdEmail()}">Id</td>
+						<!--<td data-th-text="${email.person.getFullName()}">Person</td> -->
+						<td data-th-text="${email.person.getIdPerson()}">Personid</td>
+						<td data-th-text="${email.person.getFirstName()}">Förnamn</td>
+						<td data-th-text="${email.person.getLastName()}">Efternamn</td>
+						<td data-th-text="${email.getEmail()}">Email</td>
+						<td data-th-text="${email.type.getIdType()}">Typid</td>
+						<td data-th-text="${email.type.getTypeName()}">Emailtyp</td>
+						<td scope="row">
+								<a th:href="@{/emails/edit/{personid}/{emailid}(personid=${email.getId().getIdPerson()},emailid=${email.getId().getIdEmail()})}">Ändra</a> |
+							 <!--  <a th:href="@{/emails/remove/{emailid}/(emailid=${email.idEmail})}">Ta bort</a> -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	  	<a th:href="@{/emails/add}">Lägg till ny email</a>
+		<div th:replace="fragments/_footer"></div>
+</body>
+</html>
