@@ -64,7 +64,7 @@ public class ProfileController {
 
      */
 
-    @GetMapping("/login")
+    @GetMapping("/account/login")
     public ModelAndView login() {
         ModelAndView model = new ModelAndView();
 
