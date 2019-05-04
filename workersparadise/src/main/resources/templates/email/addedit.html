@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Lägg till/ändra email</title>
+</head>
+<body>
+	<div class="col-sm-8" data-layout-fragment="content">
+			<h1>Lägg till/ändra email</h1>
+			
+			<form data-th-action="@{/emails/addedit}" data-th-object="${email}"
+				method="post">
+				  
+				  <!-- TODO email id, person id -->
+				  <input type="hidden" data-th-field="*{id}" placeholder="id"/> 
+				<!-- <p><input type="text" data-th-field="${email.person.getIdPerson()}" /></p>-->
+				<!--  <input type="text" data-th-field="*{email.getId().getIdEmail().get()}" /> -->
+				Email: 
+				<p><input type="text" data-th-field="*{email}" placeholder="Skriv din e-postadress här"/> 
+				<!-- TODO Hämta typnamn i dropdown att välja -->
+				<input type="submit" value="Submit" /> <input type="reset"
+						value="Reset" />
+				</p>
+		  	</form>
+	
+			<a href="/emails/">Visa e-postadresser</a>
+	</div>
+</body>
+</html>
