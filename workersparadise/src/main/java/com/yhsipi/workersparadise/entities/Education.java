@@ -201,5 +201,17 @@ public class Education implements Serializable {
 		this.person = person;
 	}
 
+	@Override
+	public String toString() {
+		return "Education [id=" + id + ", educationDescription=" + educationDescription + ", educationEndDate="
+				+ educationEndDate + ", educationEndDay=" + educationEndDay + ", educationEndMonth=" + educationEndMonth
+				+ ", educationEndYear=" + educationEndYear + ", educationGrade=" + educationGrade + ", educationLevel="
+				+ educationLevel + ", educationName=" + educationName + ", educationStartDate=" + educationStartDate
+				+ ", educationStartDay=" + educationStartDay + ", educationStartMonth=" + educationStartMonth
+				+ ", educationStartYear=" + educationStartYear + ", isProgram=" + isProgram + ", school=" + school
+				+ ", person=" + person + "]";
+	}
+
+	
 
 }
