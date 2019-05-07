@@ -3,10 +3,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="icon" href="img/favicon.png" type="image/png" />
     <title>Workersparadise</title>
     <!-- Bootstrap CSS -->
@@ -36,16 +33,14 @@
                         data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent"
                         aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
+                        aria-label="Toggle navigation">
                     <span class="icon-bar"></span> <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div
                         class="collapse navbar-collapse offset"
-                        id="navbarSupportedContent"
-                >
+                        id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home</a>
@@ -53,8 +48,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="about-us.html">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/account/login">Login</a>
+                        <li class="nav-item" sec:authorize="!isFullyAuthenticated()">
+                            <a class="nav-link" href="/account/login">Login </a>
+                        </li>
+                        <li class="nav-item" sec:authorize="isFullyAuthenticated()">
+                            <a class="nav-link" href="/account/logout">Logout [[${#httpServletRequest.remoteUser}]]</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link search" id="search">
