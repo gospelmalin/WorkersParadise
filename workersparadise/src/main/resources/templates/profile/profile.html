@@ -73,8 +73,7 @@
         <span th:text="${person.getAddress().get(0).getStreetAddress()}">gata</span> · 
         <span th:text="${person.getAddress().get(0).getZipCode()}">postnr</span> 
         <span th:text="${person.getAddress().get(0).getCity()}">ort</span> ·
-        <span th:text="${person.getPhones().get(0).getCountryPrefix()}">landsprefix</span> 
-        <span th:text="${person.getPhones().get(0).getPhoneNumber()}">telefon</span> ·
+        <span th:text="${person.getPrimaryPhoneNumber()}">telefon</span> ·
          <span th:text="${person.getEmail().get(0).getEmail()}">epost</span>
           
         </div>
