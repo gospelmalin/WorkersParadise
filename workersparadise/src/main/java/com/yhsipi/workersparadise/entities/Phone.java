@@ -98,4 +98,11 @@ public class Phone implements Serializable {
 		this.type = type;
 	}
 
+	@Override
+	public String toString() {
+		return countryPrefix + " " + phoneNumber;
+	}
+	
+	
+
 }
