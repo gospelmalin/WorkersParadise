@@ -41,7 +41,7 @@ public class Person implements Serializable {
 	private List<Address> address;
 	
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
-	private List<Email> email;
+	private List<Email> emails;
 	
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Webpage> webpage;
@@ -128,11 +128,11 @@ public class Person implements Serializable {
 	}
 	
 	public List<Email> getEmail() {
-		return email;
+		return emails;
 	}
 
-	public void setEmail(List<Email> email) {
-		this.email = email;
+	public void setEmail(List<Email> emails) {
+		this.emails = emails;
 	}
 	
 	public List<Webpage> getWebpage() {
@@ -180,5 +180,53 @@ public class Person implements Serializable {
 		}
 		return "";		
 	}
+	
+	
+	public String getPrimaryEmail() {
+		for (Email email : emails) {
+			if (email.isPrimaryEmail()) {
+				return email.toString();
+			}		
+		}
+		return "";		
+	}
+	
+	public String getPrimaryStreetAddress() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getStreetAddress();
+			}		
+		}
+		return "";		
+	}
+	
+	public String getPrimaryCity() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getCity();
+			}		
+		}
+		return "";		
+	}
+	
+	public String getPrimaryCo() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getCo();
+			}		
+		}
+		return "";		
+	}
+	
+	//TODO better solution?
+	public int getPrimaryZipCode() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getZipCode();
+			}		
+		}
+		return (Integer) null;		
+	}
 
+	
 }
