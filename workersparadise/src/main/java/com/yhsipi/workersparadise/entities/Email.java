@@ -18,6 +18,9 @@ public class Email implements Serializable {
 	private EmailPK id;
 
 	private String email;
+	
+	@Column(name="primary_email")
+	private boolean primaryEmail;
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
@@ -63,5 +66,20 @@ public class Email implements Serializable {
 	public void setType(Type type) {
 		this.type = type;
 	}
+	
+	public boolean isPrimaryEmail() {
+		return primaryEmail;
+	}
 
+	public void setPrimaryEmail(boolean primaryEmail) {
+		this.primaryEmail = primaryEmail;
+	}
+
+	// This format is used in profile.html. Do not change without handling profile.html
+	@Override
+	public String toString() {
+		return email;
+	}
+
+	
 }
