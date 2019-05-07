@@ -171,5 +171,14 @@ public class Person implements Serializable {
 	public String getFullName() {
 		return this.firstName + " "+ this.lastName;
 	}
+	
+	public String getPrimaryPhoneNumber() {
+		for (Phone phone : phones) {
+			if (phone.getPrimaryContactNumber()) {
+				return phone.toString();
+			}		
+		}
+		return "";		
+	}
 
 }
