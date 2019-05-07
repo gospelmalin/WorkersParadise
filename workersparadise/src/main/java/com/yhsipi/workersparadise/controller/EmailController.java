@@ -46,7 +46,8 @@ public class EmailController {
     public String addForm(Model model) {
     	System.out.println("adding email...");
     	Email e = new Email();
-   //  	ed.setEmail("test@email.nu");
+   //  	e.setEmail("test@email.nu");
+   //  	e.setIdType(1);
     	System.out.println(e.toString());
     //   model.addAttribute("email", new Email()); 
     	model.addAttribute("email", e);
