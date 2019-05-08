@@ -2,6 +2,7 @@ package com.yhsipi.workersparadise.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.*;
 
@@ -107,4 +108,16 @@ public class Address implements Serializable {
 		this.type = type;
 	}
 
+	public void setPerson(Optional<Person> person) {
+
+		if (person != null) {
+			
+			this.person = person.get();
+		}
+		
+	}
+	
+	public int getPersonId() {
+		return person.getIdPerson();
+	}
 }
