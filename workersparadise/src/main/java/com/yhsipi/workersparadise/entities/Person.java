@@ -5,6 +5,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+
 
 /**
  * The persistent class for the person database table.
@@ -40,7 +42,8 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Address> address;
 	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy= "person", cascade = CascadeType.ALL)
+	//@Cascade(org.hibernate.annotations.CascadeType.ALL) //TODO check
 	private List<Email> emails;
 	
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
