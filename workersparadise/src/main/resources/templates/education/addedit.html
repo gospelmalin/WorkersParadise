@@ -9,13 +9,11 @@
 	<div class="col-sm-8" data-layout-fragment="content">
 		<h1>Lägg till/ändra utbildning</h1>
 		
-		<form data-th-action="@{/educations/addedit}" data-th-object="${education}"
+		<form data-th-action="@{/educations/add}" data-th-object="${education}"
 			method="post">
-			  
-			  <!-- TODO education id, person id -->
-			<input type="hidden" data-th-field="*{id}" placeholder="id"/> 
-			<!-- <p><input type="text" data-th-field="${education.person.getIdPerson()}" /></p>-->
-			<!--  <input type="text" data-th-field="*{education.getId().getIdEducation().get()}" /> -->
+			<!-- TODO gör id-fälten hidden -->
+			<p>Education-Id: <input type="text" data-th-field="*{id.idEducation}" placeholder="id"/> 
+			personid: <input type="text" data-th-field="*{id.idPerson}" /></p>
 			Information om utbildningen: 
 			<p><input type="text" data-th-field="*{educationName}" placeholder="Utbildningsnamn"/> 
 			<input type="text" data-th-field="*{school}" placeholder="Lärosäte"/> 
@@ -40,12 +38,8 @@
 			  	<input type="checkbox" data-th-field="*{isProgram}" />
 			</div>
 			<p></p>
-			<!--  <input type="text" data-th-field="*{education.person.getIdPerson()}" />-->
-			
-	<!--  		<input type="text" "test" /> -->
-		
-		<!--	<div th:text="${education.getEducationName() }"></div> -->
-	<p>
+	
+			<p>
 				<input type="submit" value="Submit" /> <input type="reset"
 					value="Reset" />
 			</p>
