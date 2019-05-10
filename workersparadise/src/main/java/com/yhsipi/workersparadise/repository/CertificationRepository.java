@@ -14,7 +14,7 @@ public interface CertificationRepository extends JpaRepository<Certification, In
 
 public final static String FIND_BY_PERSON_QUERY = "SELECT c FROM Certification c LEFT JOIN c.person p WHERE p.id = :id";
 	
-	// Find education by person
+	// Find certification by person
 	 @Query(FIND_BY_PERSON_QUERY)
 	 public List<Certification> findByPerson(@Param("id") int id);
 
