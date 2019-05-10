@@ -3,6 +3,8 @@ package com.yhsipi.workersparadise.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 
 /**
  * The persistent class for the email database table.
@@ -10,6 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="email")
+@DynamicUpdate
 @NamedQuery(name="Email.findAll", query="SELECT e FROM Email e")
 public class Email implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,14 +20,15 @@ public class Email implements Serializable {
 	@EmbeddedId
 	private EmailPK id;
 
-	private String email;
+	@Column(name="email")
+	private String emailAddress;
 	
 	@Column(name="primary_email")
 	private boolean primaryEmail;
 
 	//bi-directional many-to-one association to Person
 	@ManyToOne
-	@JoinColumn(name="id_person",insertable=false, updatable=false)
+	@JoinColumn(name="id_person", insertable=false, updatable=false)
 	private Person person;
 
 	//bi-directional many-to-one association to Type
@@ -42,14 +46,41 @@ public class Email implements Serializable {
 	public void setId(EmailPK id) {
 		this.id = id;
 	}
-
+	/*
 	public String getEmail() {
-		return this.email;
+		return this.emailAddress;
+	}
+	
+	public void setEmail(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	
+	public String getEmail() {
+		return this.emailAddress;
+	}
+	*/
+	// TODO testar ta bort ovan och lägga till nedan
+	public String getEmail() {
+		emailAddress = getEmailAddress();
+		return emailAddress;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
+	
+	public String getEmailAddress() {
+		return this.emailAddress;
+	}
+	
+
+	public void setEmail(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+		
+	
+	
+	
 
 	public Person getPerson() {
 		return this.person;
@@ -78,7 +109,8 @@ public class Email implements Serializable {
 	// This format is used in profile.html. Do not change without handling profile.html
 	@Override
 	public String toString() {
-		return email;
+	return emailAddress;
+
 	}
 
 	
