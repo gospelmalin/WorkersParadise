@@ -1,11 +1,18 @@
 package com.yhsipi.workersparadise.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yhsipi.workersparadise.entities.Certification;
+import com.yhsipi.workersparadise.entities.CertificationPK;
 import com.yhsipi.workersparadise.service.CertificationService;
 import com.yhsipi.workersparadise.service.PersonService;
 
@@ -36,11 +43,44 @@ public class CertificationController {
 			return "/certification/index";
 		}
 		
-		//TODO add
+		//add
+		 @GetMapping("/person/{id}/add")
+		    public String addCertificationFormForPerson(Model model) {
+		    	System.out.println("adding certification...");
+		    	Certification c = new Certification();
+		    	System.out.println(c.toString());
+		    	model.addAttribute("certification", c);
+		        return "/certification/addedit";
+		    }
 		
-		//TODO Edit
+		//Edit
+		 @GetMapping("/edit/{personid}/{certificationid}")
+		    public String editCertification(@PathVariable int personid, @PathVariable int certificationid, Model model) {
+		      CertificationPK cpk = new CertificationPK();
+		      cpk.setIdCertification(certificationid);
+		      cpk.setIdPerson(personid);
+		      System.out.println("Detta är personId för den som ska ha certifiering ändrad: " + cpk.getIdPerson());
+		      model.addAttribute("certification", certificationService.findOne(cpk).get());
+		        return "/certification/addedit";
+		    }   
 		
-		//TODO Save
+		//Save
+		 @PostMapping("/add")
+		    public String saveCertification(@Valid Certification certification, BindingResult result, Model model){
+		    	System.out.println("Nu påbörjas save-metoden");
+		    	CertificationPK cPK = certification.getId();
+		    	System.out.println("jag har ett CertificationPK: " + cPK);
+		    	System.out.println("certificationID: " + cPK.getIdCertification() + " för person: " + cPK.getIdPerson());
+		    	
+		    	
+		    	if (result.hasErrors()) {
+		    		return "/certification/addedit";
+		    	}
+		    	
+		    	certificationService.saveCertification(certification);
+		    	
+		        return "redirect:/certifications/";
+		    }
 		
 	    // Delete
 		@RequestMapping(value = "/remove/{id}")
