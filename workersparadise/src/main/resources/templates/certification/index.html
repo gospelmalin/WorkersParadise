@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Certifieringar och utmärkelser</title>
+</head>
+<body>
+<div th:replace="fragments/_navbar"></div>
+		<div class="col" data-layout-fragment="content">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<!--<th scope="col">Person</th> -->
+						<th scope="col">Personid</th>
+						<th scope="col">Förnamn</th>
+						<th scope="col">Efternamn</th>
+						<th scope="col">Certifiering</th>
+						<th scope="col">Beskrivning</th>						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="certification: ${certifications}">
+						<td data-th-text="${certification.getId().getIdCertification()}">Id</td>
+						<!--<td data-th-text="${email.person.getFullName()}">Person</td> -->
+						<td data-th-text="${certification.person.getIdPerson()}">Personid</td>
+						<td data-th-text="${certification.person.getFirstName()}">Förnamn</td>
+						<td data-th-text="${certification.person.getLastName()}">Efternamn</td>
+						<td data-th-text="${certification.getCertificationName()}">Certifiering</td>
+						<td data-th-text="${certification.getCertificationDescription()}">Beskrivning</td>
+						<td scope="row">
+								<a th:href="@{/certifications/edit/{personid}/{emailid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ändra</a> |
+							 <!--  <a th:href="@{/emails/remove/{emailid}/(emailid=${email.idEmail})}">Ta bort</a> -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	  	<a th:href="@{/certifications/add}">Lägg till ny email</a>
+		<div th:replace="fragments/_footer"></div>
+</body>
+</html>
