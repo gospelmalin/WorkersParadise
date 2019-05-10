@@ -31,6 +31,9 @@ public class Address implements Serializable {
 
 	@Column(name="zip_code")
 	private int zipCode;
+	
+	@Column(name="primary_address")
+	private boolean primaryAddress;
 
 	//bi-directional many-to-one association to Type
 	@ManyToOne
@@ -106,5 +109,14 @@ public class Address implements Serializable {
 	public void setType(Type type) {
 		this.type = type;
 	}
+	
+	public boolean isPrimaryAddress() {
+		return primaryAddress;
+	}
+
+	public void setPrimaryAddress(boolean primaryAddress) {
+		this.primaryAddress = primaryAddress;
+	}
+
 
 }

@@ -5,6 +5,8 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+
 
 /**
  * The persistent class for the person database table.
@@ -40,8 +42,9 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Address> address;
 	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
-	private List<Email> email;
+	@OneToMany(mappedBy= "person", cascade = CascadeType.ALL)
+	//@Cascade(org.hibernate.annotations.CascadeType.ALL) //TODO check
+	private List<Email> emails;
 	
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Webpage> webpage;
@@ -128,11 +131,11 @@ public class Person implements Serializable {
 	}
 	
 	public List<Email> getEmail() {
-		return email;
+		return emails;
 	}
 
-	public void setEmail(List<Email> email) {
-		this.email = email;
+	public void setEmail(List<Email> emails) {
+		this.emails = emails;
 	}
 	
 	public List<Webpage> getWebpage() {
@@ -171,5 +174,62 @@ public class Person implements Serializable {
 	public String getFullName() {
 		return this.firstName + " "+ this.lastName;
 	}
+	
+	public String getPrimaryPhoneNumber() {
+		for (Phone phone : phones) {
+			if (phone.getPrimaryContactNumber()) {
+				return phone.toString();
+			}		
+		}
+		return "";		
+	}
+	
+	
+	public String getPrimaryEmail() {
+		for (Email email : emails) {
+			if (email.isPrimaryEmail()) {
+				return email.toString();
+			}		
+		}
+		return "";		
+	}
+	
+	public String getPrimaryStreetAddress() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getStreetAddress();
+			}		
+		}
+		return "";		
+	}
+	
+	public String getPrimaryCity() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getCity();
+			}		
+		}
+		return "";		
+	}
+	
+	public String getPrimaryCo() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getCo();
+			}		
+		}
+		return "";		
+	}
+	
+	//TODO better solution?
+	public int getPrimaryZipCode() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress()) {
+				return address.getZipCode();
+			}		
+		}
+		return (Integer) null;		
+	}
 
+	
 }

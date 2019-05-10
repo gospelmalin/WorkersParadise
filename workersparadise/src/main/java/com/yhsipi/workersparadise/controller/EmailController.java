@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.yhsipi.workersparadise.entities.Education;
-import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.entities.Email;
 import com.yhsipi.workersparadise.entities.EmailPK;
 import com.yhsipi.workersparadise.service.EmailService;
@@ -41,12 +39,28 @@ public class EmailController {
 		return "/email/index";
 	}	
 	
+	/*
 	// Add -> AddForm
     @GetMapping("/add")
     public String addForm(Model model) {
     	System.out.println("adding email...");
     	Email e = new Email();
-   //  	ed.setEmail("test@email.nu");
+   //  	e.setEmail("test@email.nu");
+   //  	e.setIdType(1);
+    	System.out.println(e.toString());
+    //   model.addAttribute("email", new Email()); 
+    	model.addAttribute("email", e);
+        return "/email/addedit";
+    }
+    */
+    //TODO testar add-variant: //FUNKAR!! Behöver uppdatera så formuläret visar förifyllt id dock
+ // Add -> AddForm
+    @GetMapping("/person/{id}/add")
+    public String addEmailFormForPerson(Model model) {
+    	System.out.println("adding email...");
+    	Email e = new Email();
+   //  	e.setEmail("test@email.nu");
+   //  	e.setIdType(1);
     	System.out.println(e.toString());
     //   model.addAttribute("email", new Email()); 
     	model.addAttribute("email", e);
@@ -59,6 +73,7 @@ public class EmailController {
       EmailPK epk = new EmailPK();
       epk.setIdEmail(emailid);
       epk.setIdPerson(personid);
+      System.out.println("Detta är personId för den som ska editera epost: " + epk.getIdPerson());
       model.addAttribute("email", emailService.findOne(epk).get());
     //	model.addAttribute("email", emailService.findOne(id));
         return "/email/addedit";
@@ -67,9 +82,10 @@ public class EmailController {
     // Save
     @PostMapping("/add")
     public String saveEmail(@Valid Email email, BindingResult result, Model model){
-    	
+    	System.out.println("Nu påbörjas save-metoden");
     	EmailPK ePK = email.getId();
-    	System.out.println(ePK.getIdEmail() + ePK.getIdPerson());
+    	System.out.println("jag har ett EmailPK: " + ePK);
+    	System.out.println("emailID: " + ePK.getIdEmail() + " för person: " + ePK.getIdPerson());
     	
     	
     	if (result.hasErrors()) {
@@ -81,7 +97,7 @@ public class EmailController {
         return "redirect:/emails/";
     }
     
- // Delete
+ // Delete //Does not work yet
  	@RequestMapping(value = "/remove/{id}")
  	public String deleteEmail(@PathVariable int id) {
  		emailService.deleteEmail(id);		
