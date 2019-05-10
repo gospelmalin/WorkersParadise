@@ -24,21 +24,21 @@
 				<tbody>
 					<tr data-th-each="certification: ${certifications}">
 						<td data-th-text="${certification.getId().getIdCertification()}">Id</td>
-						<!--<td data-th-text="${email.person.getFullName()}">Person</td> -->
+						<!--<td data-th-text="${certification.person.getFullName()}">Person</td> -->
 						<td data-th-text="${certification.person.getIdPerson()}">Personid</td>
 						<td data-th-text="${certification.person.getFirstName()}">Förnamn</td>
 						<td data-th-text="${certification.person.getLastName()}">Efternamn</td>
 						<td data-th-text="${certification.getCertificationName()}">Certifiering</td>
 						<td data-th-text="${certification.getCertificationDescription()}">Beskrivning</td>
 						<td scope="row">
-								<a th:href="@{/certifications/edit/{personid}/{emailid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ändra</a> |
-							 <!--  <a th:href="@{/emails/remove/{emailid}/(emailid=${email.idEmail})}">Ta bort</a> -->
+								<a th:href="@{/certifications/edit/{personid}/{certificationid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ändra</a> |
+							 <!--  <a th:href="@{/certifications/remove/{certificationid}/(certificationid=${certification.idCertification})}">Ta bort</a> -->
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-	  	<a th:href="@{/certifications/add}">Lägg till ny email</a>
+	  	<a th:href="@{/certifications/add}">Lägg till ny certification</a>
 		<div th:replace="fragments/_footer"></div>
 </body>
 </html>
