@@ -61,4 +61,10 @@ public class AboutController {
 		return "redirect:/about/";
 	}
 	
+	@RequestMapping(value="/remove/{aboutId}")
+	public String deleteAbout(@PathVariable int aboutId) {
+		aboutService.deleteAbout(aboutId);
+		return "redirect:/about/";
+	}
+	
 }
