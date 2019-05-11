@@ -118,5 +118,13 @@ public class Address implements Serializable {
 		this.primaryAddress = primaryAddress;
 	}
 
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 
 }
