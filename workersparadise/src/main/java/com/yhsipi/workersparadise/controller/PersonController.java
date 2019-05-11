@@ -2,6 +2,7 @@ package com.yhsipi.workersparadise.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.validation.Valid;
 
@@ -30,8 +31,9 @@ public class PersonController {
 	
 	 @InitBinder
 	    public void initBinder(WebDataBinder binder) {
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd"); //yyyy-MM-dd'T'HH:mm:ssZ example
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); //yyyy-MM-dd'T'HH:mm:ssZ example
 	        dateFormat.setLenient(false);
+	        dateFormat.setTimeZone(TimeZone.getTimeZone("CEST"));
 	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	    }
 	

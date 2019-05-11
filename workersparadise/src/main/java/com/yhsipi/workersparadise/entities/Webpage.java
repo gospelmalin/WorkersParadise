@@ -59,6 +59,16 @@ public class Webpage implements Serializable {
 		else return null;
 		
 	}
+	
+	//TODO TEST
+		public String getGithubLink() {
+			if (this.getType().getIdType()==6) {
+			return this.link;
+			}
+			//else return "www.instagram.com";
+			else return null;
+			
+		}
 
 	public void setLink(String link) {
 		this.link = link;

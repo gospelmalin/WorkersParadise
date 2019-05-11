@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Websida</title>
+</head>
+<body>
+	<div th:replace="fragments/_navbar"></div>
+			<div class="col" data-layout-fragment="content">
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Id</th>
+							<!--<th scope="col">Person</th> -->
+							<th scope="col">Personid</th>
+							<th scope="col">Förnamn</th>
+							<th scope="col">Efternamn</th>
+							<th scope="col">Websidans namn</th>
+							<th scope="col">Länk</th>
+							<th scope="col">Beskrivning</th>
+							<th scope="col">Kategori-id</th>
+							<th scope="col">Kategori</th>						
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-th-each="webpage : ${webpages}">
+							<td data-th-text="${webpage.getId().getIdWebpage()}">Id</td>
+							<!--<td data-th-text="${webpage.person.getFullName()}">Person</td> -->
+							<td data-th-text="${webpage.person.getIdPerson()}">Personid</td>
+							<td data-th-text="${webpage.person.getFirstName()}">Förnamn</td>
+							<td data-th-text="${webpage.person.getLastName()}">Efternamn</td>
+							<td data-th-text="${webpage.getWebpageName()}">Websidans namn</td>
+							<td data-th-text="${webpage.getLink()}">Länk</td>
+							<td data-th-text="${webpage.getWebpageDescription()}">Beskrivning</td>
+							<td data-th-text="${webpage.type.getIdType()}">Kategori-id</td>
+							<td data-th-text="${webpage.type.getTypeName()}">Kategori</td>
+							<td scope="row">
+									<a th:href="@{/webpages/person/{personid}/add(personid=${webpage.getId().getIdPerson()})}">Lägg till</a> |
+									<a th:href="@{/webpages/edit/{personid}/{webpageid}(personid=${webpage.getId().getIdPerson()},webpageid=${webpage.getId().getIdWebpage()})}">Ändra</a> |
+							   	<a th:href="@{/webpages/remove/{webpageid}(webpageid=${webpage.getId().getIdWebpage()})}">Ta bort</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	  	<a th:href="@{/webpages/add}">Lägg till ny websida</a>
+		<div th:replace="fragments/_footer"></div>
+</body>
+</html>

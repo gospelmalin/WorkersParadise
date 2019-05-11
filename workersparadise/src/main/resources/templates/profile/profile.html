@@ -69,22 +69,24 @@
          	<span th:text="${person.lastName}"class="text-primary">Efternamn</span>
         </h1>
         <div class="subheading mb-5">
-        <span th:text="${person.getAddress().get(0).getCo()}"></span>
-        <span th:text="${person.getAddress().get(0).getStreetAddress()}">gata</span> · 
-        <span th:text="${person.getAddress().get(0).getZipCode()}">postnr</span> 
-        <span th:text="${person.getAddress().get(0).getCity()}">ort</span> ·
-        <span th:text="${person.getPhones().get(0).getCountryPrefix()}">landsprefix</span> 
-        <span th:text="${person.getPhones().get(0).getPhoneNumber()}">telefon</span> ·
-         <span th:text="${person.getEmail().get(0).getEmail()}">epost</span>
+        <span th:text="${person.getPrimaryCo()}"></span>
+        <span th:text="${person.getPrimaryStreetAddress()}">gata</span> ·
+        <!-- <span th:text="${person.getAddress().get(0).getStreetAddress()}">gata</span> ·  -->
+        <span th:text="${person.getPrimaryZipCode()}">postnr</span> 
+        <span th:text="${person.getPrimaryCity()}">ort</span> ·
+        <span th:text="${person.getPrimaryPhoneNumber()}">telefon</span> ·
+        <span th:text="${person.getPrimaryEmail()}">epost</span>
           
         </div>
         <p class="lead mb-5" th:text="${person.getAbout().getAboutSummary()}">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
+        
         <div class="social-icons">
-        <a th:href="@{${person.getWebpage().get(0).getLinkedInLink()}}">
+        
+        <a th:href="@{${person.webpage.get(0).getLinkedInLink()}}">
           
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href="#">
+          <a th:href="@{${person.webpage.get(0).getGithubLink()}}">
             <i class="fab fa-github"></i>
           </a>
           <a href="#">
@@ -95,6 +97,7 @@
           </a>
         </div>
       </div>
+
     </section>
 
     <hr class="m-0">
@@ -159,16 +162,22 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
-            <h3 class="mb-0">University of Colorado Boulder</h3>
-            <div class="subheading mb-3">Bachelor of Science</div>
-            <div>Computer Science - Web Development Track</div>
-            <p>GPA: 3.23</p>
+          <div data-th-each="education : ${person.getEducation()}">
+            <h3 class="mb-0" data-th-text="${education.getEducationName()}"></h3>
+            <div class="subheading mb-3" data-th-text="${education.getSchool()}"></div>
+            <p> <span data-th-text="${education.getEducationDescription()}"></p>
+            <p> Nivå: <span data-th-text="${education.getEducationLevel()}"></p>
+            <p> Betyg:  <span data-th-text="${education.getEducationGrade()}"></p>
+             <div class="resume-date text-md-right">
+            	<p> <span data-th-text="${education.getEducationStartDate()}"></span> - <span data-th-text="${education.getEducationEndDate()}"></span></p>
+            
+             </div>
+         
+            
           </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">August 2006 - May 2010</span>
-          </div>
+ 
         </div>
-
+<!--  
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
           <div class="resume-content">
             <h3 class="mb-0">James Buchanan High School</h3>
@@ -181,6 +190,7 @@
         </div>
 
       </div>
+      -->
     </section>
 
     <hr class="m-0">
@@ -258,43 +268,35 @@
     </section>
 
     <hr class="m-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
-      <div class="w-100">
-        <h2 class="mb-5">Certifieringar &amp; Utmärkelser</h2>
-        <ul class="fa-ul mb-0">
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Google Analytics Certified Developer</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            Mobile Web Specialist - Google Certification</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - University of Colorado Boulder - Emerging Tech Competition 2009</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            2<sup>nd</sup>
-            Place - University of Colorado Boulder - Emerging Tech Competition 2008</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            1<sup>st</sup>
-            Place - James Buchanan High School - Hackathon 2006</li>
-          <li>
-            <i class="fa-li fa fa-trophy text-warning"></i>
-            3<sup>rd</sup>
-            Place - James Buchanan High School - Hackathon 2005</li>
-        </ul>
+	
+	<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+		<div class="w-100">
+	        <h2 class="mb-5">Certifieringar &amp; Utmärkelser</h2>
+	     <div data-th-each="certification : ${person.getCertification()}">
+	     <ul class="fa-ul mb-0">
+		     <li>
+	      <i class="fa-li fa fa-trophy text-warning"></i> 
+	      <span data-th-text="${certification.getCertificationName()}"></span> - <span data-th-text="${certification.getCertificationDescription()}"></span>          
+     		</li>
+      </ul>
       </div>
     </section>
+ 
     
+     <hr class="m-0">
       <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="contacts">
-      Kontakter
+      	<div class="w-100">
+      		 <h2 class="mb-5">Kontaktuppgifter</h2>
+       	 <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+	          	<div class="resume-content">
+	      			<!-- adress, e-post, telefonnummer med kategori jobb, hem, mobil, annan -->
+	      			<!-- websidor här också, eller täcks in högst upp i profilen? -->
+	      
+	       		</div>
+	        	</div>
+
+      	</div>
+      
       </section>
 
   </div>

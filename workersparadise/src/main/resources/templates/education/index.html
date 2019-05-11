@@ -43,14 +43,16 @@
 					 	<td data-th-text="${education.educationGrade}">Betyg</td>
 						<td data-th-text="${education.isProgram}">Program</td>
 						<td scope="row">
-								<a th:href="@{/educations/addedit/{educationid}/(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
+								<a th:href="@{/educations/person/{personid}/add(personid=${education.getId().getIdPerson()})}">Lägg till</a> |
+								<a th:href="@{/educations/edit/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
+								<a th:href="@{/educations/remove/{educationid}(educationid=${education.getId().getIdEducation()})}">Ta bort</a>							
 							 <!--  <a th:href="@{/educations/remove/{educationid}/(educationid=${education.idEducation})}">Ta bort</a> -->
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<a th:href="@{/educations/addedit}">Lägg till ny utbildning</a>
+		<a th:href="@{/educations/add}">Lägg till ny utbildning</a>
 		<div th:replace="fragments/_footer"></div>
 </body>
 </html>

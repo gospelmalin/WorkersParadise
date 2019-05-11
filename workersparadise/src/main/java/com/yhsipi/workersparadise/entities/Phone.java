@@ -108,4 +108,12 @@ public class Phone implements Serializable {
 		this.type = type;
 	}
 
+	// This format is used in profile.html. Do not change without handling profile.html
+	@Override
+	public String toString() {
+		return countryPrefix + " " + phoneNumber;
+	}
+	
+	
+
 }

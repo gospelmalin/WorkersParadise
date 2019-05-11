@@ -1,9 +1,15 @@
 package com.yhsipi.workersparadise.service;
 
+import com.yhsipi.workersparadise.entities.Users;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService{
+public interface UserService{
+
+
+    public Users findByUsername(String username);
+
+    public void saveUser(Users user);
 /*
 	@Autowired
 	UsersRepository userRepository;

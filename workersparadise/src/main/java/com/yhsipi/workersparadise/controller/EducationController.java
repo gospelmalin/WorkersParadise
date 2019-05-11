@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yhsipi.workersparadise.entities.Education;
 import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.service.EducationService;
+import com.yhsipi.workersparadise.service.PersonService;
 
 
 @Controller
@@ -28,10 +29,12 @@ public class EducationController {
 		
 	@Autowired
 	private EducationService educationService;
+	@Autowired
+	private PersonService personService;
 	
 	 @InitBinder
 	    public void initBinder(WebDataBinder binder) {
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd"); //yyyy-MM-dd'T'HH:mm:ssZ example
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); //yyyy-MM-dd'T'HH:mm:ssZ example
 	        dateFormat.setLenient(false);
 	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	    }
@@ -54,13 +57,11 @@ public class EducationController {
 	}	
 	
 	// Add -> AddForm
-    @GetMapping("/add")
+	@GetMapping("/person/{id}/add")
     public String addForm(Model model) {
-    	System.out.println("adding education..");
+    	// System.out.println("adding education..");
     	Education ed = new Education();
-    	ed.setEducationName("Testutbildningsnamn");
     	System.out.println(ed.toString());
-    //    model.addAttribute("education", new Education());
     	model.addAttribute("education", ed);
         return "/education/addedit";
     }
@@ -72,13 +73,16 @@ public class EducationController {
       edpk.setIdEducation(educationid);
       edpk.setIdPerson(personid);
       model.addAttribute("education", educationService.findOne(edpk).get());
-    //	model.addAttribute("education", educationService.findOne(id));
         return "/education/addedit";
     }    
     
     // Save
     @PostMapping("/add")
     public String saveEducation(@Valid Education education, BindingResult result, Model model){
+    	
+    	EducationPK edPK = education.getId();
+    	System.out.println(edPK.getIdEducation() + edPK.getIdPerson());
+    	
     	
     	if (result.hasErrors()) {
     		return "/education/addedit";
