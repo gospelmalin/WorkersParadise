@@ -39,7 +39,7 @@
 							<td scope="row">
 									<a th:href="@{/webpages/person/{personid}/add(personid=${webpage.getId().getIdPerson()})}">Lägg till</a> |
 									<a th:href="@{/webpages/edit/{personid}/{webpageid}(personid=${webpage.getId().getIdPerson()},webpageid=${webpage.getId().getIdWebpage()})}">Ändra</a> |
-							   	<a th:href="@{/webpages/remove/{webpageid}(webpageid=${webpage.getId().getIdWebpage()})}">Ta bort</a>
+							   	<a th:href="@{/webpages/remove/{personid}/{webpageid}(personid=${webpage.getId().getIdPerson()},webpageid=${webpage.getId().getIdWebpage()})}">Ta bort</a>
 							</td>
 						</tr>
 					</tbody>
