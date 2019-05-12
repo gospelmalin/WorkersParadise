@@ -27,18 +27,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService CustomUserDetailsService;
 
     @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
     private DataSource dataSource;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
+
+
+    private final String USERS_QUERY = "select username, password, active from users where username=?";
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(CustomUserDetailsService)
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(bCryptPasswordEncoder);
+
+
+
+    }
+
+    @Autowired
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery(USERS_QUERY)
+                .dataSource(dataSource)
+                .passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -67,7 +81,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //Vad händer vid logout
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .deleteCookies("my-remember-me-cookie")
                 .permitAll()

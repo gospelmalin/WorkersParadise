@@ -1,5 +1,6 @@
 package com.yhsipi.workersparadise.controller;
 
+import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -82,13 +83,19 @@ public class ProfileController {
 
         return model;
     }
+
+
     @PostMapping("/account/register")
     public ModelAndView createUser(@Valid Users user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
         Users userExists = userService.findByUsername(user.getUsername());
 
+        System.out.println("Användarnamn " + user.getUsername());
+        System.out.println("Lösenord " + user.getPassword());
+        System.out.println("identitet " + user.getUrl());
+        System.out.println("Annan info");
         if (userExists != null) {
-            bindingResult.rejectValue("email", "error.user", "This userme already exists!");
+            bindingResult.rejectValue("username", "error.user", "This username already exists!");
         }
         if (bindingResult.hasErrors()) {
             model.setViewName("account/register");
@@ -96,7 +103,7 @@ public class ProfileController {
             userService.saveUser(user);
             model.addObject("msg", "User has been registered successfully!");
             model.addObject("user", new Users());
-            model.setViewName("profile");
+            model.setViewName("/");
         }
 
         return model;

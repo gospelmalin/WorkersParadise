@@ -3,6 +3,7 @@ package com.yhsipi.workersparadise;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -20,6 +21,16 @@ public class MvcConfig implements WebMvcConfigurer {
        // registry.addViewController("/login").setViewName("login");
         registry.addViewController("/companies").setViewName("/company/index");
      
+    }
+
+    @Configuration
+    public class WebMvcConfig implements WebMvcConfigurer {
+
+        @Bean
+        public BCryptPasswordEncoder passwordEncoder() {
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            return bCryptPasswordEncoder;
+        }
     }
 
     @Override
