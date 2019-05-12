@@ -27,13 +27,13 @@ public class PhoneController {
 	
 	@GetMapping("/")
 	public String Phone(Model model) {
-		model.addAttribute("phone", phoneService.findAll());
+		model.addAttribute("phones", phoneService.findAll());
 		return "phone/index";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String edit(@PathVariable int id, Model model) {
-		model.addAttribute("phone", phoneService.findOne(id));
+		model.addAttribute("phones", phoneService.findOne(id));
 		return "/phone/add";
 	}
 	
