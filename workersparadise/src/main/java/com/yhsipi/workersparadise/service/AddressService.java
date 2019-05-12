@@ -35,8 +35,8 @@ public class AddressService {
 		addressRepository.save(address);
 	}
 
-	public void deleteAddress(int id) {
-		addressRepository.deleteById(id);
+	public void deleteAddress(Address address) {
+		addressRepository.delete(address);
 	}
 
 }
