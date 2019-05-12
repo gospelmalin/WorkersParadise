@@ -32,8 +32,8 @@ public class WebpageService {
 		webpageRepository.save(webpage);
 	}
 
-	public void deleteWebpage(int id) {
-		webpageRepository.deleteById(id);
+	public void deleteWebpage(Webpage webpage) {
+		webpageRepository.delete(webpage);
 	}
 
 }

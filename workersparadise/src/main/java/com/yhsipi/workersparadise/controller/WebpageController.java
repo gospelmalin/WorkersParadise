@@ -80,10 +80,13 @@ public class WebpageController {
         return "redirect:/webpages/";
     }
     
- // Delete //Does not work yet
- 	@RequestMapping(value = "/remove/{id}")
- 	public String deleteWebpage(@PathVariable int id) {
- 		webpageService.deleteWebpage(id);		
+ // Delete 
+ 	@RequestMapping(value = "/remove/{personid}/{webpageid}")
+ 	public String deleteWebpage(@PathVariable int personid, @PathVariable int webpageid ) {
+ 		WebpagePK wpk = new WebpagePK();
+ 	      wpk.setIdWebpage(webpageid);
+ 	      wpk.setIdPerson(personid);
+ 		webpageService.deleteWebpage(webpageService.findOne(wpk).get());		
  		return "redirect:/webpages/";
  	}
 	
