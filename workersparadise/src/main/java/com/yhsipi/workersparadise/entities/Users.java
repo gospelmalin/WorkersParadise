@@ -16,10 +16,13 @@ import java.sql.Timestamp;
 public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @EmbeddedId
+	private UsersPK id;
+    /*
     @Id
     @Column(name="id_user")
     private int idUser;
-
+*/
     @Column(name="date_created")
     private Timestamp dateCreated;
 
@@ -33,12 +36,21 @@ public class Users implements Serializable {
 
     //bi-directional many-to-one association to Person
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="id_person")
+    @JoinColumn(name="id_person",insertable=false, updatable=false)
     private Person person;
 
     public Users() {
     }
 
+    public UsersPK getId() {
+		return this.id;
+	}
+
+	public void setId(UsersPK id) {
+		this.id = id;
+	}
+    
+	/*
     public int getIdUser() {
         return this.idUser;
     }
@@ -46,7 +58,7 @@ public class Users implements Serializable {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
-
+*/
     public Timestamp getDateCreated() {
         return this.dateCreated;
     }

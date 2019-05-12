@@ -55,6 +55,12 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Certification> certification;
 	
+	//TODO test
+	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+	private List<Users> user;
+	
+	
+
 	//bi-directional one-to-one association to About 
 	@OneToOne(mappedBy="person", cascade={CascadeType.ALL}) 
 	private About about;
@@ -231,5 +237,19 @@ public class Person implements Serializable {
 		return (Integer) null;		
 	}
 
-	
+	public List<Email> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<Email> emails) {
+		this.emails = emails;
+	}
+
+	public List<Users> getUser() {
+		return user;
+	}
+
+	public void setUser(List<Users> user) {
+		this.user = user;
+	}
 }

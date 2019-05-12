@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="workersparadise">
+		<class>com.yhsipi.workersparadise.entities.About</class>
 		<class>com.yhsipi.workersparadise.entities.Address</class>
 		<class>com.yhsipi.workersparadise.entities.AddressPK</class>
 		<class>com.yhsipi.workersparadise.entities.Certification</class>
@@ -9,8 +10,11 @@
 		<class>com.yhsipi.workersparadise.entities.Competence</class>
 		<class>com.yhsipi.workersparadise.entities.CompetenceCategory</class>
 		<class>com.yhsipi.workersparadise.entities.CompetencePK</class>
+		<class>com.yhsipi.workersparadise.entities.Education</class>
+		<class>com.yhsipi.workersparadise.entities.EducationPK</class>
 		<class>com.yhsipi.workersparadise.entities.Email</class>
 		<class>com.yhsipi.workersparadise.entities.EmailPK</class>
+		<class>com.yhsipi.workersparadise.entities.Person</class>
 		<class>com.yhsipi.workersparadise.entities.Phone</class>
 		<class>com.yhsipi.workersparadise.entities.PhonePK</class>
 		<class>com.yhsipi.workersparadise.entities.ProfessionalExperience</class>
@@ -21,11 +25,8 @@
 		<class>com.yhsipi.workersparadise.entities.Relation</class>
 		<class>com.yhsipi.workersparadise.entities.Type</class>
 		<class>com.yhsipi.workersparadise.entities.Users</class>
+		<class>com.yhsipi.workersparadise.entities.UsersPK</class>
 		<class>com.yhsipi.workersparadise.entities.Webpage</class>
 		<class>com.yhsipi.workersparadise.entities.WebpagePK</class>
-		<class>com.yhsipi.workersparadise.entities.Person</class>
-		<class>com.yhsipi.workersparadise.entities.About</class>
-		<class>com.yhsipi.workersparadise.entities.Education</class>
-		<class>com.yhsipi.workersparadise.entities.EducationPK</class>
 	</persistence-unit>
 </persistence>
