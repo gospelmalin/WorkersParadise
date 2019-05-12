@@ -34,7 +34,7 @@
 							<!--  <a th:href="@{/certifications/person/{certificationid}(personid=${certification.getId().getIdPerson()}/add}">Lägg till</a> |-->
 							<a th:href="@{/certifications/person/{personid}/add(personid=${certification.getId().getIdPerson()})}">Lägg till</a> |
 							<a th:href="@{/certifications/edit/{personid}/{certificationid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ändra</a> |
-						   <a th:href="@{/certifications/remove/{certificationid}(certificationid=${certification.getId().getIdCertification()})}">Ta bort</a>
+						   <a th:href="@{/certifications/remove/{personid}/{certificationid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ta bort</a>
 						</td>
 					</tr>
 				</tbody>

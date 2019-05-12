@@ -83,9 +83,12 @@ public class CertificationController {
 		    }
 		
 	    // Delete
-		@RequestMapping(value = "/remove/{id}")
-		public String deleteCertification(@PathVariable int id) {
-			certificationService.deleteCertification(id);		
+		@RequestMapping(value = "/remove/{personid}/{certificationid}")
+		public String deleteCertification(@PathVariable int personid, @PathVariable int certificationid) {
+			CertificationPK cpk = new CertificationPK();
+			cpk.setIdCertification(certificationid);
+			cpk.setIdPerson(personid);
+			certificationService.deleteCertification(certificationService.findOne(cpk).get());		
 			return "redirect:/certifications/";
 		}
 	

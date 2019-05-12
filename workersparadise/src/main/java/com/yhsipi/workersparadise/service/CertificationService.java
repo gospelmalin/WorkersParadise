@@ -34,8 +34,8 @@ public class CertificationService {
 		certificationRepository.save(certification);
 	}
 
-	public void deleteCertification(int id) {
-		certificationRepository.deleteById(id);
+	public void deleteCertification(Certification certification) {
+		certificationRepository.delete(certification);
 	}
 	
 }
