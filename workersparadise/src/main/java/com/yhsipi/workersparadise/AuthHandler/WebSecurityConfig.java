@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-   // private final String USERS_QUERY = "select username, password from users where username=?";
+    //private final String USERS_QUERY = "select username, password from users where username=?";
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -53,8 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(USERS_QUERY)
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
-    }
-*/
+    }*/
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -82,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Vad händer vid logout
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/account/login?logout")
                 .deleteCookies("my-remember-me-cookie")
                 .permitAll()
                 .and()
