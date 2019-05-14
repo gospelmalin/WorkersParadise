@@ -11,10 +11,12 @@
 </head>
 
 <body>
+
+<div th:replace="fragments/_navbar"></div>
 <div class="container">
     <div class="row">
         <div class="alert alert-danger" role="alert" th:if="${param.error}">
-            The email or password is incorrect!
+            Användarnamn eller lösenord är felaktigt
         </div>
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
@@ -22,22 +24,22 @@
                     <h5 class="card-title text-center">Sign In</h5>
                     <form class="form-signin" th:action="@{/account/login}" method="post">
                         <div class="form-label-group">
-                            <input type="text" id="inputUser" class="form-control" placeholder="Username" name="username" required autofocus>
-                            <label for="inputUser">Username</label>
+                            <input type="text" id="inputUser" class="form-control" placeholder="Användarnamn" name="username" required autofocus>
+                            <label for="inputUser">Användarnamn</label>
                         </div>
 
                         <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
-                            <label for="inputPassword">Password</label>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Lösenord" name="password" required>
+                            <label for="inputPassword">Lösenord</label>
                         </div>
 
                         <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Remember password</label>
+                            <label class="custom-control-label" for="customCheck1">Kom ihåg mig</label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Sign In">Sign in</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Sign In">Logga in</button>
                         <hr class="my-4">
-                        <h6 class="text-center">No user? <a href="/account/register">Register</a></h6>
+                        <h6 class="text-center">Ingen användare? <a href="/account/register">Registrera</a></h6>
                     </form>
                 </div>
             </div>

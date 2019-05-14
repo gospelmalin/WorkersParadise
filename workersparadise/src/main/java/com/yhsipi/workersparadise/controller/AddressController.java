@@ -82,9 +82,12 @@ public class AddressController {
 			    }
 			
 		    // Delete
-			@RequestMapping(value = "/remove/{id}")
-			public String deleteAddress(@PathVariable int id) {
-				addressService.deleteAddress(id);		
+			@RequestMapping(value = "/remove/{personid}/{addressid}")
+			public String deleteAddress(@PathVariable int personid, @PathVariable int addressid) {
+				AddressPK apk = new AddressPK();
+				apk.setIdAddress(addressid);
+				apk.setIdPerson(personid);
+				addressService.deleteAddress(addressService.findOne(apk).get());		
 				return "redirect:/addresses/";
 			}
 	

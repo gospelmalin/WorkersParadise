@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<div th:replace="fragments/_headtag :: headtag(title=${'Profilepage'})"></div>
+<div th:replace="fragments/_headtag :: headtag(title=${'Registera nytt konto'})"></div>
 
 <div th:replace="fragments/_navbar"></div>
 <section class="testimonial py-5" id="testimonial">
@@ -12,7 +12,10 @@
 					<div class="card-body">
 						<img src="http://www.ansonika.com/mavia/img/registration_bg.svg" style="width:30%">
 						<h2 class="py-3">Registering</h2>
-						<p>För att kunna skapa och redigera en egen profil behövs ett konto.
+						<p>För att kunna skapa och redigera en personlig profil behövs ett konto. Det är enkelt och tar endast någon minut att komma igång.
+							<br>
+							<hr>
+							Du kommer kunna lägga in mer information i din profil senare
 
 						</p>
 					</div>
@@ -22,19 +25,25 @@
 				<h4 class="pb-4 text-center">Vi behöver följande uppgifter:</h4>
 				<form role="form" method="POST" th:action="@{/account/register}" th:object="${user}">
 
-					<div class="form-row justify-content-md-center">
-						<div class="form-group col-md-5">
-							<input th:field="*{username}" id="Full Nsame" name="username" placeholder="Användarnamn" class="form-control" type="text">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<input th:field="*{idUser}"/>
+							<input th:field="*{person.idPerson}"/>
+							<input th:field="*{username}" id="username" name="username" placeholder="Användarnamn" class="form-control" type="text">
+							<small id="userhelp" class="form-text text-muted">Du använder detta för att sedan kunna logga in</small>
+						</div>
+						<div class="form-group col-md-6">
+							<input th:field="*{password}" id="password" name="username" placeholder="Lösenord" class="form-control" type="password">
 						</div>
 					</div>
 
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<input th:field="*{}" id="Full Name" name="firstname" placeholder="Förnamn" class="form-control" type="text">
+							<input th:field="*{person.firstName}" id="firstName" name="firstname" placeholder="Förnamn" class="form-control" type="text">
 						</div>
 
 						<div class="form-group col-md-6">
-							<input th:field="*{}" type="text" class="form-control" id="inputEmail4" placeholder="Efternamn">
+							<input th:field="*{person.lastName}" type="text" class="form-control" id="lastName" placeholder="Efternamn">
 						</div>
 					</div>
 
@@ -42,9 +51,8 @@
 
 						<div class="form-group col-md-6">
 
-							<i class="fas fa-bullhorn" data-toggle="tooltip" data-placement="top" title="Den önskade adressen används för att nå din profil e.g workerparadise.com/minurl"></i>
-
-							<input id="Mobile No." name="Mobile No." placeholder="Profil identitet" class="form-control" required="required" type="text">
+							<input id="Mobile No." name="profileidentity" placeholder="Profil identitet" class="form-control" required="required" type="text">
+							<small id="identityhelp" class="form-text text-muted">Den önskade identiteten används för andra att nå din profil e.g workerparadise.com/profilidentitet</small>
 						</div>
 						<div class="form-group col-md-6">
 
@@ -75,9 +83,11 @@
 						</div>
 					</div>
 
-					<div class="form-row">
-						<button type="button" class="btn btn-danger">Submit</button>
+					<div class="form-row" id="submitform">
+						<button type="submit"  class="btn btn-success btn-lg" style="margin: auto">Submit</button>
 					</div>
+
+
 				</form>
 			</div>
 		</div>
