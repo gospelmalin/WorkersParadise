@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yhsipi.workersparadise.entities.AddressPK;
 import com.yhsipi.workersparadise.entities.Email;
 import com.yhsipi.workersparadise.entities.EmailPK;
 import com.yhsipi.workersparadise.service.EmailService;
@@ -97,10 +98,13 @@ public class EmailController {
         return "redirect:/emails/";
     }
     
- // Delete //Does not work yet
- 	@RequestMapping(value = "/remove/{id}")
- 	public String deleteEmail(@PathVariable int id) {
- 		emailService.deleteEmail(id);		
+ // Delete
+ 	@RequestMapping(value = "/remove/{personid}/{emailid}")
+ 	public String deleteEmail(@PathVariable int personid, @PathVariable int emailid) {
+ 		EmailPK epk = new EmailPK();
+		epk.setIdEmail(emailid);
+		epk.setIdPerson(personid);
+ 		emailService.deleteEmail(emailService.findOne(epk).get());		
  		return "redirect:/emails/";
  	}
 	

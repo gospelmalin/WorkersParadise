@@ -32,8 +32,8 @@ public class EmailService {
 		emailRepository.save(email);
 	}
 
-	public void deleteEmail(int id) {
-		emailRepository.deleteById(id);
+	public void deleteEmail(Email email) {
+		emailRepository.delete(email);
 	}
 
 }
