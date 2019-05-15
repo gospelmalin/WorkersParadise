@@ -45,7 +45,7 @@
 						<td scope="row">
 								<a th:href="@{/educations/person/{personid}/add(personid=${education.getId().getIdPerson()})}">Lägg till</a> |
 								<a th:href="@{/educations/edit/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
-								<a th:href="@{/educations/remove/{educationid}(educationid=${education.getId().getIdEducation()})}">Ta bort</a>							
+								<a th:href="@{/educations/remove/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ta bort</a>							
 							 <!--  <a th:href="@{/educations/remove/{educationid}/(educationid=${education.idEducation})}">Ta bort</a> -->
 						</td>
 					</tr>

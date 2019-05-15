@@ -33,8 +33,8 @@ public class EducationService {
 		educationRepository.save(education);
 	}
 
-	public void deleteEducation(int id) {
-		educationRepository.deleteById(id);
+	public void deleteEducation(Education education) {
+		educationRepository.delete(education);
 	}
 
 }
