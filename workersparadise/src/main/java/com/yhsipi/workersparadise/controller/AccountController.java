@@ -1,6 +1,7 @@
 package com.yhsipi.workersparadise.controller;
 
 
+import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.repository.UsersRepository;
 import com.yhsipi.workersparadise.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -54,10 +56,11 @@ public class AccountController {
         ModelAndView model = new ModelAndView();
         Users userExists = userService.findByUsername(user.getUsername());
 
-        System.out.println("Användarnamn " + user.getUsername());
-        System.out.println("Lösenord " + user.getPassword());
-        System.out.println("identitet " + user.getUrl());
-        System.out.println("Annan info");
+        List<Users> allUsers = userService.findAll();
+
+        int getID = allUsers.size() + 1;
+        user.setIdUser(getID);
+        user.person.setIdPerson(getID);
         if (userExists != null) {
             bindingResult.rejectValue("username", "error.user", "This username already exists!");
         }
@@ -67,7 +70,7 @@ public class AccountController {
             userService.saveUser(user);
             model.addObject("msg", "User has been registered successfully!");
             model.addObject("user", new Users());
-            model.setViewName("/");
+            model.setViewName("account/login");
         }
 
         return model;

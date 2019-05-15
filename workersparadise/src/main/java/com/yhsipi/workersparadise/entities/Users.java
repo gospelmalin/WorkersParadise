@@ -34,7 +34,7 @@ public class Users implements Serializable {
     //bi-directional many-to-one association to Person
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="id_person")
-    private Person person;
+    public Person person;
 
     public Users() {
     }

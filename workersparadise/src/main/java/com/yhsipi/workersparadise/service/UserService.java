@@ -1,15 +1,36 @@
 package com.yhsipi.workersparadise.service;
 
 import com.yhsipi.workersparadise.entities.Users;
+import com.yhsipi.workersparadise.repository.PhoneRepository;
+import com.yhsipi.workersparadise.repository.UsersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public interface UserService{
+public class UserService{
 
+    @Autowired
+    UsersRepository userrepository;
 
-    public Users findByUsername(String username);
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void saveUser(Users user);
+    public Users findByUsername(String username) {
+        return userrepository.findByUsername(username);
+    };
+
+    public void saveUser(Users user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userrepository.save(user);
+    }
+
+    public List<Users> findAll() {
+        return userrepository.findAll();
+    }
+
 /*
 	@Autowired
 	UsersRepository userRepository;
