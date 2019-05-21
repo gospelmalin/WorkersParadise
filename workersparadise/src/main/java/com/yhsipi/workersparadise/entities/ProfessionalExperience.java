@@ -179,6 +179,12 @@ public class ProfessionalExperience implements Serializable {
 		}
 	}
 
+	public void setPersonId(int id) {
+		this.setPersonId(id);
+	}
+	public int getPersonId() {
+		return person.getIdPerson();
+	}
 	@Override
 	public String toString() {
 		return "ProfessionalExperience [id=" + id + ", description=" + description + ", endDate=" + endDate
