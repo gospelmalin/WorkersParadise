@@ -44,6 +44,8 @@ public class CompetenceController {
 		return "/competence/add";
 	}
 	
+	// TODO Post-mapping needed after change of competence entity and database table
+	/*
 	@PostMapping("/add")
 	public String saveCompetence(@Valid Competence competence, BindingResult result, Model model) {
 		competence.setPerson(personService.findOne(competence.getIdPerson()));
@@ -54,4 +56,5 @@ public class CompetenceController {
 		competenceService.saveCompetence(competence);
 		return "redirect:/competence/";
 	}
+	*/
 }
