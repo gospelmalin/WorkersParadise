@@ -15,9 +15,6 @@ public class CompetencePK implements Serializable {
 	@Column(name="id_competence")
 	private int idCompetence;
 
-	@Column(name="id_person", insertable=false, updatable=false)
-	private int idPerson;
-
 	public CompetencePK() {
 	}
 	public int getIdCompetence() {
@@ -26,12 +23,7 @@ public class CompetencePK implements Serializable {
 	public void setIdCompetence(int idCompetence) {
 		this.idCompetence = idCompetence;
 	}
-	public int getIdPerson() {
-		return this.idPerson;
-	}
-	public void setIdPerson(int idPerson) {
-		this.idPerson = idPerson;
-	}
+
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -42,15 +34,13 @@ public class CompetencePK implements Serializable {
 		}
 		CompetencePK castOther = (CompetencePK)other;
 		return 
-			(this.idCompetence == castOther.idCompetence)
-			&& (this.idPerson == castOther.idPerson);
+			(this.idCompetence == castOther.idCompetence);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
 		hash = hash * prime + this.idCompetence;
-		hash = hash * prime + this.idPerson;
 		
 		return hash;
 	}

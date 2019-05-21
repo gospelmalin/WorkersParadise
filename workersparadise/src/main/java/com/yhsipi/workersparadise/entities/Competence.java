@@ -1,15 +1,9 @@
 package com.yhsipi.workersparadise.entities;
 
 import java.io.Serializable;
-import java.util.Optional;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -24,29 +18,17 @@ public class Competence implements Serializable {
 
 	@EmbeddedId
 	private CompetencePK id;
-
+	
 	@Column(name="competence_name")
 	private String competenceName;
 
-	//bi-directional many-to-one association to CompetenceCategory
-	@ManyToOne
-	@JoinColumn(name="id_competence_category")
-	private CompetenceCategory competenceCategory;
-
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	@JoinColumn(name="id_person",insertable=false, updatable=false)
-	private Person person;
+	@Column(name="id_competence",insertable=false, updatable=false)
+	private int idCompetence;
+	
+	@OneToMany(mappedBy= "competence",cascade = CascadeType.ALL)
+	private List<PersonCompetence> personCompetence;
 
 	public Competence() {
-	}
-
-	public CompetencePK getId() {
-		return this.id;
-	}
-
-	public void setId(CompetencePK id) {
-		this.id = id;
 	}
 
 	public String getCompetenceName() {
@@ -57,25 +39,12 @@ public class Competence implements Serializable {
 		this.competenceName = competenceName;
 	}
 
-	public CompetenceCategory getCompetenceCategory() {
-		return this.competenceCategory;
+	public int getIdCompetence() {
+		return this.idCompetence;
 	}
 
-	public void setCompetenceCategory(CompetenceCategory competenceCategory) {
-		this.competenceCategory = competenceCategory;
+	public void setIdCompetence(int idCompetence) {
+		this.idCompetence = idCompetence;
 	}
 
-	public Person getPerson() {
-		return this.person;
-	}
-
-	public void setPerson(Optional<Person> person) {
-		if(person != null) {
-			this.person = person.get();
-		}
-	}
-
-	public int getIdPerson() {
-		return person.getIdPerson();
-	}
 }

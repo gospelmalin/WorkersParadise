@@ -55,6 +55,9 @@ public class Person implements Serializable {
 	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
 	private List<Certification> certification;
 	
+	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+	private List<PersonCompetence> personCompetence;
+	
 	//bi-directional one-to-one association to About 
 	@OneToOne(mappedBy="person", cascade={CascadeType.ALL}) 
 	private About about;
