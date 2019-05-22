@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.service.PersonService;
 
 @Controller
@@ -36,24 +34,7 @@ public class ProfileController {
     @GetMapping("/profile/{id}")
     public String Profile(@PathVariable int id, Model model) {
     	
-    	Person p = personService.findOne(id).get();
-    	System.out.println("####\n# Person: " + p.getProfExperience().toString());
-        model.addAttribute("person", p);
+        model.addAttribute("person", personService.findOne(id).get());
         return "profile/profile";
     }
 }
-
-
-
-/*
- *     	Optional<Person> p = personService.findOne(2);
-    	
-    	System.out.println("User");
-    	System.out.println(p.get().toString());
-    	
-    	System.out.println("Adress");
-    	System.out.println(p.get().getAddress().toString());
-    	
-    	System.out.println("Phone");
-    	p.get().getPhones().forEach(x -> System.out.println("phone: "+ x.getPhoneNumber()));
- * */
