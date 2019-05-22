@@ -1,37 +1,22 @@
 package com.yhsipi.workersparadise.controller;
 
-import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
-
-import com.yhsipi.workersparadise.entities.Users;
-import com.yhsipi.workersparadise.repository.UsersRepository;
-import com.yhsipi.workersparadise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import com.yhsipi.workersparadise.entities.Company;
 import com.yhsipi.workersparadise.entities.Person;
-import com.yhsipi.workersparadise.service.CompanyService;
 import com.yhsipi.workersparadise.service.PersonService;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 
 @Controller
 public class ProfileController {
 
     @Autowired
     private PersonService personService;
-    @Autowired
-    private CompanyService companyservice;
-
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -50,14 +35,12 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}")
     public String Profile(@PathVariable int id, Model model) {
-
-        model.addAttribute("person", personService.findOne(id).get());
+    	
+    	Person p = personService.findOne(id).get();
+    	System.out.println("####\n# Person: " + p.getProfExperience().toString());
+        model.addAttribute("person", p);
         return "profile/profile";
     }
-
-
-
-
 }
 
 
