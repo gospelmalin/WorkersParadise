@@ -16,15 +16,18 @@ import javax.persistence.*;
 public class Competence implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name="id_competence")
+	private int idCompetence;
+	/*
 	@EmbeddedId
 	private CompetencePK id;
-	
+	*/
 	@Column(name="competence_name")
 	private String competenceName;
-
-	@Column(name="id_competence",insertable=false, updatable=false)
-	private int idCompetence;
 	
+
+
 	@OneToMany(mappedBy= "competence",cascade = CascadeType.ALL)
 	private List<PersonCompetence> personCompetence;
 
@@ -38,9 +41,26 @@ public class Competence implements Serializable {
 	public void setCompetenceName(String competenceName) {
 		this.competenceName = competenceName;
 	}
+/*
+	public CompetencePK getId() {
+		return id;
+	}
+
+	public void setId(CompetencePK id) {
+		this.id = id;
+	}
+*/
+	
+	public List<PersonCompetence> getPersonCompetence() {
+		return personCompetence;
+	}
+
+	public void setPersonCompetence(List<PersonCompetence> personCompetence) {
+		this.personCompetence = personCompetence;
+	}
 
 	public int getIdCompetence() {
-		return this.idCompetence;
+		return idCompetence;
 	}
 
 	public void setIdCompetence(int idCompetence) {
