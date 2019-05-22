@@ -28,6 +28,7 @@ public class AboutService {
 	}
 	
 	public void deleteAbout(int id) {
+		System.out.println("hej hej");
 		aboutRepository.deleteById(id);
 	}
 }
