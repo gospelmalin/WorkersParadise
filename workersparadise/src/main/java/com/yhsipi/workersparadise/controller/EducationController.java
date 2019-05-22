@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yhsipi.workersparadise.entities.AddressPK;
 import com.yhsipi.workersparadise.entities.Education;
 import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.service.EducationService;
@@ -94,9 +95,12 @@ public class EducationController {
     }
     
     // Delete
-	@RequestMapping(value = "/remove/{id}")
-	public String deleteEducation(@PathVariable int id) {
-		educationService.deleteEducation(id);		
+	@RequestMapping(value = "/remove/{personid}/{educationid}")
+	public String deleteEducation(@PathVariable int personid, @PathVariable int educationid) {
+		EducationPK edpk = new EducationPK();
+		edpk.setIdEducation(educationid);
+		edpk.setIdPerson(personid);
+		educationService.deleteEducation(educationService.findOne(edpk).get());		
 		return "redirect:/educations/";
 	}
 

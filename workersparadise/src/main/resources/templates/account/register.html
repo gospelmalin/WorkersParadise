@@ -27,13 +27,14 @@
 
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<input th:field="*{idUser}"/>
-							<input th:field="*{person.idPerson}"/>
+
 							<input th:field="*{username}" id="username" name="username" placeholder="Användarnamn" class="form-control" type="text">
 							<small id="userhelp" class="form-text text-muted">Du använder detta för att sedan kunna logga in</small>
 						</div>
+						<br>
 						<div class="form-group col-md-6">
-							<input th:field="*{password}" id="password" name="username" placeholder="Lösenord" class="form-control" type="password">
+							<input th:field="*{password}" id="password" name="username" placeholder="Ange lösenord" class="form-control" type="password">
+							<input th:field="*{password}" id="password" name="username" placeholder="Ange lösenord igen" class="form-control" type="password">
 						</div>
 					</div>
 
@@ -51,7 +52,7 @@
 
 						<div class="form-group col-md-6">
 
-							<input id="Mobile No." name="profileidentity" placeholder="Profil identitet" class="form-control" required="required" type="text">
+							<input id="Mobile No." name="profileidentity" th:field="*{url}" placeholder="Profil identitet" class="form-control" required="required" type="text">
 							<small id="identityhelp" class="form-text text-muted">Den önskade identiteten används för andra att nå din profil e.g workerparadise.com/profilidentitet</small>
 						</div>
 						<div class="form-group col-md-6">

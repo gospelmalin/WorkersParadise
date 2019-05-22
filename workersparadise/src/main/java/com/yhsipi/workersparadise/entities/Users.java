@@ -20,7 +20,13 @@ public class Users implements Serializable {
     @Column(name="id_user")
     private int idUser;
 
-    @Column(name="date_created")
+    @Override
+	public String toString() {
+		return "Users [idUser=" + idUser + ", dateCreated=" + dateCreated + ", enabled=" + enabled + ", password="
+				+ password + ", url=" + url + ", username=" + username + ", person=" + person + "]";
+	}
+
+	@Column(name="date_created")
     private Timestamp dateCreated;
 
     private String enabled;
@@ -34,7 +40,7 @@ public class Users implements Serializable {
     //bi-directional many-to-one association to Person
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="id_person")
-    private Person person;
+    public Person person;
 
     public Users() {
     }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Kompetenser</title>
+</head>
+<body>
+	<div th:replace="fragments/_navbar"></div>
+			<div class="col" data-layout-fragment="content">
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Kompetens</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-th-each="competence: ${competences}">
+						<td data-th-text="${competence.getIdCompetence()}">Id</td>
+							<td data-th-text="${competence.getCompetenceName()}">Kompetens</td>
+							<td scope="row">
+								<!--  <a th:href="@{/competences/add}">Lägg till</a> |-->
+						  		<a th:href="@{/competences/edit/{competenceid}(competenceid=${competence.idCompetence})}">Ändra</a> |
+							   <a th:href="@{/competences/remove/{competenceid}(competenceid=${competence.idCompetence})}">Ta bort</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		  	<a th:href="@{/competences/add}">Lägg till ny kompetens</a>
+			<div th:replace="fragments/_footer"></div>
+</body>
+</html>

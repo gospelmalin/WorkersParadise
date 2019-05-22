@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Kompetenser</title>
+</head>
+<body>
+	<div th:replace="fragments/_navbar"></div>
+			<div class="col" data-layout-fragment="content">
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Id</th>
+							<!--<th scope="col">Person</th> -->
+							<th scope="col">Personid</th>	
+							<th scope="col">Förnamn</th>
+							<th scope="col">Efternamn</th>
+							<th scope="col">Kompetensid</th>	
+							<th scope="col">Kompetens</th>	
+							
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-th-each="personcompetence: ${personcompetences}">
+							<td data-th-text="${personcompetence.getIdPersonCompetence()}">Id</td>
+							<td data-th-text="${personcompetence.person.getIdPerson()}">Personid</td>
+							<td data-th-text="${personcompetence.person.getFirstName()}">Förnamn</td>
+							<td data-th-text="${personcompetence.person.getLastName()}">Efternamn</td>
+							<td data-th-text="${personcompetence.competence.getIdCompetence()}">Kompetensid</td>
+							<td data-th-text="${personcompetence.competence.getCompetenceName()}">Kompetens</td>
+							<td scope="row">
+							<a th:href="@{/personcompetences/person/{personid}/add(personid=${personcompetence.person.getIdPerson()})}">Lägg till</a> |
+							<a th:href="@{/personcompetences/edit/{personid}/{personcompetenceid}(personid=${personcompetence.person.getIdPerson()},personcompetenceid=${personcompetence.getIdPersonCompetence()})}">Ändra</a> |
+							<a th:href="@{/personcompetences/remove/{personcompetenceid}(personcompetenceid=${personcompetence.getIdPersonCompetence()})}">Ta bort</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<!--  	<a th:href="@{/competence/add}">Lägg till ny kompetens</a> -->
+			<div th:replace="fragments/_footer"></div>
+</body>
+</html>

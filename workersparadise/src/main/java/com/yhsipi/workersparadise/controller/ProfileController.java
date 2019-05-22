@@ -31,10 +31,7 @@ public class ProfileController {
     private PersonService personService;
     @Autowired
     private CompanyService companyservice;
-    @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private UserService userService;
+
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -59,55 +56,7 @@ public class ProfileController {
     }
 
 
-    /*
 
-        USER LOGIN OCH REGISTERING
-
-     */
-
-    @GetMapping("/account/login")
-    public ModelAndView login() {
-        ModelAndView model = new ModelAndView();
-
-        model.setViewName("account/login");
-        return model;
-    }
-
-
-    @GetMapping("/account/register")
-    public ModelAndView signup() {
-        ModelAndView model = new ModelAndView();
-        Users user = new Users();
-        model.addObject("user", user);
-        model.setViewName("account/register");
-
-        return model;
-    }
-
-
-    @PostMapping("/account/register")
-    public ModelAndView createUser(@Valid Users user, BindingResult bindingResult) {
-        ModelAndView model = new ModelAndView();
-        Users userExists = userService.findByUsername(user.getUsername());
-
-        System.out.println("Användarnamn " + user.getUsername());
-        System.out.println("Lösenord " + user.getPassword());
-        System.out.println("identitet " + user.getUrl());
-        System.out.println("Annan info");
-        if (userExists != null) {
-            bindingResult.rejectValue("username", "error.user", "This username already exists!");
-        }
-        if (bindingResult.hasErrors()) {
-            model.setViewName("account/register");
-        } else {
-            userService.saveUser(user);
-            model.addObject("msg", "User has been registered successfully!");
-            model.addObject("user", new Users());
-            model.setViewName("/");
-        }
-
-        return model;
-    }
 
 }
 

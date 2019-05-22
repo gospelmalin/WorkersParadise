@@ -1,11 +1,80 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-
+<head>
+	<meta charset="UTF-8">
+</head>
 <body>
+<div class="container">
+	<div class="offset-3 col-6">
+		<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto" data-th-action="@{/experience/save}" data-th-object="${experience}" method="post">
 
-<div th:text="${experience.getTitle() }"></div>
+			<input type="hidden" data-th-field="*{id.idProfExperience}" /> 
+			<input type="hidden" data-th-field="*{id.idPerson}" />
+			
+			<h1>ProfessionalExperience</h1>	
+			<div class="form-group blu-margin">
+		    	<select class="form-control" data-th-field="*{company.idCompany}">
+		    		<option data-th-each="company : ${companies}" data-th-value="${company.idCompany}" data-th-text="${company.companyName}"></option>
+		    	</select>
+			</div>
+			
+<!-- 			<div class="form-group">
+				<label for="company">Företag</label> 
+				<input data-th-field="*{company.idCompany}" type="text" class="form-control" placeholder="Enter company">
+			</div> -->
+			
+			<div class="form-group">
+				<label for="title">Yrkestitel</label> 
+				<input data-th-field="*{title}" type="text" class="form-control" placeholder="Enter title">
+			</div>
 
+			<div class="form-group row">
+				<div class="col-6">
+					<label for="title">Startdatum</label> 
+					<input data-th-field="*{startDate}" type="date" class="form-control" placeholder="startdate" >
+				</div>
+				<div class="col-6">
+					<label for="title">Slutdatum</label> 
+					<input data-th-field="*{endDate}" type="date" class="form-control" placeholder="enddate" >
+				</div>			
+			</div>			
+			
+			<div class="form-group">
+				<label for="title">Beskrivning</label> 
+				<textarea rows="10" data-th-field="*{description}" class="form-control" placeholder="Enter description"></textarea>
+			</div>
+			
+			<div class="form-group">
+
+			</div>			
+			
+			<input type="submit" value="Submit" /> 
+			<input type="reset" value="Reset" />
+		</form>
+	</div>
+</div>
+
+<!-- 		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Namn</th>
+					<th scope="col">Beskrivning</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="company : ${companies}">
+					<td data-th-text="${company.companyName}">Namn</td>
+					<td data-th-text="${company.companyDescription}">Beskrivning</td>
+					<td scope="row">
+						<a th:href="@{/companies/edit/{companyid}/(companyid=${company.idCompany})}">Ã„ndra</a> |
+						<a th:href="@{/companies/remove/{companyid}/(companyid=${company.idCompany})}">Ta bort</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+ -->
 </body>
 </html>
 

@@ -16,19 +16,19 @@ import com.yhsipi.workersparadise.service.CompetenceService;
 import com.yhsipi.workersparadise.service.PersonService;
 
 @Controller
-@RequestMapping(value="/competence")
+@RequestMapping(value="/competences")
 public class CompetenceController {
 	
 	@Autowired
 	private CompetenceService competenceService;
 	
-	@Autowired 
-	private PersonService personService;
+//	@Autowired 
+//	private PersonService personService;
 	
 	@GetMapping("/")
-	public String Competence(Model model) {
+	public String getCompetence(Model model) {
 		
-		model.addAttribute("competence", competenceService.findAll());
+		model.addAttribute("competences", competenceService.findAll());
 		return "competence/index";
 	}
 	
@@ -44,14 +44,22 @@ public class CompetenceController {
 		return "/competence/add";
 	}
 	
+
 	@PostMapping("/add")
 	public String saveCompetence(@Valid Competence competence, BindingResult result, Model model) {
-		competence.setPerson(personService.findOne(competence.getIdPerson()));
 		
 		if(result.hasErrors()) {
 			return "competence/add";
 		}
 		competenceService.saveCompetence(competence);
-		return "redirect:/competence/";
+		return "redirect:/competences/";
 	}
+	
+	 // Delete
+		@RequestMapping(value = "/remove/{id}")
+		public String deleteCompetence(@PathVariable int id) {
+			competenceService.deleteCompetence(id);		
+			return "redirect:/competences/";
+		}
+
 }

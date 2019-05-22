@@ -1,15 +1,9 @@
 package com.yhsipi.workersparadise.entities;
 
 import java.io.Serializable;
-import java.util.Optional;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -22,31 +16,22 @@ import javax.persistence.Table;
 public class Competence implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@Column(name="id_competence")
+	private int idCompetence;
+	/*
 	@EmbeddedId
 	private CompetencePK id;
-
+	*/
 	@Column(name="competence_name")
 	private String competenceName;
+	
 
-	//bi-directional many-to-one association to CompetenceCategory
-	@ManyToOne
-	@JoinColumn(name="id_competence_category")
-	private CompetenceCategory competenceCategory;
 
-	//bi-directional many-to-one association to Person
-	@ManyToOne
-	@JoinColumn(name="id_person",insertable=false, updatable=false)
-	private Person person;
+	@OneToMany(mappedBy= "competence",cascade = CascadeType.ALL)
+	private List<PersonCompetence> personCompetence;
 
 	public Competence() {
-	}
-
-	public CompetencePK getId() {
-		return this.id;
-	}
-
-	public void setId(CompetencePK id) {
-		this.id = id;
 	}
 
 	public String getCompetenceName() {
@@ -56,26 +41,30 @@ public class Competence implements Serializable {
 	public void setCompetenceName(String competenceName) {
 		this.competenceName = competenceName;
 	}
-
-	public CompetenceCategory getCompetenceCategory() {
-		return this.competenceCategory;
+/*
+	public CompetencePK getId() {
+		return id;
 	}
 
-	public void setCompetenceCategory(CompetenceCategory competenceCategory) {
-		this.competenceCategory = competenceCategory;
+	public void setId(CompetencePK id) {
+		this.id = id;
+	}
+*/
+	
+	public List<PersonCompetence> getPersonCompetence() {
+		return personCompetence;
 	}
 
-	public Person getPerson() {
-		return this.person;
+	public void setPersonCompetence(List<PersonCompetence> personCompetence) {
+		this.personCompetence = personCompetence;
 	}
 
-	public void setPerson(Optional<Person> person) {
-		if(person != null) {
-			this.person = person.get();
-		}
+	public int getIdCompetence() {
+		return idCompetence;
 	}
 
-	public int getIdPerson() {
-		return person.getIdPerson();
+	public void setIdCompetence(int idCompetence) {
+		this.idCompetence = idCompetence;
 	}
+
 }
