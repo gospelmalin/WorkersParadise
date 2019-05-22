@@ -61,6 +61,8 @@ public class AccountController {
         int getID = allUsers.size() + 1;
         user.setIdUser(getID);
         user.person.setIdPerson(getID);
+
+
         if (userExists != null) {
             bindingResult.rejectValue("username", "error.user", "This username already exists!");
         }
@@ -73,6 +75,15 @@ public class AccountController {
             model.setViewName("account/login");
         }
 
+        return model;
+    }
+
+
+    @GetMapping("/account/dashboard")
+    public ModelAndView dashboard() {
+        ModelAndView model = new ModelAndView();
+
+        model.setViewName("dashboard/index");
         return model;
     }
 
