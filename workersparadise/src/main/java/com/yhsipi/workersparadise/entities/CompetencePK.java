@@ -1,3 +1,4 @@
+
 package com.yhsipi.workersparadise.entities;
 
 import java.io.Serializable;
@@ -7,6 +8,7 @@ import javax.persistence.*;
  * The primary key class for the competence database table.
  * 
  */
+/*
 @Embeddable
 public class CompetencePK implements Serializable {
 	//default serial version id, required for serializable classes.
@@ -45,3 +47,4 @@ public class CompetencePK implements Serializable {
 		return hash;
 	}
 }
+*/
