@@ -178,6 +178,22 @@ public class Person implements Serializable {
 		this.profExperience = profExperience;
 	}
 
+	public List<Email> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<Email> emails) {
+		this.emails = emails;
+	}
+
+	public List<PersonCompetence> getPersonCompetence() {
+		return personCompetence;
+	}
+
+	public void setPersonCompetence(List<PersonCompetence> personCompetence) {
+		this.personCompetence = personCompetence;
+	}
+
 	public Person() {
 	}
 	@Override
