@@ -6,7 +6,7 @@
 		<class>com.yhsipi.workersparadise.entities.Certification</class>
 		<class>com.yhsipi.workersparadise.entities.CertificationPK</class>
 		<class>com.yhsipi.workersparadise.entities.Company</class>
-		<class>com.yhsipi.workersparadise.entities.CompetencePK</class>
+
 		<class>com.yhsipi.workersparadise.entities.Email</class>
 		<class>com.yhsipi.workersparadise.entities.EmailPK</class>
 		<class>com.yhsipi.workersparadise.entities.Phone</class>
