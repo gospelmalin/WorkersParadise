@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.transaction.Transactional;
 
 
 /**
@@ -176,6 +177,12 @@ public class ProfessionalExperience implements Serializable {
 	public void setPerson(Optional<Person> person) {
 		if(person != null) {
 			this.person = person.get();
+		}
+	}
+	
+	public void setPerson(Person person) {
+		if(person != null) {
+			this.person = person;
 		}
 	}
 
