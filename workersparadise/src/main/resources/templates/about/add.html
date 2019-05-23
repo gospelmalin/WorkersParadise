@@ -10,7 +10,7 @@
 		<h1>Add About</h1>
 		<form data-th-action="@{/about/add}" data-th-object="${about}" method="post">
 			<p><input type="hidden" data-th-field="*{idAbout}" /></p>
-			<p><input type="hidden" data-th-field="*{idPerson}" /></p>
+			<p>Person ID: <input type="text" data-th-field="*{idPerson}" /></p>
 			<p>About beskrivning: <input type="text" data-th-field="*{aboutSummary}" /></p>
 			<p>Intressen: <input type="text" data-th-field="*{interests}" /></p>
 			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>

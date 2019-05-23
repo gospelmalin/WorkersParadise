@@ -4,8 +4,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,10 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yhsipi.workersparadise.entities.About;
-import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.service.AboutService;
 import com.yhsipi.workersparadise.service.PersonService;
-import com.yhsipi.workersparadise.service.UserService;
 
 @Controller
 @RequestMapping(value = "/about")
@@ -28,8 +24,6 @@ public class AboutController {
 	private AboutService aboutService;
 	@Autowired
 	private PersonService personService;
-	@Autowired
-	private UserService userService;
 	
 	@GetMapping("/")
 	public String About(Model model) {
@@ -45,12 +39,7 @@ public class AboutController {
 	
 	@GetMapping("/add")
 	public String add(Model model) {
-		
-		About a = new About();
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Users user = userService.findByUsername(authentication.getName());
-		a.setIdPerson(user.person.getIdPerson());
-		model.addAttribute("about", a);
+		model.addAttribute("about", new About());
 		return "/about/add";
 	}
 	

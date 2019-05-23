@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 import com.yhsipi.workersparadise.entities.Type;
 import com.yhsipi.workersparadise.repository.TypeRepository;
 
+
 @Service
 public class TypeService {
-
+	
 	@Autowired
 	TypeRepository typeRepository;
 	
@@ -19,7 +20,16 @@ public class TypeService {
 		return typeRepository.findAll();
 	}
 	
-	public Optional<Type> findOne(int id){
+	public Optional<Type> findOne(Integer id){
 		return typeRepository.findById(id);
 	}
+	
+	public void saveType(Type type) {
+		typeRepository.save(type);
+	}
+	
+	public void deleteType(int id) {
+		typeRepository.deleteById(id);
+	}
+
 }

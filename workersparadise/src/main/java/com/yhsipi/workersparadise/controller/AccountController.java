@@ -41,7 +41,9 @@ public class AccountController {
     JdbcTemplate jdbcTemplate;
 
 /*
+
         USER LOGIN OCH REGISTERING
+
      */
 
     @GetMapping("/account/login")
@@ -119,3 +121,5 @@ public class AccountController {
     }
 
 }
+
+
