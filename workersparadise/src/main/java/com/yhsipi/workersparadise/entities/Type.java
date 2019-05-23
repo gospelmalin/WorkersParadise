@@ -22,6 +22,7 @@ public class Type implements Serializable {
 	@Column(name="type_name")
 	private String typeName;
 
+	
 	@Column(name="type_no")
 	private int typeNo;
 
