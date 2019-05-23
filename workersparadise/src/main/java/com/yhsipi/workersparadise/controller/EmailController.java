@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.yhsipi.workersparadise.entities.AddressPK;
 import com.yhsipi.workersparadise.entities.Email;
 import com.yhsipi.workersparadise.entities.EmailPK;
 import com.yhsipi.workersparadise.service.EmailService;
 import com.yhsipi.workersparadise.service.PersonService;
-import com.yhsipi.workersparadise.service.TypeService;
 
 @Controller
 @RequestMapping(value = "/emails")
@@ -23,7 +24,7 @@ public class EmailController {
 	@Autowired
 	private EmailService emailService;
 	@Autowired
-	private TypeService typeService;
+	private PersonService personService;
 	
 	// FindAll
 	@RequestMapping(value = "/")
@@ -39,21 +40,31 @@ public class EmailController {
 		return "/email/index";
 	}	
 	
-
- // Add -> AddForm
-    @GetMapping("/person/{id}/add")
-    public String addEmailFormForPerson(@PathVariable int id, Model model) {
+	/*
+	// Add -> AddForm
+    @GetMapping("/add")
+    public String addForm(Model model) {
     	System.out.println("adding email...");
     	Email e = new Email();
-    	EmailPK ePK = new EmailPK();
-    	ePK.setIdPerson(id);
-    	e.setId(ePK);
    //  	e.setEmail("test@email.nu");
    //  	e.setIdType(1);
     	System.out.println(e.toString());
     //   model.addAttribute("email", new Email()); 
     	model.addAttribute("email", e);
-        model.addAttribute("types", typeService.findAll());
+        return "/email/addedit";
+    }
+    */
+    //TODO testar add-variant: //FUNKAR!! Behöver uppdatera så formuläret visar förifyllt id dock
+ // Add -> AddForm
+    @GetMapping("/person/{id}/add")
+    public String addEmailFormForPerson(Model model) {
+    	System.out.println("adding email...");
+    	Email e = new Email();
+   //  	e.setEmail("test@email.nu");
+   //  	e.setIdType(1);
+    	System.out.println(e.toString());
+    //   model.addAttribute("email", new Email()); 
+    	model.addAttribute("email", e);
         return "/email/addedit";
     }
     
@@ -66,7 +77,6 @@ public class EmailController {
       System.out.println("Detta är personId för den som ska editera epost: " + epk.getIdPerson());
       model.addAttribute("email", emailService.findOne(epk).get());
     //	model.addAttribute("email", emailService.findOne(id));
-       model.addAttribute("types", typeService.findAll());
         return "/email/addedit";
     }   
     

@@ -42,14 +42,11 @@ public class PersonCompetenceController {
 		return "/personcompetence/index";
 	}
 	
-	//add
+	//add //Works, but need to show person
 	 @GetMapping("/person/{id}/add")
-	    public String addCompetenceFormForPerson(@PathVariable int id, Model model) {
+	    public String addCompetenceFormForPerson(Model model) {
 	    	System.out.println("adding personal competence...");
 	    	PersonCompetence pc = new PersonCompetence();
-	    	Person person = new Person();
-	    	person.setIdPerson(id);
-	    	pc.setPerson(person);
 	    	System.out.println(pc.toString());
 	    	model.addAttribute("personcompetence", pc);
 	    	model.addAttribute("competences", competenceService.findAll());

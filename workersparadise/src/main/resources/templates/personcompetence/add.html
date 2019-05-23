@@ -11,10 +11,9 @@
 				<form data-th-action="@{/personcompetences/add}" data-th-object="${personcompetence}"
 						method="post">
 				<input type="hidden" data-th-field="*{idPersonCompetence}" placeholder="id"/>	
-				<!-- <p><label for="idPerson">PersonID </label>--> 
-				<input type="hidden" data-th-field="*{person.idPerson}" placeholder="personid"/>
+				<p><label for="idPerson">PersonID </label> <input type="text" data-th-field="*{person.idPerson}" placeholder="personid"/>
 				<div class="form-group blu-margin">
-				<label for="competence">Välj personlig kompetens eller <a href="/competences/add">klicka här </a> för att lägga till ny kompetens</label> 
+				<label for="competence">Kompetens</label>
 				    <select class="form-control" data-th-field="*{competence.idCompetence}">
 				      <option value="0">Välj kompetens</option>	
 				    	<option data-th-each="competence : ${competences}" 

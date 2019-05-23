@@ -10,8 +10,8 @@
 			<h1>Lägg till/ändra adress</h1>
 			<form data-th-action="@{/addresses/add}" data-th-object="${address}"
 						method="post">
-				   Adress-Id: <input type="text" data-th-field="*{id.idAddress}" placeholder="id"/>
-					personid: <input type="text" data-th-field="*{id.idPerson}" />
+				   Adress-Id: <input type="hidden" data-th-field="*{id.idAddress}" placeholder="id"/>
+					personid: <input type="hidden" data-th-field="*{id.idPerson}" />
 					<!-- TODO Hanteringen av C/O i Address för att det skulle bli bra på profilvisningen blir inte lika bra vid save - sparar C/O fast det inte finns -->
 					<p>C/O <input type="text" data-th-field="*{co}" placeholder="C/O"/></p> 			
 					<p>Gatuadress: <input type="text" data-th-field="*{streetAddress}" placeholder="Gatuadress"/> 
