@@ -26,43 +26,35 @@ public class AboutController {
 	
 	@GetMapping("/")
 	public String About(Model model) {
-		
 		model.addAttribute("abouts", aboutService.findAll());
 		return "about/index";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String About(@PathVariable int id, Model model) {
-		
 		model.addAttribute("about", aboutService.findOne(id));
 		return "/about/add";
-		
 	}
 	
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("about", new About());
-		
 		return "/about/add";
-		
 	}
 	
 	@PostMapping("/add")
 	public String saveAbout(@Valid About about, BindingResult result, Model model) {
-
 		about.setPerson(personService.findOne(about.getIdPerson()));
-		
 		if(result.hasErrors()) {
 			return "about/add";
 		}
-		
 		aboutService.saveAbout(about);
-		
 		return "redirect:/about/";
 	}
 	
 	@RequestMapping(value="/remove/{aboutId}")
 	public String deleteAbout(@PathVariable int aboutId) {
+		
 		aboutService.deleteAbout(aboutId);
 		return "redirect:/about/";
 	}

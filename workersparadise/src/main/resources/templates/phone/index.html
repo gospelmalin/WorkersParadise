@@ -14,7 +14,7 @@
 						<th scope="col">Id</th>
 						<th scope="col">Personid</th>
 						<th scope="col">Landkod</th>
-						<th scope="col">Kategori ID</th>
+						<th scope="col">Typ</th>
 						<th scope="col">Telefonnummer</th>
 						<th scope="col">Primär</th>						
 						<th></th>
@@ -25,7 +25,7 @@
 						<td data-th-text="${phone.id.getIdPhone()}">Id</td>
 						<td data-th-text="${phone.person.getIdPerson()}">Personid</td>
 						<td data-th-text="${phone.countryPrefix}">Landkod</td>
-						<td data-th-text="${phone.idPhoneCategory}">Kategori ID</td>
+						<td data-th-text="${phone.type.typeName}">Typ</td>
 						<td data-th-text="${phone.phoneNumber}">Telefonnummer</td>
 						<td data-th-text="${phone.primaryContactNumber}">Primär</td>
 						<td scope="row">

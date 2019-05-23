@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Lägg till/ändra telefonnummer</title>
+</head>
+<body>
+	<div class="col-sm-8" data-layout-fragment="content">
+		<h1>Lägg till/ändra telefonnummer</h1>
+		<form data-th-action="@{/phone/add}" data-th-object="${phone}"	method="post">
+				<p>Telefon-ID <input type="hidden" data-th-field="*{id.idPhone}" />
+ 				<p>Person-ID: <input type="number" data-th-field="*{id.idPerson}" /></p>
+				<p>Landkod <input type="text" data-th-field="*{countryPrefix}" placeholder="Landkod"/></p> 			
+				<p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Kategori-kod"/></p>		
+				<p>Telefonnummer<input type="text" data-th-field="*{phoneNumber}" placeholder="Telefonnummer"/></p>
+				<p>Primär<input type="text" data-th-field="*{primaryContactNumber}" placeholder="Primär"/></p>
+		 		<input type="submit" value="Submit" />
+				<input type="reset"	value="Reset" />
+		</form> 
+		<a href="/phone/">Visa alla telefonnummer</a>
+		</div>
+</body>
+</html>
