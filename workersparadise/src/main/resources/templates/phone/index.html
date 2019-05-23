@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Telefonnummer</title>
+</head>
+<body>
+<div th:replace="fragments/_navbar"></div>
+		<div class="col" data-layout-fragment="content">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Personid</th>
+						<th scope="col">Landkod</th>
+						<th scope="col">Typ</th>
+						<th scope="col">Telefonnummer</th>
+						<th scope="col">Primär</th>						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="phone: ${phones}">
+						<td data-th-text="${phone.id.getIdPhone()}">Id</td>
+						<td data-th-text="${phone.person.getIdPerson()}">Personid</td>
+						<td data-th-text="${phone.countryPrefix}">Landkod</td>
+						<td data-th-text="${phone.type.typeName}">Typ</td>
+						<td data-th-text="${phone.phoneNumber}">Telefonnummer</td>
+						<td data-th-text="${phone.primaryContactNumber}">Primär</td>
+						<td scope="row">
+							<a th:href="@{/phone/edit/{personid}/{phoneid}(personid=${phone.person.getIdPerson()},phoneid=${phone.id.getIdPhone()})}">Ändra</a>
+							<a th:href="@{/phone/remove/{personid}/{phoneid}(personid=${phone.person.getIdPerson()},phoneid=${phone.id.getIdPhone()})}">Ta bort</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	  	<a th:href="@{/phone/add}">Lägg till ett telefonnummer</a>
+		<div th:replace="fragments/_footer"></div>
+</body>
+</html>
+

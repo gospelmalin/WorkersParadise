@@ -23,6 +23,11 @@
 			<td data-th-text="${about.idPerson}">Id Person</td>
 			<td data-th-text="${about.aboutSummary}">About summary</td>
 			<td data-th-text="${about.interests}">Interests</td>
+			<td scope="row">
+				
+				<a th:href="@{/about/edit/{id}(id=${about.idAbout})}">Ändra</a>
+				<a th:href="@{/about/remove/{id}(id=${about.idAbout})}">Ta bort</a>
+			</td>
 		</tr>
 	</tbody>
 	</table>
