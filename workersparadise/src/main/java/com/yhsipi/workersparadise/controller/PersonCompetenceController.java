@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.entities.PersonCompetence;
+import com.yhsipi.workersparadise.service.CompanyService;
+import com.yhsipi.workersparadise.service.CompetenceService;
 import com.yhsipi.workersparadise.service.PersonCompetenceService;
 import com.yhsipi.workersparadise.service.PersonService;
 
@@ -23,6 +25,8 @@ public class PersonCompetenceController {
 	private PersonCompetenceService personCompetenceService;
 	@Autowired
 	private PersonService personService;
+	@Autowired
+	private CompetenceService competenceService;
 
 	@GetMapping("/")
 	public String getPersonCompetence(Model model) {
@@ -45,6 +49,7 @@ public class PersonCompetenceController {
 	    	PersonCompetence pc = new PersonCompetence();
 	    	System.out.println(pc.toString());
 	    	model.addAttribute("personcompetence", pc);
+	    	model.addAttribute("competences", competenceService.findAll());
 	        return "/personcompetence/add";
 	    }
 
@@ -55,6 +60,9 @@ public class PersonCompetenceController {
 	     p.setIdPerson(personid);
 	      System.out.println("Detta är personId för den som ska ha kompetence ändrad: " + p.getIdPerson());
 	      model.addAttribute("personcompetence", personCompetenceService.findOne(personcompetenceid).get());
+	      PersonCompetence pc = personCompetenceService.findOne(personcompetenceid).get();
+	      model.addAttribute("competence", pc.getCompetence());
+			model.addAttribute("competences", competenceService.findAll());
 	        return "/personcompetence/add";
 	    }   
 	 
