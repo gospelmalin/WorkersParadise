@@ -1,19 +1,23 @@
 package com.yhsipi.workersparadise.controller;
 
 
-import com.yhsipi.workersparadise.entities.Person;
-import com.yhsipi.workersparadise.entities.Users;
-import com.yhsipi.workersparadise.repository.UsersRepository;
-import com.yhsipi.workersparadise.service.UserService;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
-import java.util.List;
+import com.yhsipi.workersparadise.entities.Users;
+import com.yhsipi.workersparadise.repository.UsersRepository;
+import com.yhsipi.workersparadise.service.UserService;
 
 @Controller
 public class AccountController {
@@ -42,12 +46,19 @@ public class AccountController {
 
     @GetMapping("/account/register")
     public ModelAndView signup() {
-        ModelAndView model = new ModelAndView();
-        Users user = new Users();
-        model.addObject("user", user);
-        model.setViewName("account/register");
+    	
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	if((authentication instanceof AnonymousAuthenticationToken)) {
+    		
+    		ModelAndView model = new ModelAndView();
+        	Users user = new Users();
+            model.addObject("user", user);
+            model.setViewName("account/register");
 
-        return model;
+            return model;
+    	}
+    	return new ModelAndView("redirect:dashboard");
     }
 
 
