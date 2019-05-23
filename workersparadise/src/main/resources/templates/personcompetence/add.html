@@ -11,11 +11,22 @@
 				<form data-th-action="@{/personcompetences/add}" data-th-object="${personcompetence}"
 						method="post">
 					PersonligKompetens-Id: <input type="text" data-th-field="*{idPersonCompetence}" placeholder="id"/>	
-				   Kompetens-Id: <input type="text" data-th-field="*{competence.idCompetence}" placeholder="kompetensid"/>	
-					<p>Kompetens: <input type="text" data-th-field="*{competence.competenceName}" placeholder="Kompetens"/> 
+				<p>Personid: <input type="text" data-th-field="*{person.idPerson}" placeholder="personid"/>
+				<!--  Kompetens-Id: <input type="text" data-th-field="*{competence.idCompetence}" placeholder="kompetensid"/> --> 
+				<!-- <p>Kompetens: <input type="text" data-th-field="*{competence.competenceName}" placeholder="Kompetens"/> -->
+				<div class="form-group blu-margin">
+				<label for="competence">Kompetens</label>
+				    <select class="form-control" data-th-field="*{competence.idCompetence}">
+				      <option value="0">Välj kompetens</option>	
+				    	<option data-th-each="competence : ${competences}" 
+				    		data-th-value="${competence.idCompetence}" 
+				    		data-th-text="${competence.competenceName}">
+			    		</option>
+				    </select>
+				</div> 
 					<p>Förnamn: <input type="text" data-th-field="*{person.firstName}" placeholder="Förnamn"/>
-					<p>Förnamn: <input type="text" data-th-field="*{person.lastName}" placeholder="Efternamn"/>
-					<p>Förnamn: <input type="text" data-th-field="*{person.idPerson}" placeholder="personid"/>
+					<p>Efternamn: <input type="text" data-th-field="*{person.lastName}" placeholder="Efternamn"/>
+			
 					<input type="submit" value="Submit" /> <input type="reset"
 							value="Reset" />
 					</p>
