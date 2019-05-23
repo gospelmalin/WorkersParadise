@@ -6,7 +6,9 @@
 </head>
 <body>
 <div th:replace="fragments/_navbar"></div>
-	<div class="col-10" data-layout-fragment="content">
+
+	<div data-layout-fragment="content">
+	<div class="container">
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
@@ -30,11 +32,13 @@
 					<td data-th-text="${experience.startDate}">Start</td>
 					<td data-th-text="${experience.endDate}">Slut</td>
 					<td scope="row">
-						<a th:href="@{/experience/edit/{personid}/{experienceid}/(personid=${experience.getId().getIdPerson()},experienceid=${experience.getId().getIdProfExperience()})}">Ändra</a> |
+						<a th:href="@{/experience/edit/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ändra</a> |
+						<a th:href="@{/experience/remove/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ta bort</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+	</div>
 	</div>
 	<div th:replace="fragments/_footer"></div>
 </body>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+
+<div th:replace="fragments/_headtag :: headtag(title=${'Dashboard'})"></div>
+
+<div th:replace="fragments/_navbar"></div>
+<div class="container-fluid" id="main">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-md-3 col-lg-2 sidebar-offcanvas bg-light pl-0" id="sidebar" role="navigation">
+            <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3">
+            	<li class="nav-item"><a class="nav-link" href="#">Erfarenheter</a></li>
+            	<li class="nav-item"><a class="nav-link" href="#">Utbildning</a></li>
+            	<li class="nav-item"><a class="nav-link" href="#">...</a></li>
+                <li class="nav-item"><a class="nav-link" href="/profile/">Visa profil</a></li>
+            </ul>
+        </div>
+        <!--/col-->
+
+        <div class="col main pt-5 mt-3">
+            <h1 data-th-text="${person.getFullName()}" class="display-4 d-none d-sm-block">
+                Förnamn Efternamn
+            </h1>
+            <p class="lead d-none d-sm-block">Hantera erfarenheter <a href="add">Lägg till ny erfarenhet</a></p>
+
+            <div class="col-10">
+	         	<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Person</th>
+							<th scope="col">Företag</th>
+							<th scope="col">Titel</th>
+							<th scope="col">Beskrivning</th>
+							<th scope="col">Startdatum</th>
+							<th scope="col">Slutdatum</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-th-each="experience : ${experiences}">
+							<td data-th-text="${experience.getId().getIdProfExperience()}">id</td>
+							<td data-th-text="${experience.person.getFullName()}">Person</td>
+							<td data-th-text="${experience.company.companyName}">Företag</td>
+							<td data-th-text="${experience.title}">Titel</td>
+							<td data-th-text="${experience.description}">Beskrivning</td>
+							<td data-th-text="${experience.startDate}">Start</td>
+							<td data-th-text="${experience.endDate}">Slut</td>
+							<td scope="row">
+								<a th:href="@{/experience/edit/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ändra</a> |
+								<a th:href="@{/experience/remove/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ta bort</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+            </div>
+           
+
+        </div>
+        <!--/main col-->
+    </div>
+
+</div>

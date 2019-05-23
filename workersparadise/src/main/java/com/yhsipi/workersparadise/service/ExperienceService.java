@@ -31,7 +31,7 @@ public class ExperienceService {
 		experienceRepository.save(experience);
 	}
 
-	public void deleteExperience(int id) {
+	public void deleteExperience(ProfessionalExperiencePK id) {
 		experienceRepository.deleteById(id);
 	}
 }

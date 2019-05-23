@@ -21,5 +21,6 @@ public interface ExperienceRepository extends JpaRepository<ProfessionalExperien
 	@Query(FIND_BY_PERSON_QUERY)
 	public List<ProfessionalExperience> findByPerson(@Param("id") int id);
 	public Optional<ProfessionalExperience> findById(ProfessionalExperiencePK id);
+	public void deleteById(ProfessionalExperiencePK id);
 
 }
