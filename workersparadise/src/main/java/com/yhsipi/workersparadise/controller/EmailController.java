@@ -14,6 +14,7 @@ import com.yhsipi.workersparadise.entities.Email;
 import com.yhsipi.workersparadise.entities.EmailPK;
 import com.yhsipi.workersparadise.service.EmailService;
 import com.yhsipi.workersparadise.service.PersonService;
+import com.yhsipi.workersparadise.service.TypeService;
 
 @Controller
 @RequestMapping(value = "/emails")
@@ -22,7 +23,7 @@ public class EmailController {
 	@Autowired
 	private EmailService emailService;
 	@Autowired
-	private PersonService personService;
+	private TypeService typeService;
 	
 	// FindAll
 	@RequestMapping(value = "/")
@@ -52,6 +53,7 @@ public class EmailController {
     	System.out.println(e.toString());
     //   model.addAttribute("email", new Email()); 
     	model.addAttribute("email", e);
+        model.addAttribute("types", typeService.findAll());
         return "/email/addedit";
     }
     
@@ -64,6 +66,7 @@ public class EmailController {
       System.out.println("Detta är personId för den som ska editera epost: " + epk.getIdPerson());
       model.addAttribute("email", emailService.findOne(epk).get());
     //	model.addAttribute("email", emailService.findOne(id));
+       model.addAttribute("types", typeService.findAll());
         return "/email/addedit";
     }   
     
