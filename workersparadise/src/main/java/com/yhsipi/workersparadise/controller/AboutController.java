@@ -1,5 +1,6 @@
 package com.yhsipi.workersparadise.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,11 @@ public class AboutController {
 		return "redirect:/about/";
 	}
 	
+	@Transactional
 	@RequestMapping(value="/remove/{aboutId}")
 	public String deleteAbout(@PathVariable int aboutId) {
-		
-		aboutService.deleteAbout(aboutId);
+		About a = aboutService.findOne(aboutId).get();
+		aboutService.deleteAbout(a);
 		return "redirect:/about/";
 	}
 	
