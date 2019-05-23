@@ -27,7 +27,7 @@ public class AboutService {
 		aboutRepository.save(about);
 	}
 	
-	public void deleteAbout(int id) {
-		aboutRepository.deleteById(id);
+	public void deleteAbout(About about) {
+		aboutRepository.delete(about);
 	}
 }

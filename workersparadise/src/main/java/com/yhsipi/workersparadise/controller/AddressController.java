@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yhsipi.workersparadise.entities.Address;
 import com.yhsipi.workersparadise.entities.AddressPK;
+import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.service.AddressService;
 import com.yhsipi.workersparadise.service.PersonService;
 
@@ -44,10 +45,12 @@ public class AddressController {
 			
 			//add
 			 @GetMapping("/person/{id}/add")
-			    public String addAddressFormForPerson(Model model) {
+			    public String addAddressFormForPerson(@PathVariable int id, Model model) {
 			    	System.out.println("adding address...");
 			    	Address a = new Address();
-			    	System.out.println(a.toString());
+			    	AddressPK aPK = new AddressPK();
+			    	aPK.setIdPerson(id);
+			    	a.setId(aPK);
 			    	model.addAttribute("address", a);
 			        return "/address/addedit";
 			    }

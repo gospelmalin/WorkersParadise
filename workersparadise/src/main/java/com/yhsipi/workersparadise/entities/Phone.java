@@ -28,6 +28,7 @@ public class Phone implements Serializable {
 	@Column(name="country_prefix")
 	private String countryPrefix;
 
+	
 	@Column(name="id_phone_category")
 	private int idPhoneCategory;
 
@@ -99,6 +100,10 @@ public class Phone implements Serializable {
 			this.person = person.get();
 		}
 	}
+	
+	public void setPersonPerson(Person person) {
+		this.person = person;
+	}
 
 	public Type getType() {
 		return this.type;
@@ -108,12 +113,20 @@ public class Phone implements Serializable {
 		this.type = type;
 	}
 
-	// This format is used in profile.html. Do not change without handling profile.html
+	public int getTypeNo() {
+		return type.getTypeNo();
+	}
 	@Override
 	public String toString() {
 		return countryPrefix + " " + phoneNumber;
 	}
 	
+	public int getIdPhone() {
+		return id.getIdPhone();
+	}
 	
-
+	public int getIdPerson() {
+		return id.getIdPerson();
+	}
+	
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yhsipi.workersparadise.entities.Phone;
+import com.yhsipi.workersparadise.entities.PhonePK;
 import com.yhsipi.workersparadise.repository.PhoneRepository;
 
 @Service
@@ -19,15 +20,20 @@ public class PhoneService {
 		return phoneRepository.findAll();
 	}
 	
-	public Optional<Phone> findOne(Integer id){
-		return phoneRepository.findById(id);
+	public Optional<Phone> findOne(PhonePK pPK){
+		return phoneRepository.findById(pPK);
 	}
 	
 	public void savePhone(Phone phone) {
 		phoneRepository.save(phone);
 	}
 	
-	public void deletePhone(int id) {
-		phoneRepository.deleteById(id);
+	public void deletePhone(Phone phone) {
+		phoneRepository.delete(phone);
 	}
+
+	public List<Phone> findByPerson(int personId) {
+		return phoneRepository.findByPerson(personId);
+	}
+	
 }
