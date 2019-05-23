@@ -3,6 +3,8 @@ package com.yhsipi.workersparadise.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yhsipi.workersparadise.entities.Address;
 import com.yhsipi.workersparadise.entities.AddressPK;
-import com.yhsipi.workersparadise.entities.Person;
+import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.service.AddressService;
-import com.yhsipi.workersparadise.service.PersonService;
+import com.yhsipi.workersparadise.service.UserService;
 
 @Controller
 @RequestMapping(value = "/addresses")
@@ -24,8 +26,8 @@ public class AddressController {
 	@Autowired
 	private AddressService addressService;
 	@Autowired
-	private PersonService personService;
-
+	private UserService userService;
+	
 	// FindAll
 			@RequestMapping(value = "/")
 			public String getAddresses(Model model) {
@@ -44,24 +46,27 @@ public class AddressController {
 			}
 			
 			//add
-			 @GetMapping("/person/{id}/add")
-			    public String addAddressFormForPerson(@PathVariable int id, Model model) {
-			    	System.out.println("adding address...");
+			 @GetMapping("/add")
+			    public String addAddressFormForPerson(Model model) {
+					
+				 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+					Users user = userService.findByUsername(authentication.getName());
 			    	Address a = new Address();
 			    	AddressPK aPK = new AddressPK();
-			    	aPK.setIdPerson(id);
+			    	aPK.setIdPerson(user.person.getIdPerson());
 			    	a.setId(aPK);
 			    	model.addAttribute("address", a);
 			        return "/address/addedit";
 			    }
 			
 			//Edit
-			 @GetMapping("/edit/{personid}/{addressid}")
-			    public String editAddress(@PathVariable int personid, @PathVariable int addressid, Model model) {
+			 @GetMapping("/edit/{addressid}")
+			    public String editAddress(@PathVariable int addressid, Model model) {
 			      AddressPK apk = new AddressPK();
+				  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+				  Users user = userService.findByUsername(authentication.getName());
 			      apk.setIdAddress(addressid);
-			      apk.setIdPerson(personid);
-			      System.out.println("Detta är personId för den som ska ha adress ändrad: " + apk.getIdPerson());
+			      apk.setIdPerson(user.person.getIdPerson());
 			      model.addAttribute("address", addressService.findOne(apk).get());
 			        return "/address/addedit";
 			    }   
@@ -69,10 +74,7 @@ public class AddressController {
 			//Save
 			 @PostMapping("/add")
 			    public String saveAddress(@Valid Address address, BindingResult result, Model model){
-			    	System.out.println("Nu påbörjas save-metoden");
-			    	AddressPK aPK = address.getId();
-			    	System.out.println("jag har ett AddressPK: " + aPK);
-			    	System.out.println("addressID: " + aPK.getIdAddress() + " för person: " + aPK.getIdPerson());
+			    	address.getId();
 			    	
 			    	
 			    	if (result.hasErrors()) {
@@ -85,11 +87,14 @@ public class AddressController {
 			    }
 			
 		    // Delete
-			@RequestMapping(value = "/remove/{personid}/{addressid}")
-			public String deleteAddress(@PathVariable int personid, @PathVariable int addressid) {
+			@RequestMapping(value = "/remove/{addressid}")
+			public String deleteAddress(@PathVariable int addressid) {
+				
+				Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+				Users user = userService.findByUsername(authentication.getName());
 				AddressPK apk = new AddressPK();
 				apk.setIdAddress(addressid);
-				apk.setIdPerson(personid);
+				apk.setIdPerson(user.person.getIdPerson());
 				addressService.deleteAddress(addressService.findOne(apk).get());		
 				return "redirect:/addresses/";
 			}
