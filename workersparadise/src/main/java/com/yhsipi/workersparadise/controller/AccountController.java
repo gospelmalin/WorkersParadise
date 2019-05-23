@@ -1,29 +1,23 @@
 package com.yhsipi.workersparadise.controller;
 
 
-import com.yhsipi.workersparadise.AuthHandler.CustomUserDetailsService;
-import com.yhsipi.workersparadise.entities.Person;
-import com.yhsipi.workersparadise.entities.Users;
-import com.yhsipi.workersparadise.repository.UsersRepository;
-import com.yhsipi.workersparadise.service.PersonService;
-import com.yhsipi.workersparadise.service.UserService;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import javax.validation.Valid;
-import java.security.Principal;
-import java.sql.ResultSet;
-import java.util.Collections;
-import java.util.List;
+import com.yhsipi.workersparadise.entities.Users;
+import com.yhsipi.workersparadise.repository.UsersRepository;
+import com.yhsipi.workersparadise.service.UserService;
 
 @Controller
 public class AccountController {
@@ -34,11 +28,6 @@ public class AccountController {
     private UsersRepository usersRepository;
     @Autowired
     private UserService userService;
-    @Autowired
-    private PersonService personService;
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
 /*
 
@@ -70,7 +59,6 @@ public class AccountController {
             return model;
     	}
     	return new ModelAndView("redirect:dashboard");
-
     }
 
 
@@ -78,22 +66,12 @@ public class AccountController {
     public ModelAndView createUser(@Valid Users user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
         Users userExists = userService.findByUsername(user.getUsername());
-        int checkAccountUserID = 0;
-        int checkAccountProfileID = 0;
+
         List<Users> allUsers = userService.findAll();
-        List<Person> allPersons = personService.findAll();
-        for(Users userID : allUsers) {
-            if(userID.getIdUser() > checkAccountUserID) {
-                checkAccountUserID = userID.getIdUser();
-            }
-        }
-        for(Person userPersonID : allPersons) {
-            if(userPersonID.getIdPerson() > checkAccountProfileID) {
-                checkAccountProfileID = userPersonID.getIdPerson();
-            }
-        }
-        user.setIdUser(checkAccountUserID +1);
-        user.person.setIdPerson(checkAccountProfileID + 1);
+
+        int getID = allUsers.size() + 1;
+        user.setIdUser(getID);
+        user.person.setIdPerson(getID);
 
 
         if (userExists != null) {
@@ -113,12 +91,10 @@ public class AccountController {
 
 
     @GetMapping("/account/dashboard")
-    public ModelAndView dashboard(Principal principal){
-
+    public ModelAndView dashboard() {
         ModelAndView model = new ModelAndView();
 
         model.setViewName("dashboard/index");
-
         return model;
     }
 
