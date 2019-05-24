@@ -23,6 +23,7 @@
 			</div>
 			<div class="col-md-8 py-5 border">
 				<h4 class="pb-4 text-center">Vi behöver följande uppgifter:</h4>
+				<small id="wrongpassword" class="form-text text-center" style="color: red; display: none">OBS: Lösenordet stämmer inte överrens, var vänlig se över</small>
 				<form role="form" method="POST" th:action="@{/account/register}" th:object="${user}">
 
 					<div class="form-row">
@@ -33,8 +34,8 @@
 						</div>
 						<br>
 						<div class="form-group col-md-6">
-							<input th:field="*{password}" id="password" name="username" placeholder="Ange lösenord" class="form-control" type="password">
-							<input th:field="*{password}" id="password" name="username" placeholder="Ange lösenord igen" class="form-control" type="password">
+							<input th:field="*{password}" id="pw1" name="username" placeholder="Ange lösenord" class="form-control validateinputselection" type="password" onkeyup="checkPassword()">
+							<input th:field="*{password}" id="pw2" name="username" placeholder="Ange lösenord igen" class="form-control validateinputselection" type="password" onkeyup="checkPassword()">
 						</div>
 					</div>
 
@@ -85,7 +86,7 @@
 					</div>
 
 					<div class="form-row" id="submitform">
-						<button type="submit"  class="btn btn-success btn-lg" style="margin: auto">Submit</button>
+						<button type="submit"  id="btnSubmit" class="btn btn-success btn-lg" style="margin: auto">Submit</button>
 					</div>
 
 
@@ -96,3 +97,20 @@
 </section>
 
 <div th:replace="fragments/_footer"></div>
+
+<script type="text/javascript">
+    function checkPassword(){
+        if ($('#pw1').val() !== $('#pw2').val()) {
+            $("#btnSubmit").attr("disabled", true);
+            $("#wrongpassword").show();
+        }
+        else{
+            $("#btnSubmit").attr("disabled", false);
+            $("#wrongpassword").hide();
+        }
+    }
+
+
+
+
+</script>
