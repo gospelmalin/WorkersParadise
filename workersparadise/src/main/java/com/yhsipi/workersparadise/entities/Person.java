@@ -243,6 +243,7 @@ public class Person implements Serializable {
 		return "";		
 	}
 	
+	
 	public String getPrimaryCo() {
 		for (Address address : address) {
 			if (address.isPrimaryAddress()) {
@@ -251,6 +252,16 @@ public class Person implements Serializable {
 		}
 		return "";		
 	}
+	
+	public String getPrimaryCoForProfile() {
+		for (Address address : address) {
+			if (address.isPrimaryAddress() && address.getCo() != null) {			
+				return address.getCoWithCOForProfile();
+			}		
+		}
+		return "";		
+	}
+	
 	
 	//TODO better solution?
 	public int getPrimaryZipCode() {
