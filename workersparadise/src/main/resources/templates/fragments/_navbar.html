@@ -8,6 +8,6 @@
         <a class="p-2 text-dark" href="#">Support</a>
     </nav>
     <a class="btn btn-outline-primary" href="/account/login" sec:authorize="!isFullyAuthenticated()">Sign in</a>
-    <a class="btn btn-outline-primary" href="/account/login" sec:authorize="isFullyAuthenticated()">Logout [[${#httpServletRequest.remoteUser}]]</a>
+    <a class="btn btn-outline-primary" href="/account/logout" sec:authorize="isFullyAuthenticated()">Logout [[${#httpServletRequest.remoteUser}]]</a>
 
 </div>
