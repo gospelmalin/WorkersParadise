@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.yhsipi.workersparadise.entities.Certification;
 import com.yhsipi.workersparadise.entities.CertificationPK;
@@ -19,5 +20,10 @@ public final static String FIND_BY_PERSON_QUERY = "SELECT c FROM Certification c
 	 public List<Certification> findByPerson(@Param("id") int id);
 
 	public Optional<Certification> findById(CertificationPK id);
+
+	
+	@Query(nativeQuery = true, value ="SELECT * FROM certification c "
+									 +"WHERE c.certification_name = :searchStr")
+	public List<Certification> findSearchResult(@Param("searchStr") String searchStr);
 	
 }
