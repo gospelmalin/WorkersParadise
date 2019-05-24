@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div
-	th:replace="fragments/_headtag :: headtag(title=${'ADD A TITLE HERE'})"></div>
+<div th:replace="fragments/_headtag :: headtag(title=${'ADD A TITLE HERE'})"></div>
+<body>
 <div class="container-fluid" id="main">
 	<div class="row">
 		<div class="col-12">
@@ -24,4 +24,5 @@
 		<div th:replace="fragments/_footer"></div>
 	</div>
 </div>
+</body>
 </html>
