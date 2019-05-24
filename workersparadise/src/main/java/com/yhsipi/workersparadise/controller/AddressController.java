@@ -16,6 +16,7 @@ import com.yhsipi.workersparadise.entities.AddressPK;
 import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.service.AddressService;
 import com.yhsipi.workersparadise.service.PersonService;
+import com.yhsipi.workersparadise.service.TypeService;
 
 @Controller
 @RequestMapping(value = "/addresses")
@@ -24,7 +25,7 @@ public class AddressController {
 	@Autowired
 	private AddressService addressService;
 	@Autowired
-	private PersonService personService;
+	private TypeService typeService;
 
 	// FindAll
 			@RequestMapping(value = "/")
@@ -52,6 +53,7 @@ public class AddressController {
 			    	aPK.setIdPerson(id);
 			    	a.setId(aPK);
 			    	model.addAttribute("address", a);
+			        model.addAttribute("types", typeService.findAll());
 			        return "/address/addedit";
 			    }
 			
@@ -63,6 +65,7 @@ public class AddressController {
 			      apk.setIdPerson(personid);
 			      System.out.println("Detta är personId för den som ska ha adress ändrad: " + apk.getIdPerson());
 			      model.addAttribute("address", addressService.findOne(apk).get());
+			      model.addAttribute("types", typeService.findAll());
 			        return "/address/addedit";
 			    }   
 			

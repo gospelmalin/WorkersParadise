@@ -17,8 +17,19 @@
 					<p>Gatuadress: <input type="text" data-th-field="*{streetAddress}" placeholder="Gatuadress"/> 
 					<p>Postnummer: <input type="text" data-th-field="*{zipCode}" placeholder="Postnummer"/> 	
 					<p>Postadress: <input type="text" data-th-field="*{city}" placeholder="Postadress"/> 
-					<p>Primäradress: <input type="text" data-th-field="*{primaryAddress}" placeholder="Primäradress"/> 		
-					<p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Ange typ"/> 
+					<!--  <p>Primäradress: <input type="text" data-th-field="*{primaryAddress}" placeholder="Primäradress"/> 	-->
+					<p>Primäradress: <input type="checkbox" name= "primaryAddress" th:checked="*{primaryAddress}" placeholder="Primäradress"/>	
+				<!-- <p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Ange typ"/> -->
+				<div class="form-group blu-margin">
+				<label for="competence">Kategori</label> 
+				    <select class="form-control" data-th-field="*{type.idType}">
+				      <option value="0">Välj kategori</option>	
+				    	<option data-th-each="type : ${types}" 
+				    		data-th-value="${type.idType}" 
+				    		data-th-text="${type.typeName}">
+			    		</option>
+				    </select>
+				</div> 				
 					<input type="submit" value="Submit" /> <input type="reset"
 							value="Reset" />
 					</p>
