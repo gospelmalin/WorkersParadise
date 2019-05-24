@@ -22,8 +22,7 @@ public final static String FIND_BY_PERSON_QUERY = "SELECT c FROM Certification c
 	public Optional<Certification> findById(CertificationPK id);
 
 	
-	@Query(nativeQuery = true, value ="SELECT * FROM certification c "
-									 +"WHERE c.certification_name = :searchStr")
+	@Query(nativeQuery = true, value ="SELECT * FROM certification c WHERE c.certification_name LIKE %:searchStr%")
 	public List<Certification> findSearchResult(@Param("searchStr") String searchStr);
 	
 }
