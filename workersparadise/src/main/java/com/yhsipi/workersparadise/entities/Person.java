@@ -62,7 +62,7 @@ public class Person implements Serializable {
 	private List<ProfessionalExperience> profExperience;
 	
 	//bi-directional one-to-one association to About 
-	@OneToOne(mappedBy="person", cascade={CascadeType.ALL}) 
+	@OneToOne(mappedBy="person") 
 	private About about;
 	
 	public About getAbout() {

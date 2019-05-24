@@ -56,8 +56,7 @@ public class AboutController {
 	@Transactional
 	@RequestMapping(value="/remove/{aboutId}")
 	public String deleteAbout(@PathVariable int aboutId) {
-		About a = aboutService.findOne(aboutId).get();
-		aboutService.deleteAbout(a);
+		aboutService.deleteAbout(aboutId);
 		return "redirect:/about/";
 	}
 	
