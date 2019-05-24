@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div
-	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/Ändra erfarenhet'})"></div>
+	th:replace="fragments/_headtag :: headtag(title=${'LÃ¤gg till/Ã¤ndra erfarenhet'})"></div>
 <div class="container-fluid" id="main">
 	<div class="row">
 		<div class="col-12">
@@ -25,7 +25,7 @@
 
 						<h3 class="mb-3">HANTERA ERFARENHET</h3>
 						<div class="form-group blu-margin">
-							<label for="company">Företag</label> <select class="form-control"
+							<label for="company">FÃ¶retag</label> <select class="form-control"
 								data-th-field="*{company.idCompany}">
 								<option data-th-each="company : ${companies}"
 									data-th-value="${company.idCompany}"
