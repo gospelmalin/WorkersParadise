@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div
+	th:replace="fragments/_headtag :: headtag(title=${'ADD A TITLE HERE'})"></div>
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+
+				<!-- Add content here -->
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
+</html>

@@ -71,8 +71,13 @@ public class Address implements Serializable {
 	}
 
 	public String getCo() {
+		return this.co;
+	}
+	
+	public String getCoWithCOForProfile() {
 		return this.co != null ? "C/o " + this.co + " ·" : null;
 	}
+
 
 	public void setCo(String co) {
 		this.co = co;

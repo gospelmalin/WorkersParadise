@@ -69,9 +69,8 @@
          	<span th:text="${person.lastName}"class="text-primary">Efternamn</span>
         </h1>
         <div class="subheading mb-5">
-        <span th:text="${person.getPrimaryCo()}"></span>
+      <span th:text="${person.getPrimaryCoForProfile()}"></span>
         <span th:text="${person.getPrimaryStreetAddress()}">gata</span> ·
-        <!-- <span th:text="${person.getAddress().get(0).getStreetAddress()}">gata</span> ·  -->
         <span th:text="${person.getPrimaryZipCode()}">postnr</span> 
         <span th:text="${person.getPrimaryCity()}">ort</span> ·
         <span th:text="${person.getPrimaryPhoneNumber()}">telefon</span> ·

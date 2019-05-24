@@ -10,15 +10,28 @@
 			<h1>Lägg till/ändra adress</h1>
 			<form data-th-action="@{/addresses/add}" data-th-object="${address}"
 						method="post">
-				   Adress-Id: <input type="text" data-th-field="*{id.idAddress}" placeholder="id"/>
-					personid: <input type="text" data-th-field="*{id.idPerson}" />
+				 <!-- Adress-Id: -->
+				  <input type="hidden" data-th-field="*{id.idAddress}" readonly="readonly" placeholder="id"/>
+				<!--	personid:--> 
+				<input type="hidden" data-th-field="*{id.idPerson}" readonly="readonly"  />
 					<!-- TODO Hanteringen av C/O i Address för att det skulle bli bra på profilvisningen blir inte lika bra vid save - sparar C/O fast det inte finns -->
 					<p>C/O <input type="text" data-th-field="*{co}" placeholder="C/O"/></p> 			
 					<p>Gatuadress: <input type="text" data-th-field="*{streetAddress}" placeholder="Gatuadress"/> 
 					<p>Postnummer: <input type="text" data-th-field="*{zipCode}" placeholder="Postnummer"/> 	
 					<p>Postadress: <input type="text" data-th-field="*{city}" placeholder="Postadress"/> 
-					<p>Primäradress: <input type="text" data-th-field="*{primaryAddress}" placeholder="Primäradress"/> 		
-					<p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Ange typ"/> 
+					<!--  <p>Primäradress: <input type="text" data-th-field="*{primaryAddress}" placeholder="Primäradress"/> 	-->
+					<p>Primäradress: <input type="checkbox" name= "primaryAddress" th:checked="*{primaryAddress}" placeholder="Primäradress"/>	
+				<!-- <p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Ange typ"/> -->
+				<div class="form-group blu-margin">
+				<label for="competence">Kategori</label> 
+				    <select class="form-control" data-th-field="*{type.idType}">
+				      <option value="0">Välj kategori</option>	
+				    	<option data-th-each="type : ${types}" 
+				    		data-th-value="${type.idType}" 
+				    		data-th-text="${type.typeName}">
+			    		</option>
+				    </select>
+				</div> 				
 					<input type="submit" value="Submit" /> <input type="reset"
 							value="Reset" />
 					</p>

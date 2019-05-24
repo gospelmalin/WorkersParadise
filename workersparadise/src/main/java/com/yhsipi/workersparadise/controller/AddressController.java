@@ -3,10 +3,13 @@ package com.yhsipi.workersparadise.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,7 @@ import com.yhsipi.workersparadise.entities.AddressPK;
 import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.service.AddressService;
 import com.yhsipi.workersparadise.service.PersonService;
+import com.yhsipi.workersparadise.service.TypeService;
 
 @Controller
 @RequestMapping(value = "/addresses")
@@ -24,7 +28,13 @@ public class AddressController {
 	@Autowired
 	private AddressService addressService;
 	@Autowired
-	private PersonService personService;
+	private TypeService typeService;
+	
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
 
 	// FindAll
 			@RequestMapping(value = "/")
@@ -52,6 +62,7 @@ public class AddressController {
 			    	aPK.setIdPerson(id);
 			    	a.setId(aPK);
 			    	model.addAttribute("address", a);
+			        model.addAttribute("types", typeService.findAll());
 			        return "/address/addedit";
 			    }
 			
@@ -63,6 +74,7 @@ public class AddressController {
 			      apk.setIdPerson(personid);
 			      System.out.println("Detta är personId för den som ska ha adress ändrad: " + apk.getIdPerson());
 			      model.addAttribute("address", addressService.findOne(apk).get());
+			      model.addAttribute("types", typeService.findAll());
 			        return "/address/addedit";
 			    }   
 			
