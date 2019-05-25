@@ -36,8 +36,8 @@
 						</div>
 						<div class="form-group"></div>
 
-						<input type="submit" value="Spara" /> <input type="button"
-							value="Avbryt" onclick="location.href='/about/'" />
+						<input type="submit" value="Spara" /> 
+						<input type="button" value="Avbryt" th:onclick="'location.href = \'' + @{/account/dashboard} + '\''" />
 					</form>
 				</div>
 			</div>
