@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.yhsipi.workersparadise.entities.Address;
 import com.yhsipi.workersparadise.entities.PersonCompetence;
+import com.yhsipi.workersparadise.entities.ProfessionalExperience;
 import com.yhsipi.workersparadise.repository.PersonCompetenceRepository;
 
 @Service
@@ -36,5 +37,11 @@ public class PersonCompetenceService {
 	public void deletePersonCompetence(int id) {
 		personCompetenceRepository.deleteById(id);
 	}
+
+	public List<PersonCompetence> findByCompetence(int competenceId) {
+		return personCompetenceRepository.findByCompetence(competenceId);
+	}
+
+	
 
 }

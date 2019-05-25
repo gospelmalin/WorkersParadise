@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra erfarenhet'})"></div>
+<body>
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+
+				<div class="offset-3 col-6">
+					<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+						data-th-action="@{/about/save}"
+						data-th-object="${about}" method="post">
+
+ 						<input type="hidden" data-th-field="*{idAbout}" />
+						<input type="hidden" data-th-field="*{idPerson}" />
+
+						<h3 class="mb-3">Ändra / Lägg till Om </h3>
+						<div class="form-group">
+							<label for="aboutSummary">Beskrivning</label> <input
+								data-th-field="*{aboutSummary}" type="text" class="form-control"
+								placeholder="Beskrivning">
+						</div>
+						<div class="form-group">
+							<label for="interests">Intressen</label> <input
+									data-th-field="*{interests}" type="text" class="form-control"
+									placeholder="Intressen">
+						</div>
+						<div class="form-group"></div>
+
+						<input type="submit" value="Spara" /> <input type="button"
+							value="Avbryt" onclick="location.href='/about/'" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<head>
+<meta charset="UTF-8">
+<title>Certifieringar och utmärkelser</title>
+</head>
+<body>
+<div th:replace="fragments/_navbar"></div>
+		<div class="col" data-layout-fragment="content">
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Namn</th>
+						<th scope="col">Kompetens</th>						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="personCompetence: ${personCompetences}">
+						<td data-th-text="${personCompetence.person.getFullName()}">Namn</td>
+						<td data-th-text="${competence.getCompetenceName()}">Kompetens</td>
+						<td scope="row">
+						<a th:href="@{/profile/{personid}(personid=${personCompetence.person.getIdPerson()})}">Profil</a>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:replace="fragments/_footer"></div>
+</body>
+</html>
