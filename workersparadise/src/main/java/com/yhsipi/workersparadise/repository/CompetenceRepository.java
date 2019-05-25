@@ -14,5 +14,7 @@ public interface CompetenceRepository extends JpaRepository<Competence, Integer>
 	
 	public Optional<Competence> findById(int id);
 	//public Optional<Competence> findById(CompetencePK id);
+	
+	public List<Competence> findAllByOrderByCompetenceNameAsc();
 
 }
