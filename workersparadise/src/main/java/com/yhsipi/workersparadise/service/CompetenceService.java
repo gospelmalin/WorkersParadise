@@ -15,9 +15,14 @@ public class CompetenceService {
 
 	@Autowired
 	CompetenceRepository competenceRepository;
-	
+	/*
 	public List<Competence> findAll(){
 		return competenceRepository.findAll();
+	}
+	*/
+	
+	public List<Competence> findAll(){
+		return competenceRepository.findAllByOrderByCompetenceNameAsc();
 	}
 	
 	public Optional<Competence> findOne(Integer id){
