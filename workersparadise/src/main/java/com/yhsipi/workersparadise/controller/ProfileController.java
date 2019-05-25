@@ -48,8 +48,7 @@ public class ProfileController {
     public String ProfileByUserName(@PathVariable String uname, Model model) {
     	
     	Person p = userService.findByUsername(uname).person;
-    	
-    	
+
         model.addAttribute("person",p);
         return "profile/profile";
     }
