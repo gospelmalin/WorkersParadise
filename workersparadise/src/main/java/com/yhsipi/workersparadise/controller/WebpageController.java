@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.entities.Webpage;
 import com.yhsipi.workersparadise.entities.WebpagePK;
+import com.yhsipi.workersparadise.service.TypeService;
 import com.yhsipi.workersparadise.service.UserService;
 import com.yhsipi.workersparadise.service.WebpageService;
 
@@ -28,20 +29,15 @@ public class WebpageController {
 	@Autowired
 	private WebpageService webpageService;
 	@Autowired
+	private TypeService typeService;
+	@Autowired
 	private UserService userService;
 	
 	public WebpageController() {
 		super();
 	}
 
-	// Old controller - remove if not to be used?
-	// FindAll
-	@RequestMapping(value = "/all")
-	public String getWebpages(Model model) {
-		model.addAttribute("webpages", webpageService.findAll());
-		return "/webpage/index";
-	}
-	
+		
 	//FindAll by logged in person - Get the logged in user and get his/her educations
 	@RequestMapping(value = "/")
 	public String getWebpagesByPerson(Model model) {
@@ -62,6 +58,7 @@ public class WebpageController {
 			
 	// Models
 	model.addAttribute("webpage",  new Webpage());
+	model.addAttribute("types", typeService.findAll());
 	
 	return "/webpage/addedit";
 	}
@@ -84,6 +81,8 @@ public class WebpageController {
 		
 		// models based on loggedin user
 		model.addAttribute("webpage", webpageService.findOne(pk).get());
+		model.addAttribute("type", webpage.getType());
+		model.addAttribute("types", typeService.findAll());
 		
 		return "/webpage/addedit";
 
@@ -103,9 +102,9 @@ public class WebpageController {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			Users user = userService.findByUsername(authentication.getName());
 			
-			WebpagePK epk = webpage.getId();
-			epk.setIdPerson(user.person.getIdPerson());
-			webpage.setId(epk);
+			WebpagePK wpk = webpage.getId();
+			wpk.setIdPerson(user.person.getIdPerson());
+			webpage.setId(wpk);
 		}
 		
 		// Error handling
@@ -123,6 +122,7 @@ public class WebpageController {
 						
 			// models for retry
 			model.addAttribute("webpage", webpageService.findOne(pk).get());
+			model.addAttribute("types", typeService.findAll());
 			return "/webpage/addedit";
 		}
 
@@ -151,6 +151,14 @@ public class WebpageController {
 		
 		return "redirect:/webpages/";
 	}
+    
+ // Old controller - remove if not to be used?
+ 	// FindAll
+ 	@RequestMapping(value = "/all")
+ 	public String getWebpages(Model model) {
+ 		model.addAttribute("webpages", webpageService.findAll());
+ 		return "/webpage/index";
+ 	}
 	
 	// Old - remove if not used?
 	@RequestMapping(value = "/person/{id}")
