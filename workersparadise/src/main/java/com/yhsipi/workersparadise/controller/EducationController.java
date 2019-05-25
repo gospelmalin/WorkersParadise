@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.yhsipi.workersparadise.entities.AddressPK;
 import com.yhsipi.workersparadise.entities.Education;
 import com.yhsipi.workersparadise.entities.EducationPK;
+import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.service.EducationService;
 import com.yhsipi.workersparadise.service.PersonService;
+import com.yhsipi.workersparadise.service.UserService;
 
 
 @Controller
@@ -31,7 +34,11 @@ public class EducationController {
 	@Autowired
 	private EducationService educationService;
 	@Autowired
-	private PersonService personService;
+	private UserService userService;
+	
+	public EducationController() {
+		super();
+	}
 	
 	 @InitBinder
 	    public void initBinder(WebDataBinder binder) {
@@ -40,16 +47,30 @@ public class EducationController {
 	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	    }
 	
+	// Old controller - remove if not to be used?
 	// FindAll
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/all")
 	public String getEducations(Model model) {
 		model.addAttribute("educations", educationService.findAll());
 		return "/education/index";
 	}
 	
-	// TODO
-	// FindAllByPerson --> All other (add, edit, delete) should be based on this)
+	//FindAll by logged in person - Get the logged in user and get his/her educations
+	@RequestMapping(value = "/")
+	public String getEducationsByPerson(Model model) {
+		
+		// Get logged in user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Users user = userService.findByUsername(authentication.getName());
+		
+		// models based on user
+		model.addAttribute("educations", educationService.findByPerson(user.person.getIdPerson()));
+		model.addAttribute("person", user.person);
+		return "/education/index";
+	}
 	
+	
+	// FindAllByPerson --> All other (add, edit, delete) should be based on this)
 	@RequestMapping(value = "/person/{id}")
 	public String getEducationsByPerson(@PathVariable String id, Model model) {
 		int personId = Integer.parseInt(id);
