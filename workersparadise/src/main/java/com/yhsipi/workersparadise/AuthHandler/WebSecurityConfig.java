@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
     @Autowired
     private DataSource dataSource;
 
@@ -65,7 +66,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Regler vi sätter. Kan vara permitall, denyall eller baserat på hasrole
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
-                .antMatchers("/", "/account/register", "/login", "/custom.js", "/css/**", "/img/**", "/bootstrap/**").permitAll()
+                
+                // URLs
+                .antMatchers("/", "/profil/**", "/account/register", "/login").permitAll()
+                
+                // Webapp
+                .antMatchers("/bootstrap/**","/css/**","/fontawesome-free/**", "/img/**", "/jquery/**",
+                		"/jquery-easing/**","/custom.js", "/resume.js", "/resume.min.js","/resume.min.css",
+                		"/bootstrap/**").permitAll()
+                
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

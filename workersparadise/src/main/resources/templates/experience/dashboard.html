@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'ADD A TITLE HERE'})"></div>
+<div th:replace="fragments/_headtag :: headtag(title=${'Erfarenheter'})"></div>
 <div class="container-fluid" id="main">
 <div class="row">
 <div class="col-12">
@@ -16,16 +16,13 @@
 <!-- Content -->
 	    <div class="col main pt-5 mt-3">
             <h1 data-th-text="${person.getFullName()}" class="display-4 d-none d-sm-block">
-                F�rnamn Efternamn
+                Förnamn Efternamn
             </h1>
             <p class="lead d-none d-sm-block">Hantera erfarenheter <a href="add">Lägg till ny erfarenhet</a></p>
-
             <div class="col-10">
 	         	<table class="table">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Person</th>
 							<th scope="col">Företag</th>
 							<th scope="col">Titel</th>
 							<th scope="col">Beskrivning</th>
@@ -36,8 +33,6 @@
 					</thead>
 					<tbody>
 						<tr data-th-each="experience : ${experiences}">
-							<td data-th-text="${experience.getId().getIdProfExperience()}">id</td>
-							<td data-th-text="${experience.person.getFullName()}">Person</td>
 							<td data-th-text="${experience.company.companyName}">Företag</td>
 							<td data-th-text="${experience.title}">Titel</td>
 							<td data-th-text="${experience.description}">Beskrivning</td>
@@ -51,9 +46,7 @@
 					</tbody>
 				</table>
             </div>
-
-		</div>
-			    <!-- Content end -->
+		</div><!-- Content end -->
 	</div>
 </div>
 </div>
