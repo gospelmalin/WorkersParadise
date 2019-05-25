@@ -37,5 +37,9 @@ public class CertificationService {
 	public void deleteCertification(Certification certification) {
 		certificationRepository.delete(certification);
 	}
+
+	public List<Certification> findSearchResult(String searchStr) {
+		return certificationRepository.findSearchResult(searchStr);
+	}
 	
 }

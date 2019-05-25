@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yhsipi.workersparadise.entities.About;
+import com.yhsipi.workersparadise.entities.ProfessionalExperience;
 import com.yhsipi.workersparadise.repository.AboutRepository;
 
 @Service
@@ -27,7 +28,11 @@ public class AboutService {
 		aboutRepository.save(about);
 	}
 	
-	public void deleteAbout(About about) {
-		aboutRepository.delete(about);
+	public void deleteAbout(int aboutId) {
+		aboutRepository.deleteById(aboutId);
+	}
+	
+	public About findByPerson(int personId) {
+		return aboutRepository.findByPerson(personId);
 	}
 }
