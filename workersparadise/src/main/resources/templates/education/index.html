@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>Utbildning</title>
-</head>
+<div th:replace="fragments/_headtag :: headtag(title=${'ADD A TITLE HERE'})"></div>
 <body>
-	<div th:replace="fragments/_navbar"></div>
-		<div class="col" data-layout-fragment="content">
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+			
+				<!-- Content -->
+			 <div class="col main pt-5 mt-3">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Id</th>
 						<!--<th scope="col">Person</th> -->
 						<th scope="col">Personid</th>
-						<th scope="col">FÃ¶rnamn</th>
+						<th scope="col">Förnamn</th>
 						<th scope="col">Efternamn</th>
 						<th scope="col">Utbildningsnamn</th>
 						<th scope="col">Beskrivning</th>
-						<th scope="col">LÃ¤rosÃ¤te</th>
+						<th scope="col">Lärosäte</th>
 						<th scope="col">Startdatum</th>
 						<th scope="col">Slutdatum</th>
-						<th scope="col">NivÃ¥</th> 
+						<th scope="col">Nivå</th> 
 						<th scope="col">Betyg</th>
 						 <th scope="col">Program?</th>
 						<th></th>
@@ -32,19 +41,19 @@
 						<td data-th-text="${education.getId().getIdEducation()}">Id</td>
 						<!--<td data-th-text="${education.person.getFullName()}">Person</td> -->
 						<td data-th-text="${education.person.getIdPerson()}">Personid</td>
-						<td data-th-text="${education.person.getFirstName()}">FÃ¶rnamn</td>
+						<td data-th-text="${education.person.getFirstName()}">Förnamn</td>
 						<td data-th-text="${education.person.getLastName()}">Efternamn</td>
 						<td data-th-text="${education.educationName}">Utbildningsnamn</td>
 					   <td data-th-text="${education.educationDescription}">Beskrivning</td>
-					   <td data-th-text="${education.school}">LÃ¤rosÃ¤te</td>
+					   <td data-th-text="${education.school}">Lärosäte</td>
 						<td data-th-text="${education.educationStartDate}">Startdatum</td>
 					  	<td data-th-text="${education.educationEndDate}">Slutdatum</td>
-						<td data-th-text="${education.educationLevel}">NivÃ¥</td>
+						<td data-th-text="${education.educationLevel}">Nivå</td>
 					 	<td data-th-text="${education.educationGrade}">Betyg</td>
 						<td data-th-text="${education.isProgram}">Program</td>
 						<td scope="row">
-								<a th:href="@{/educations/person/{personid}/add(personid=${education.getId().getIdPerson()})}">LÃ¤gg till</a> |
-								<a th:href="@{/educations/edit/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ã„ndra</a> |
+								<a th:href="@{/educations/person/{personid}/add(personid=${education.getId().getIdPerson()})}">Lägg till</a> |
+								<a th:href="@{/educations/edit/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
 								<a th:href="@{/educations/remove/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ta bort</a>							
 							 <!--  <a th:href="@{/educations/remove/{educationid}/(educationid=${education.idEducation})}">Ta bort</a> -->
 						</td>
@@ -52,7 +61,15 @@
 				</tbody>
 			</table>
 		</div>
-		<a th:href="@{/educations/add}">LÃ¤gg till ny utbildning</a>
+		<a th:href="@{/educations/add}">Lägg till ny utbildning</a>
+		<!-- Content end -->
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
 </body>
 </html>
