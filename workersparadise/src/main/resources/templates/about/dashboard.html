@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra erfarenhet'})"></div>
+<div th:replace="fragments/_headtag :: headtag(title=${'WP -> Redigera info'})"></div>
 <body>
 <div class="container-fluid" id="main">
 	<div class="row">
@@ -15,35 +15,38 @@
 		<div class="col-10">
 			<div class="row row-offcanvas row-offcanvas-left">
 
-				<div class="offset-1 col-6">
-					<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
-						data-th-action="@{/about/save}"
-						data-th-object="${about}" method="post">
-
- 						<input type="hidden" data-th-field="*{idAbout}" />
-						<input type="hidden" data-th-field="*{idPerson}" />
-
-						<h3 class="mb-3">Ändra / Lägg till Om </h3>
+				<div class="col-lg-8 mt-lg-3">
+				<div class="card">
+					<h5 class="card-header">Redigera beskrivning </h5>
+					<div class="card-body">
+						<form 
+							data-th-action="@{/about/save}"
+							data-th-object="${about}" method="post">
+	
+	 						<input type="hidden" data-th-field="*{idAbout}" />
+							<input type="hidden" data-th-field="*{idPerson}" />
+	
+							<div class="form-group">
+								<label for="aboutSummary">Beskrivning</label>
+								<textarea rows="10" data-th-field="*{aboutSummary}"
+									class="form-control" placeholder="Beskrivning">
+								</textarea>
+							</div>
 						
-						<div class="form-group">
-							<label for="aboutSummary">Beskrivning</label>
-							<textarea rows="10" data-th-field="*{aboutSummary}"
-								class="form-control" placeholder="Beskrivning">
-							</textarea>
-						</div>
-					
-						<div class="form-group">
-							<label for="interests">Intressen</label>
-							<textarea rows="10" data-th-field="*{interests}"
-								class="form-control" placeholder="Intressen">
-							</textarea>
-						</div>
-
-						<div class="form-group"></div>
-
-						<input type="submit" value="Spara" /> <input type="button"
-							value="Avbryt" onclick="location.href='/about/'" />
-					</form>
+							<div class="form-group">
+								<label for="interests">Intressen</label>
+								<textarea rows="10" data-th-field="*{interests}"
+									class="form-control" placeholder="Intressen">
+								</textarea>
+							</div>
+	
+							<div class="form-group text-right">
+								<input type="submit" value="Spara" /> 
+								<input type="button" value="Avbryt" th:onclick="'location.href = \'' + @{/account/dashboard} + '\''" />
+							</div>
+						</form>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
