@@ -19,4 +19,6 @@ public interface EducationRepository extends JpaRepository<Education, Integer>{
 	 public List<Education> findByPerson(@Param("id") int id);
 
 	public Optional<Education> findById(EducationPK id);
+	
+	public void deleteById(EducationPK id);
 }
