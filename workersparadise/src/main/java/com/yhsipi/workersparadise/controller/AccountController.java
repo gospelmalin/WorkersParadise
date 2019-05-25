@@ -2,6 +2,7 @@ package com.yhsipi.workersparadise.controller;
 
 
 import com.yhsipi.workersparadise.AuthHandler.CustomUserDetailsService;
+import com.yhsipi.workersparadise.entities.About;
 import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.repository.UsersRepository;
@@ -109,13 +110,16 @@ public class AccountController {
         return model;
     }
 
-
     @GetMapping("/account/dashboard")
     public ModelAndView dashboard(Principal principal){
 
+		// Get logged in user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Users user = userService.findByUsername(authentication.getName());
+		
         ModelAndView model = new ModelAndView();
-
-        model.setViewName("dashboard/index");
+        model.addObject("person", personService.findOne(user.person.getIdPerson()).get());
+        model.setViewName("account/dashboard");
 
         return model;
     }

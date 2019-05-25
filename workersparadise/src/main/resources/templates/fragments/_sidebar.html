@@ -1,19 +1,20 @@
  <!-- Navigation left sidebar -->
 <div class="col-md-3 col-lg-2 sidebar-offcanvas bg-light pl-0" id="sidebar" role="navigation">
     <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3">
-    	<li class="nav-item"><a class="nav-link" href="/account/dashboard">Account</a></li>
-    	<li class="nav-item"><a class="nav-link" href="/experience/">Erfarenheter</a></li>
-    	<li class="nav-item"><a class="nav-link" href="/about/">Om</a></li>
-    	<li class="nav-item"><a class="nav-link" href="/addresses/">Adress</a></li>
-    	<li class="nav-item"><a class="nav-link" href="/certifications/">Certifikat</a></li>
-    	<li class="nav-item"><a class="nav-link" href="/companies/">Företag</a></li>
-    	<li class="nav-item"><a class="nav-link" href="/competences/">Kompetens</a></li>
-    	<li class="nav-item"><a class="nav-link" href="/educations/">Utbildning</a></li>
-		<li class="nav-item"><a class="nav-link" href="/emails/">Email</a></li>
-		<li class="nav-item"><a class="nav-link" href="/personcompetences/">Person kompetens</a></li>
-		<li class="nav-item"><a class="nav-link" href="/phone/">Telefon</a></li>
-		<li class="nav-item"><a class="nav-link" href="/types/">Typer</a></li>
-		<li class="nav-item"><a class="nav-link" href="/persons/">Person</a></li>
+    	<li class="nav-item"><a class="nav-link" href="/account/dashboard">Översikt</a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{/profil/{uname}(uname=${#httpServletRequest.getRemoteUser()})}">Visa profil</a></li>
+		<li class="nav-item"><a class="nav-link" href="/persons/">Person</a></li>
+    	<li class="nav-item"><a class="nav-link" href="/about/">Om</a></li>
+    	<li class="nav-item"><a class="nav-link" href="/experience/">Erfarenheter</a></li>
+		<li class="nav-item"><a class="nav-link" href="/personcompetences/">Person kompetens</a></li>
+    	<li class="nav-item"><a class="nav-link" href="/educations/">Utbildning</a></li>
+    	<li class="nav-item"><a class="nav-link" href="/certifications/">Certifikat</a></li>
+    	<li class="nav-item"><a class="nav-link" href="/addresses/">Adress</a></li>
+		<li class="nav-item"><a class="nav-link" href="/emails/">Email</a></li>
+		<li class="nav-item"><a class="nav-link" href="/phone/">Telefon</a></li>
+		<li class="nav-item"><a class="nav-link" href="/webpages/">Webpage</a></li>
+    	<li class="nav-item"><a class="nav-link" href="/companies/">Företag</a></li>	<!-- Via erfarenhet -->
+    	<li class="nav-item"><a class="nav-link" href="/competences/">Kompetens</a></li><!-- via personcompetence -->
+		<li class="nav-item"><a class="nav-link" href="/types/">Typer</a></li>			<!-- via phone,mail,adress,webpage -->
     </ul>
 </div> <!-- Navigation left sidebar end -->
