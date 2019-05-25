@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.yhsipi.workersparadise.entities.Certification;
 import com.yhsipi.workersparadise.entities.CertificationPK;
+import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.repository.CertificationRepository;
 
 
@@ -36,6 +37,10 @@ public class CertificationService {
 
 	public void deleteCertification(Certification certification) {
 		certificationRepository.delete(certification);
+	}
+	
+	public void deleteCertification(CertificationPK id) {
+		certificationRepository.deleteById(id);
 	}
 
 	public List<Certification> findSearchResult(String searchStr) {
