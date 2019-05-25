@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Resume - Start Bootstrap Theme</title>
+  <title>Resume</title>
 
   <!-- Bootstrap core CSS -->
   <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -72,29 +72,26 @@
          	<span th:text="${person.lastName}"class="text-primary">Efternamn</span>
         </h1>
         <div class="subheading mb-5">
-      <span th:text="${person.getPrimaryCoForProfile()}"></span>
-        <span th:text="${person.getPrimaryStreetAddress()}">gata</span> ·
-        <span th:text="${person.getPrimaryZipCode()}">postnr</span> 
-        <span th:text="${person.getPrimaryCity()}">ort</span> ·
-        <span th:text="${person.getPrimaryPhoneNumber()}">telefon</span> ·
-        <span th:text="${person.getPrimaryEmail()}">epost</span>
-          
+	      	<span th:text="${person.getPrimaryCoForProfile()}"></span>
+	        <span th:text="${person.getPrimaryStreetAddress()}">gata</span> ·
+	        <span th:text="*{person.getPrimaryZipCode() &gt; 0 }? *{person.getPrimaryZipCode()} : '·' ">postnr</span> 
+	        <span th:text="${person.getPrimaryCity()}">ort</span> ·
+	        <span th:text="${person.getPrimaryPhoneNumber()}">telefon</span> ·
+	        <span th:text="${person.getPrimaryEmail()}">epost</span>
         </div>
         <p class="lead mb-5" th:text="${person.getAbout().getAboutSummary()}">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
         
         <div class="social-icons">
-        
-        <a th:href="@{${person.webpage.get(0).getLinkedInLink()}}">
-          
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a th:href="@{${person.webpage.get(0).getGithubLink()}}">
+        <a th:if="${not #arrays.isEmpty(person.webpage)}" th:href="@{${person.webpage.get(0).getLinkedInLink()}}">
+        	 <i class="fab fa-linkedin-in"></i>
+        </a>
+          <a th:if="${not #arrays.isEmpty(person.webpage)}" th:href="@{${person.webpage.get(0).getGithubLink()}}">
             <i class="fab fa-github"></i>
           </a>
-          <a href="#">
+          <a th:if="${not #arrays.isEmpty(person.webpage)}" href="#">
             <i class="fab fa-twitter"></i>
           </a>
-          <a href="#">
+          <a th:if="${not #arrays.isEmpty(person.webpage)}" href="#">
             <i class="fab fa-facebook-f"></i>
           </a>
         </div>
