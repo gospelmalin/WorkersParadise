@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-	<head>
-		<meta charset="UTF-8">
-		<title>LÃ¤gg till/Ã¤ndra kompetens</title>
-	</head>
-	<body>
+<div th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra kompetens'})"></div>
+<body>
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+			
 			<div class="col-sm-8" data-layout-fragment="content">
-				<h1>LÃ¤gg till/Ã¤ndra kompetens</h1>
+				<h1>Lägg till/ändra kompetens</h1>
 				<form data-th-action="@{/competences/add}" data-th-object="${competence}"
 						method="post">
-				   Kompetens-Id: <input type="text" data-th-field="*{idCompetence}" placeholder="id"/>	
+				  <!-- Kompetens-Id:  --> <input type="hidden" data-th-field="*{idCompetence}" readonly="readonly" placeholder="id"/>	
 					<p>Kompetens: <input type="text" data-th-field="*{competenceName}" placeholder="Kompetens"/> 
-					<input type="submit" value="Submit" /> <input type="reset"
-							value="Reset" />
+					<input type="submit" value="Spara" /> <input type="reset"
+							value="Nollställ" /> <input type="button"
+							value="Avbryt" onclick="location.href='/competences/'" />
 					</p>
 			  	</form>
 		
 				<a href="/competences/">Visa kompetenser</a>
 			</div>
-	</body>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
+</body>
 </html>
