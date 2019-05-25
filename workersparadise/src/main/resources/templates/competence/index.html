@@ -16,7 +16,11 @@
 				<div class="row row-offcanvas row-offcanvas-left">
 					<div class="col main pt-5 mt-3">
 						<h1 class="display-4 d-none d-sm-block">Kompetenslista</h1>
-						<div class="col" data-layout-fragment="content">
+						<p><a th:href="@{/competences/add}">Lägg till ny kompetens</a> &nbsp;&nbsp;
+						<a th:href="@{/personcompetences/}">Visa mina kompetenser</a> &nbsp;&nbsp;
+						<a th:href="@{/personcompetences/add}">Lägg till ny personlig kompetens</a></p>
+
+						<div class="col-10">
 							<table class="table">
 								<thead class="thead-dark">
 									<tr>
@@ -38,7 +42,7 @@
 								</tbody>
 							</table>
 						</div>
-						<input type="button"	value="Lägg till ny kompetens" onclick="location.href='/competences/add'" />
+						
 					<!--  <a th:href="@{/competences/add}">Lägg till ny kompetens</a> -->	
 					</div>
 				</div>

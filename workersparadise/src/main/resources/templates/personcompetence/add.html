@@ -1,37 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-	<head>
-		<meta charset="UTF-8">
-		<title>LÃ¤gg till/Ã¤ndra personlig kompetens</title>
-	</head>
-	<body>
-			<div class="col-sm-8" data-layout-fragment="content">
-				<h1>LÃ¤gg till/Ã¤ndra personlig kompetens</h1>
-				<form data-th-action="@{/personcompetences/add}" data-th-object="${personcompetence}"
-						method="post">
-				<input type="hidden" data-th-field="*{idPersonCompetence}" placeholder="id"/>	
-				<!-- <p><label for="idPerson">PersonID </label>--> 
+<div th:replace="fragments/_headtag :: headtag(title=${'Lägg till/Ändra personlig kompetens'})"></div>
+<body>
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+
+				<!-- Content -->
+		<div class="offset-3 col-6">
+				<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+				 data-th-action="@{/personcompetences/save}" 
+				 data-th-object="${personcompetence}" method="post">
+				 
+				<input type="hidden" data-th-field="*{idPersonCompetence}" readonly="readonly" placeholder="id"/>	
 				<input type="hidden" data-th-field="*{person.idPerson}" placeholder="personid"/>
+				
+				<h3>HANTERA PERSONLIG KOMPETENS</h3>
 				<div class="form-group blu-margin">
-				<label for="competence">VÃ¤lj personlig kompetens eller <a href="/competences/add">klicka hÃ¤r </a> fÃ¶r att lÃ¤gga till ny kompetens</label> 
+
+				<label for="competence">Välj personlig kompetens eller <a href="/competences/add">klicka här </a> för att lägga till ny kompetens</label> 
 				    <select class="form-control" data-th-field="*{competence.idCompetence}">
-				      <option value="0">VÃ¤lj kompetens</option>	
+				      <option value="0">Välj kompetens</option>	
 				    	<option data-th-each="competence : ${competences}" 
 				    		data-th-value="${competence.idCompetence}" 
 				    		data-th-text="${competence.competenceName}">
 			    		</option>
 				    </select>
 				</div> 
-					<!-- <p>FÃ¶rnamn: <input type="text" data-th-field="*{person.firstName}" placeholder="FÃ¶rnamn"/>  -->
+					<!-- <p>Förnamn: <input type="text" data-th-field="*{person.firstName}" placeholder="Förnamn"/>  -->
 					<!-- <p>Efternamn: <input type="text" data-th-field="*{person.lastName}" placeholder="Efternamn"/> -->
-			
-					<input type="submit" value="Submit" /> <input type="reset"
-							value="Reset" />
-					</p>
+			<div class="form-group"></div>
+
+					<input type="submit" value="Spara" /> <input type="reset"
+							value="Nollställ" /> <input type="button"
+							value="Avbryt" onclick="location.href='/personcompetences/'" />
+					<p><p>
+					<p><a href="/competences/">Visa Alla kompetenser</a> &nbsp;&nbsp;	<a href="/personcompetences/">Visa mina kompetenser</a> </p>
 			  	</form>
 		
-				<a href="/competences/">Visa kompetenser</a>
+
 			</div>
-	</body>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
+</body>
 </html>
