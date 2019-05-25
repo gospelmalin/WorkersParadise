@@ -22,11 +22,23 @@ public class PersonCompetence implements Serializable {
 	@JoinColumn(name="id_competence")
 	Competence competence;
 
+	@Override
+	public String toString() {
+		return "PersonCompetence [idPersonCompetence=" + idPersonCompetence + ", competence=" + competence + ", person="
+				+ person + "]";
+	}
+
 	@ManyToOne
 	@JoinColumn(name="id_person")
 	Person person;
 
-	
+	public boolean equals(PersonCompetence obj) {
+		if (this.person.getIdPerson() == obj.person.getIdPerson()) {
+			return true;
+		}
+			return false;
+	}
+
 
 	public PersonCompetence() {
 	}
