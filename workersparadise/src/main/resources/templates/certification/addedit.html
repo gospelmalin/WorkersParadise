@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>LÃ¤gg till/Ã¤ndra certifiering/utmÃ¤rkelse</title>
-</head>
+<div
+	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra certifikat'})"></div>
 <body>
-	<div class="col-sm-8" data-layout-fragment="content">
-		<h1>LÃ¤gg till/Ã¤ndra certifiering/utmÃ¤rkelse</h1>
-		<form data-th-action="@{/certifications/add}" data-th-object="${certification}"
-					method="post">
-				  Certification-Id: <input type="text" data-th-field="*{id.idCertification}" placeholder="id"/> 
-				personid: <input type="text" data-th-field="*{id.idPerson}" />
-				<p>Certifiering <input type="text" data-th-field="*{certificationName}" placeholder="Certifieringsnamn"/></p> 			
-				<p>Beskrivning: <input type="text" data-th-field="*{certificationDescription}" placeholder="Beskriv certifieringen hÃ¤r"/> 			
-				
-				<input type="submit" value="Submit" /> <input type="reset"
-						value="Reset" />
-				</p>
-		  	</form>
-	
-			<a href="/certifications/">Visa certifications</a>
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<!-- Content -->
+					<div class="offset-3 col-6">
+						<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+							data-th-action="@{/certifications/save}"
+							data-th-object="${certification}" method="post">
+
+							<input type="hidden" data-th-field="*{id.idCertification}" placeholder="id"/> 
+							<input type="hidden" data-th-field="*{id.idPerson}" />
+
+							<h3 class="mb-3">LÄGG TILL/ÄNDRA CERTIFIKAT</h3>
+							<div class="form-group blu-margin">
+								<label for="certificationName">Utbildningsnamn</label> <input
+									type="text" data-th-field="*{certificationName}"
+									class="form-control" placeholder="Certifieringsnamn" />
+							</div>
+
+							<div class="form-group">
+								<label for="certificationDescription">Lärosäte</label> <input
+									type="text" data-th-field="*{certificationDescription}"
+									class="form-control" placeholder="Beskriv certifieringen här" />
+							</div>
+
+							<div class="form-group"></div>
+							<input type="submit" value="Spara" /> <input type="reset"
+								value="Nollställ" /> <input type="button" value="Avbryt"
+								onclick="location.href='/educations/'" />
+							<div>
+								<a href="/certifications/">Visa certifikat</a>
+							</div>
+
+						</form>
+					</div>
+
+					<!-- End content -->
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div th:replace="fragments/_footer"></div>
+		</div>
 	</div>
 </body>
 </html>

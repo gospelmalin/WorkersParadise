@@ -23,11 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yhsipi.workersparadise.entities.Education;
 import com.yhsipi.workersparadise.entities.EducationPK;
-import com.yhsipi.workersparadise.entities.ProfessionalExperience;
-import com.yhsipi.workersparadise.entities.ProfessionalExperiencePK;
 import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.service.EducationService;
-import com.yhsipi.workersparadise.service.PersonService;
 import com.yhsipi.workersparadise.service.UserService;
 
 

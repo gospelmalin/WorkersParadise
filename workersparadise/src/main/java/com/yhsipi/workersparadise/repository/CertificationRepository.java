@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yhsipi.workersparadise.entities.Certification;
 import com.yhsipi.workersparadise.entities.CertificationPK;
+import com.yhsipi.workersparadise.entities.EducationPK;
 
 public interface CertificationRepository extends JpaRepository<Certification, Integer>{
 
@@ -21,6 +22,7 @@ public final static String FIND_BY_PERSON_QUERY = "SELECT c FROM Certification c
 
 	public Optional<Certification> findById(CertificationPK id);
 
+	public void deleteById(CertificationPK id);
 	
 	@Query(nativeQuery = true, value ="SELECT * FROM certification c WHERE c.certification_name LIKE %:searchStr%")
 	public List<Certification> findSearchResult(@Param("searchStr") String searchStr);
