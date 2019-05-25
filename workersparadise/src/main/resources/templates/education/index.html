@@ -17,23 +17,14 @@
 			
 				<!-- Content -->
 			 <div class="col main pt-5 mt-3">
-			 <!-- När controllern är fixad lägg till nedanstående -->
-			 <!-- 
 			   <h1 data-th-text="${person.getFullName()}" class="display-4 d-none d-sm-block">
                 FÃ¶rnamn Efternamn
             </h1>
-             -->
             <p class="lead d-none d-sm-block">Hantera utbildningar <a href="add">LÃ¤gg till ny utbildning</a></p>
 			 <div class="col-10">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
-					<!--Ta bort nedan när controllern är fixad -->
-					<th scope="col">Id</th>
-					<th scope="col">Personid</th> 
-					<th scope="col">Förnamn</th>
-					<th scope="col">Efternamn</th> 
-					<!--Ta bort ovan när controllern är fixad -->
 						<th scope="col">Utbildningsnamn</th>
 						<th scope="col">Beskrivning</th>
 						<th scope="col">Lärosäte</th>
@@ -47,13 +38,7 @@
 				</thead>
 				<tbody>
 					<tr data-th-each="education : ${educations}">
-					<!--Ta bort nedan när controllern är fixad -->
-						<td data-th-text="${education.getId().getIdEducation()}">Id</td>
-						<!--<td data-th-text="${education.person.getFullName()}">Person</td> -->
-						<td data-th-text="${education.person.getIdPerson()}">Personid</td>
-						<td data-th-text="${education.person.getFirstName()}">Förnamn</td>
-						<td data-th-text="${education.person.getLastName()}">Efternamn</td>
-						<!--Ta bort ovan när controllern är fixad -->
+			
 						<td data-th-text="${education.educationName}">Utbildningsnamn</td>
 					   <td data-th-text="${education.educationDescription}">Beskrivning</td>
 					   <td data-th-text="${education.school}">Lärosäte</td>
@@ -63,12 +48,8 @@
 					 	<td data-th-text="${education.educationGrade}">Betyg</td>
 						<td data-th-text="${education.isProgram}">Program</td>
 						<td scope="row">
-						<!--Ta bort nedan när controllern är fixad -->
-								<a th:href="@{/educations/person/{personid}/add(personid=${education.getId().getIdPerson()})}">Lägg till</a> |
-							<!--Ta bort ovan när controllern är fixad -->
 								<a th:href="@{/educations/edit/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
 								<a th:href="@{/educations/remove/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ta bort</a>							
-							 <!--  <a th:href="@{/educations/remove/{educationid}/(educationid=${education.idEducation})}">Ta bort</a> -->
 						</td>
 					</tr>
 				</tbody>
