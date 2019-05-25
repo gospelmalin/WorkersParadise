@@ -1,31 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>LÃ¤gg till/Ã¤ndra websida</title>
-</head>
+<div th:replace="fragments/_headtag :: headtag(title=${'Lägg till/Ändra personlig kompetens'})"></div>
 <body>
-	<div class="col-sm-8" data-layout-fragment="content">
-				<h1>LÃ¤gg till/Ã¤ndra websida</h1>
-				
-				<form data-th-action="@{/webpages/add}" data-th-object="${webpage}"
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+
+				<!-- Content -->
+		<div class="offset-3 col-6">
+				<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+				data-th-action="@{/webpages/save}" 
+				data-th-object="${webpage}"
 					method="post">
 					  
-					  webpage-Id: <input type="text" data-th-field="*{id.idWebpage}" placeholder="id"/> 
-					person-id: <input type="text" data-th-field="*{id.idPerson}" />
-					<p>Websidans namn: <input type="text" data-th-field="*{webpageName}" placeholder="Websidans namn"/></p> 
-					<p>LÃ¤nk: <input type="text" data-th-field="*{link}" placeholder="LÃ¤nk"/></p> 
-					<p>Beskrivning: <input type="text" data-th-field="*{webpageDescription}" placeholder="Beskrivning"/></p> 
-					<p>Kategori-id: <input type="text" data-th-field="*{type.idType}" placeholder="Ange kategori"/></p> 
-					<!-- TODO Ã„ndra till att HÃ¤mta typnamn i dropdown att vÃ¤lja -->
+					<input type="hidden" data-th-field="*{id.idWebpage}" readonly="readonly" placeholder="id"/> 
+					<input type="hidden" data-th-field="*{id.idPerson}" readonly="readonly"  placeholder="personid" />
+					
+					<h3>HANTERA WEBSIDOR</h3>
+					<div class="form-group blu-margin">
+						<label for="webpageName">Websidans namn</label> <input
+									type="text" data-th-field="*{webpageName}"
+									class="form-control" placeholder="Websidans namn" />
+					</div>
+					
+				<div class="form-group">
+				<label for="link">Länk</label> 
+					<input type="text" data-th-field="*{link}" class="form-control" placeholder="Ange länk"/>
+					</div>
+					
+					<div class="form-group">
+				<label for="webpageDescription">Beskrivning</label> 
+					<textarea rows="5"  data-th-field="*{webpageDescription}" class="form-control" placeholder="Beskrivning"/>
+					</div>
+					
+					<div class="form-group">
+					<label for="type">Välj kategori</label> 
+				    <select class="form-control" data-th-field="*{type.idType}">
+				      <option value="0">Välj kategori</option>	
+				    	<option data-th-each="type : ${types}" 
+				    		data-th-value="${type.idType}" 
+				    		data-th-text="${type.typeName}">
+			    		</option>
+				    </select>
+				</div> 
 				
-					<input type="submit" value="Submit" /> <input type="reset"
-							value="Reset" />
-					</p>
+				
+					<input type="submit" value="Spara" /> <input type="reset"
+							value="Nollställ" /> <input type="button"
+							value="Avbryt" onclick="location.href='/webpages/'" />
+					<p><p>
+					<p><a href="/types/">Visa kategorilista</a></p>
+
 			  	</form>
-		
-				<a href="/webpages/">Visa websidor</a>
+			  	
+				</div>
+			</div>
+		</div>
 	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
 </body>
 </html>
