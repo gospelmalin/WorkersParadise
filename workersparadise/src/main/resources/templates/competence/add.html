@@ -15,12 +15,20 @@
 		<div class="col-10">
 			<div class="row row-offcanvas row-offcanvas-left">
 			
-			<div class="col-sm-8" data-layout-fragment="content">
-				<h1>Lägg till/ändra kompetens</h1>
-				<form data-th-action="@{/competences/add}" data-th-object="${competence}"
-						method="post">
-				  <!-- Kompetens-Id:  --> <input type="hidden" data-th-field="*{idCompetence}" readonly="readonly" placeholder="id"/>	
-					<p>Kompetens: <input type="text" data-th-field="*{competenceName}" placeholder="Kompetens"/> 
+			<div class="offset-3 col-6">
+				<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+					data-th-action="@{/competences/add}" 
+					data-th-object="${competence}" method="post">
+				  <input type="hidden" data-th-field="*{idCompetence}" readonly="readonly" placeholder="id"/>	
+					
+				  <h3 class="mb-3">LÄGG TILL/ÄNDRA KOMPETENS</h3>
+					<div class="form-group blu-margin">
+					<div class="form-group">
+							<label for="competenceName">Kompetens</label> <input
+								data-th-field="*{competenceName}" type="text" class="form-control"
+								placeholder="Ange kompetens">
+						</div>
+						
 					<input type="submit" value="Spara" /> <input type="reset"
 							value="Nollställ" /> <input type="button"
 							value="Avbryt" onclick="location.href='/competences/'" />
