@@ -161,7 +161,7 @@ public class CertificationController {
 					return "/certification/addedit";
 				}
 
-				// spara om det om allt är ok
+				// Save if all is OK
 				certificationService.saveCertification(certification);
 
 				return "redirect:/certifications/";
