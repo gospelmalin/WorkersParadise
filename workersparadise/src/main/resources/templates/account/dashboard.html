@@ -16,7 +16,7 @@
 			<div class="col-10">
 				<div class="row row-offcanvas row-offcanvas-left">
 					<div class="col main pt-5 mt-3">
-						<div class="offset-lg-2 col-lg-8 col-md-12 row placeholders mb-5">
+						<div class="col-lg-8 col-md-12 row placeholders mb-5">
 							<div class="col-6 col-sm-3 placeholder text-center">
 								<img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getProfExperience())})}"
 									class="mx-auto img-fluid rounded-circle"
@@ -46,18 +46,53 @@
 								<span class="text-muted"><a href="/certifications/add">Lägg till nytt certifikat</a></span>
 							</div>
 						</div>
-						
-						<h1 th:text="${person.getFullName()}" class="display-4 d-none mb-2 d-sm-block">Förnamn Efternamn</h1>
-						
-						<div class="card">
-						  <h5 class="card-header">Info om</h5>
-						  <div class="card-body">
-						    <h5 class="card-title">Special title treatment</h5>
-						    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-						    <a href="#" class="btn btn-primary">Go somewhere</a>						    
-						  </div>
+
+						<div class="row">
+						<div class="col-lg-8 mb-2">
+							<div class="card">
+							  <h5 th:text="${person.getFullName()}" class="card-header">Info</h5>
+							  <div class="card-body">
+							    <h5 class="card-title">Om mig</h5>
+							    <p class="card-text" th:text=${person.about.aboutSummary} ></p>
+							     <h5 class="card-title">Mina intressen</h5>
+							    <p class="card-text" th:text=${person.about.interests}></p>
+							    <p class="text-muted text-right"><a href="/about/">redigera</a></p>
+							  </div>
+							</div>
+						</div>
 						</div>
 						
+						<div class="row">
+							<div class="col-lg-4 mb-2">
+								<div class="card">
+								  <h5 class="card-header">Adress</h5>
+								  <div class="card-body">
+							      	<div class="subheading mb-3">
+							      		<p class="card-text">
+							      			<span th:text="${person.getFullName()}"></span><br />
+											<span th:text="${person.getPrimaryStreetAddress()}">gata</span><br />
+											<span th:text="*{person.getPrimaryZipCode() &gt; 0 }? *{person.getPrimaryZipCode()  } : '' ">postnr</span> 
+											<span th:text="${person.getPrimaryCity()}">ort</span><br />
+										</p>
+									</div>
+									 <p class="text-muted text-right"><a href="#">redigera</a></p>
+								  </div>
+								</div>
+							</div>
+							<div class="col-lg-4 mb-2">
+								<div class="card">
+								  <h5 class="card-header">Kontakt</h5>
+								  <div class="card-body">
+									<div class="subheading mb-5 pb-4">
+							      		<p class="card-text">
+											Telefon: <span th:text="${person.getPrimaryPhoneNumber()}">telefon</span><br />
+											Mail:    <span th:text="${person.getPrimaryEmail()}">epost</span>
+										</p>
+									</div>
+								  </div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
