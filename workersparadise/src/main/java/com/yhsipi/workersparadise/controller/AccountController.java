@@ -92,8 +92,6 @@ public class AccountController {
         }
         user.setIdUser(checkAccountUserID +1);
         user.person.setIdPerson(checkAccountProfileID + 1);
-        System.out.println("Användarnamn för användare i klartext: " + user.getUsername());
-        System.out.println("Lösenord för användare i klartext: " + user.getPassword());
 
         if (userExists != null) {
             bindingResult.rejectValue("username", "error.user", "This username already exists!");
