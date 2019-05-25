@@ -90,8 +90,11 @@
                 </div>
 
                 <div class="col-lg-6 offset-3 serach-main-class" style="padding-top: 50px">
-                    <input type="email" class="form-control form-control-lg" placeholder="Sök efter profil">
+                    <form method="get" data-th-action="@{/search/}">
+                    <input type="text" class="form-control form-control-lg" placeholder="Sök efter kompetens" name="searchStr"/>
                     <button type="submit" class="btn btn-block btn-lg btn-primary">Sök</button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
