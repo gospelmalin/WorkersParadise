@@ -28,7 +28,7 @@ public class MvcConfig implements WebMvcConfigurer {
      
     }
 
-    
+
 
     @Configuration
     public class WebMvcConfig implements WebMvcConfigurer {
