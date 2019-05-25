@@ -270,7 +270,7 @@ public class Person implements Serializable {
 				return address.getZipCode();
 			}		
 		}
-		return (Integer) null;		
+		return -1;		
 	}
 
 	
