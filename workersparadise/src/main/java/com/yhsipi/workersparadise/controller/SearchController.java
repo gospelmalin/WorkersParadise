@@ -2,6 +2,8 @@ package com.yhsipi.workersparadise.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +26,8 @@ public class SearchController {
 	private CompetenceService competenceService;
 	
 	@GetMapping("/")
-	public String displaySearchResults(Model model) {
-		model.addAttribute("certifications", model);
-		return "/";
+	public String displaySearchResults(@Valid String searchStr,Model model) {
+		return "/search/" + searchStr;
 	}
 	
 	
@@ -41,4 +42,5 @@ public class SearchController {
 
 		return "/search/index";
 	}
+
 }
