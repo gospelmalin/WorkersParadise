@@ -6,28 +6,34 @@
 <title>Certifieringar och utmärkelser</title>
 </head>
 <body>
-<div th:replace="fragments/_navbar"></div>
-		<div class="col" data-layout-fragment="content">
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">Namn</th>
-						<th scope="col">Kompetens</th>						
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr data-th-each="personCompetence: ${personCompetences}">
-						<td data-th-text="${personCompetence.person.getFullName()}">Namn</td>
-						<td data-th-text="${competence.getCompetenceName()}">Kompetens</td>
-						<td scope="row">
-						<a th:href="@{/profile/{personid}(personid=${personCompetence.person.getIdPerson()})}">Profil</a>
+	<div th:replace="fragments/_navbar"></div>
+	<p>
+		Sökresultat för sökning på: <span th:text="${searchStr}"></span>
+	</p>
 
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div th:replace="fragments/_footer"></div>
+
+	<div class="col" data-layout-fragment="content">
+		<table class="table">
+			<thead class="thead-dark">
+
+				<tr>
+					<th scope="col">Namn</th>
+					<th scope="col">Kompetens</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="personCompetence: ${personCompetences}">
+					<td data-th-text="${personCompetence.person.getFullName()}">Namn</td>
+					<td data-th-text="${personCompetence.person.filterCompetence(searchStr)}">Kompetens</td>
+					<td scope="row"><a
+						th:href="@{/profile/{personid}(personid=${personCompetence.person.getIdPerson()})}">Profil</a>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragments/_footer"></div>
 </body>
 </html>
