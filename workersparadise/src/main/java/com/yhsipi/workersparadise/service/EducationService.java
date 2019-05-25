@@ -36,5 +36,9 @@ public class EducationService {
 	public void deleteEducation(Education education) {
 		educationRepository.delete(education);
 	}
+	
+	public void deleteEducation(EducationPK id) {
+		educationRepository.deleteById(id);
+	}
 
 }

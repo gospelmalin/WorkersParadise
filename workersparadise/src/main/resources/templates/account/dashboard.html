@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div
+	th:replace="fragments/_headtag :: headtag(title=${'WP -> Översikt'})"></div>
+<body>
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<div class="col main pt-5 mt-3">
+						<div class="offset-lg-2 col-lg-8 col-md-12 row placeholders mb-5">
+							<div class="col-6 col-sm-3 placeholder text-center">
+								<img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getProfExperience())})}"
+									class="mx-auto img-fluid rounded-circle"
+									alt="Generic placeholder thumbnail">
+								<h4>Erfarenheter</h4>
+								<span class="text-muted"><a href="/experience/add">Lägg till ny erfarenhet</a></span>
+							</div>
+							<div class="col-6 col-sm-3 placeholder text-center">
+								<img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getEducation())})}"
+									class="mx-auto img-fluid rounded-circle"
+									alt="Generic placeholder thumbnail">
+								<h4>Utbildningar</h4>
+								<span class="text-muted"><a href="/educations/add">Lägg till ny utbildning</a></span>
+							</div>
+							<div class="col-6 col-sm-3 placeholder text-center">
+								<img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getPersonCompetence())})}"
+									class="mx-auto img-fluid rounded-circle"
+									alt="Generic placeholder thumbnail">
+								<h4>Kompetenser</h4>
+								<span class="text-muted"><a href="/personcompetences/add">Lägg till ny kompetens</a></span>
+							</div>
+							<div class="col-6 col-sm-3 placeholder text-center">
+								<img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getCertification())})}"
+									class="mx-auto img-fluid rounded-circle"
+									alt="Generic placeholder thumbnail">
+								<h4>Certifikat</h4>
+								<span class="text-muted"><a href="/certifications/add">Lägg till nytt certifikat</a></span>
+							</div>
+						</div>
+						
+						<h1 th:text="${person.getFullName()}" class="display-4 d-none mb-2 d-sm-block">Förnamn Efternamn</h1>
+						
+						<div class="card">
+						  <h5 class="card-header">Info om</h5>
+						  <div class="card-body">
+						    <h5 class="card-title">Special title treatment</h5>
+						    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						    <a href="#" class="btn btn-primary">Go somewhere</a>						    
+						  </div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div th:replace="fragments/_footer"></div>
+		</div>
+	</div>
+</body>
+</html>
