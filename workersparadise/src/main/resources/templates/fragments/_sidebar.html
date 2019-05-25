@@ -13,6 +13,6 @@
 		<li class="nav-item"><a class="nav-link" href="/personcompetences/">Person kompetens</a></li>
 		<li class="nav-item"><a class="nav-link" href="/phone/">Telefon</a></li>
 		<li class="nav-item"><a class="nav-link" href="/types/"></a></li>
-        <li class="nav-item"><a class="nav-link" href="/profile/">Visa profil</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/profil/{uname}(uname=${#httpServletRequest.getRemoteUser()})}">Visa profil</a></li>
     </ul>
 </div> <!-- Navigation left sidebar end -->
