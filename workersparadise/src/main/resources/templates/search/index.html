@@ -10,7 +10,10 @@
 	<p>
 		Sökresultat för sökning på: <span th:text="${searchStr}"></span>
 	</p>
-
+                    <form method="get" data-th-action="@{/search/}">
+                    <input type="text"placeholder="Sök efter kompetens" name="searchStr"/>
+                    <button type="submit">Sök</button>
+                    </form>
 
 	<div class="col" data-layout-fragment="content">
 		<table class="table">

@@ -40,9 +40,17 @@ public class SearchController {
 		List<PersonCompetence> noDuplicatespcList = pcList;
 		noDuplicatespcList.add(pcList.get(0));
 		for (int i = 0; i < pcList.size(); i++) {
+			int counter = 0;
 			for (int j = 0; j < noDuplicatespcList.size(); j++) {
 				if(noDuplicatespcList.get(i).equals(pcList.get(j))) {
-					noDuplicatespcList.remove(i);
+					if(counter==0) {
+						counter++;
+					}
+					else {
+						noDuplicatespcList.remove(i);
+						counter = 0;
+					}
+					
 				}
 				
 			}
