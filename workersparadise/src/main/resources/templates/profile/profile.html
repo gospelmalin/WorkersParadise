@@ -82,16 +82,16 @@
         <p class="lead mb-5" th:text="*{person.getAbout() != null }? *{person.getAbout().getAboutSummary()} : ''">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
         
         <div class="social-icons">
-        <a th:href="@{${person.getLinkedInLink()}}">
+        <a if="${not #arrays.isEmpty(person.webpage)}" th:href="@{${person.getLinkedInLink()}}">
         	 <i class="fab fa-linkedin-in"></i>
         </a>
-          <a th:href="@{${person.getGithubLink()}}">
+          <a if="${not #arrays.isEmpty(person.webpage)}" th:href="@{${person.getGithubLink()}}">
             <i class="fab fa-github"></i>
           </a>
-          <a th:href="@{${person.getTwitterLink()}}">
+          <a if="${not #arrays.isEmpty(person.webpage)}" th:href="@{${person.getTwitterLink()}}">
             <i class="fab fa-twitter"></i>
           </a>
-          <a th:href="@{${person.getFacebookLink()}}">
+          <a if="${not #arrays.isEmpty(person.webpage)}" th:href="@{${person.getFacebookLink()}}">
             <i class="fab fa-facebook-f"></i>
           </a>
         </div>
