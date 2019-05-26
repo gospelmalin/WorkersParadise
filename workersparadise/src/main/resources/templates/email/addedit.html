@@ -1,36 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>LÃ¤gg till/Ã¤ndra email</title>
-</head>
+<div
+	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra e-post'})"></div>
 <body>
-	<div class="col-sm-8" data-layout-fragment="content">
-			<h1>LÃ¤gg till/Ã¤ndra email</h1>
-			
-			<form data-th-action="@{/emails/add}" data-th-object="${email}"
-				method="post">
-			 	<!--email-Id:   --> <input type="hidden" data-th-field="*{id.idEmail}" readonly="readonly" placeholder="id"/>
-			 <!--	personid:   --><input type="hidden" data-th-field="*{id.idPerson}" readonly="readonly"/>
-			<p>Email: <input type="text" data-th-field="*{emailAddress}" placeholder="Ange e-postadress"/> </p>
-			<!--  <p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Ange kategori"/> -->	
-				<div class="form-group blu-margin">
-				<label for="competence">Kategori</label> 
-				    <select class="form-control" data-th-field="*{type.idType}">
-				      <option value="0">VÃ¤lj kategori</option>	
-				    	<option data-th-each="type : ${types}" 
-				    		data-th-value="${type.idType}" 
-				    		data-th-text="${type.typeName}">
-			    		</option>
-				    </select>
-				</div> 				
-				PrimÃ¤r e-postadress (visas pÃ¥ profilsidan): <input type="text" data-th-field="*{primaryEmail}" placeholder="Detta Ã¤r min primÃ¤ra epost-adress"/> 			
-				<p><input type="submit" value="Submit" /> <input type="reset"
-						value="Reset" /></p>
-		  	</form>
-	
-			<a href="/emails/">Visa e-postadresser</a>
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<!-- Content -->
+					<div class="offset-3 col-6">
+						<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+							data-th-action="@{/emails/save}" data-th-object="${email}"
+							method="post">
+
+							<input type="hidden" data-th-field="*{id.idEmail}"
+								readonly="readonly" placeholder="id" /> <input type="hidden"
+								data-th-field="*{id.idPerson}" readonly="readonly"
+								placeholder="personid" />
+
+							<h3 class="mb-3">LÄGG TILL/ÄNDRA E-POST</h3>
+							<div class="form-group blu-margin">
+								<label for="emailAddress">E-post</label> <input type="text"
+									data-th-field="*{emailAddress}" class="form-control"
+									placeholder="Ange e-postadress" />
+							</div>
+
+							<div class="form-group">
+								<label for="type">Välj kategori</label> <select
+									class="form-control" data-th-field="*{type.idType}">
+									<option value="0">Välj kategori</option>
+									<option data-th-each="type : ${types}"
+										data-th-value="${type.idType}" data-th-text="${type.typeName}">
+									</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="primaryEmail">Primär e-postadress (visas på
+									profilsidans "Om mig")</label> <br>
+								<input type="checkbox" data-th-field="*{primaryEmail}"
+									placeholder="Detta är min primära epost-adress" />
+							</div>
+
+							<p>
+								<input type="submit" value="Spara" /> <input type="reset"
+									value="Nollställ" /> <input type="button" value="Avbryt"
+									onclick="location.href='/emails/'" />
+							<p>
+							<p>
+								<a href="/emails/">Visa mina e-postadresser</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div th:replace="fragments/_footer"></div>
+		</div>
 	</div>
 </body>
 </html>
