@@ -293,7 +293,7 @@ public class Person implements Serializable {
 	public String getLinkedInLink() {
 		String link = "";
 		for (Webpage webpage : webpage) {
-			if (webpage.getType().getTypeName() == "LINKEDIN") {
+			if (webpage.getType().getTypeName().toLowerCase().contains("linkedin")) {
 				if(!webpage.getLink().startsWith("http")) {
 					link = "http://" + webpage.getLink();
 				}
@@ -311,7 +311,7 @@ public class Person implements Serializable {
 	public String getGithubLink() {
 		String link = "";
 		for (Webpage webpage : webpage) {
-			if (webpage.getType().getTypeName() == "GITHUB") {
+			if (webpage.getType().getTypeName().toLowerCase().contains("github")) {
 				if(!webpage.getLink().startsWith("http")) {
 					link = "http://" + webpage.getLink();
 				}
@@ -329,7 +329,7 @@ public class Person implements Serializable {
 	public String getTwitterLink() {
 		String link = "";
 		for (Webpage webpage : webpage) {
-			if (webpage.getType().getTypeName() == "TWITTER") {
+			if (webpage.getType().getTypeName().toLowerCase().contains("twitter")) {
 				if(!webpage.getLink().startsWith("http")) {
 					link = "http://" + webpage.getLink();
 				}
@@ -346,7 +346,7 @@ public class Person implements Serializable {
 	public String getHomepageLink() {
 		String link = "";
 		for (Webpage webpage : webpage) {
-			if (webpage.getType().getTypeName() == "HEMSIDA") {
+			if (webpage.getType().getTypeName().toLowerCase().contains("hemsida")) {
 				if(!webpage.getLink().startsWith("http")) {
 					link = "http://" + webpage.getLink();
 				}
@@ -363,7 +363,7 @@ public class Person implements Serializable {
 	public String getFacebookLink() {
 		String link = "";
 		for (Webpage webpage : webpage) {
-			if (webpage.getType().getTypeName() == "FACEBOOK") {
+			if (webpage.getType().getTypeName().toLowerCase().contains("facebook")) {
 				if(!webpage.getLink().startsWith("http")) {
 					link = "http://" + webpage.getLink();
 				}
