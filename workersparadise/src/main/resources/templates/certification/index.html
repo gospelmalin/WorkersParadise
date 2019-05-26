@@ -14,36 +14,40 @@
 		</div>
 		<div class="col-10">
 			<div class="row row-offcanvas row-offcanvas-left">
-
-				<!-- Content -->
-				 <div class="col main pt-5 mt-3">
-			  <h1 data-th-text="${person.getFullName()}" class="display-4 d-none d-sm-block">
-                Förnamn Efternamn
-            </h1>
-             <p class="lead d-none d-sm-block">Hantera certifikat <a href="add">Lägg till nytt certifikat</a></p>
-			 <div class="col-10">
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">Certifikat</th>
-						<th scope="col">Beskrivning</th>						
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr data-th-each="certification: ${certifications}">
-						<td data-th-text="${certification.getCertificationName()}">Certifikat</td>
-						<td data-th-text="${certification.getCertificationDescription()}">Beskrivning</td>
-						<td scope="row">
-							<a th:href="@{/certifications/edit/{personid}/{certificationid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">�ndra</a> |
-						   <a th:href="@{/certifications/remove/{personid}/{certificationid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ta bort</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>			<!-- Content end -->
-
+							<!-- Content -->
+				<div class="col main mt-3">
+					<div class="col-lg-6">
+						<div class="card">
+						  <h5 class="card-header">Hantera certifikat</h5>
+						  <div class="card-body">
+					  		<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Certifikat</th>
+										<th scope="col">Beskrivning</th>						
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-th-each="certification: ${certifications}">
+										<td data-th-text="${certification.getCertificationName()}">Certifikat</td>
+										<td data-th-text="${certification.getCertificationDescription()}">Beskrivning</td>
+										<td scope="row">
+											<a th:href="@{/certifications/edit/{personid}/{certificationid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ändra</a> |
+										   <a th:href="@{/certifications/remove/{personid}/{certificationid}(personid=${certification.getId().getIdPerson()},certificationid=${certification.getId().getIdCertification()})}">Ta bort</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="subheading mb-2">
+					      		<p class="card-text">
+					      			<a href="add">Lägg till nytt certifikat</a>
+								</p>
+							</div>
+						  </div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
