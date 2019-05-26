@@ -289,6 +289,14 @@ public class Person implements Serializable {
 
 		return searchResult.substring(0, searchResult.length() - 2);
 	}
+	
+	public String getAllCompetences() {
+		String competences = "";
+		for (PersonCompetence personCompetence : personCompetence) {
+			competences = competences + personCompetence.getCompetence().getCompetenceName() + ", ";
+		}
+		return competences.substring(0, competences.length()-2);
+	}
 
 	public String getLinkedInLink() {
 		String link = "";
