@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
                 
                 // URLs
-                .antMatchers("/", "/profil/**", "/account/register", "/login").permitAll()
+                .antMatchers("/", "/search/**", "/profile/**", "/profil/**", "/account/register", "/login").permitAll()
                 
                 // Webapp
                 .antMatchers("/bootstrap/**","/css/**","/fontawesome-free/**", "/img/**", "/jquery/**",
