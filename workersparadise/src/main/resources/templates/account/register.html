@@ -58,11 +58,11 @@
 						</div>
 						<div class="form-group col-md-6">
 
-							<select id="inputState" class="form-control">
-								<option selected>Välj ...</option>
-								<option> Kvinna</option>
-								<option> Man</option>
-								<option> Annan</option>
+							<select th:field="*{person.gender}" id="inputState" class="form-control">
+								<option selected th:value="'N'">Välj ...</option>
+								<option th:value="'K'"> Kvinna</option>
+								<option th:value="'M'"> Man</option>
+								<option th:value="'A'"> Annan</option>
 							</select>
 						</div>
 						<!--
