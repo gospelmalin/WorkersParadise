@@ -17,64 +17,63 @@ import javax.persistence.TemporalType;
 
 //import org.hibernate.annotations.Cascade;
 
-
 /**
  * The persistent class for the person database table.
  * 
  */
 @Entity
-@Table(name="person")
-@NamedQuery(name="Person.findAll", query="SELECT p FROM Person p")
+@Table(name = "person")
+@NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")
 public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_person")
+	@Column(name = "id_person")
 	private int idPerson;
 
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
 
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
 	private String gender;
 
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name="middle_name")
+	@Column(name = "middle_name")
 	private String middleName;
-	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	private List<Phone> phones;
-	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	private List<Address> address;
-	
-	@OneToMany(mappedBy= "person", cascade = CascadeType.ALL)
-	//@Cascade(org.hibernate.annotations.CascadeType.ALL) //TODO check
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	// @Cascade(org.hibernate.annotations.CascadeType.ALL) //TODO check
 	private List<Email> emails;
-	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	private List<Webpage> webpage;
-	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	private List<Education> education;
-	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	private List<Certification> certification;
-	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	private List<PersonCompetence> personCompetence;
-	
-	@OneToMany(mappedBy= "person",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
 	private List<ProfessionalExperience> profExperience;
-	
-	//bi-directional one-to-one association to About 
-	@OneToOne(mappedBy="person") 
+
+	// bi-directional one-to-one association to About
+	@OneToOne(mappedBy = "person")
 	private About about;
-	
+
 	public About getAbout() {
 		return about;
 	}
@@ -130,14 +129,15 @@ public class Person implements Serializable {
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}
+
 	public List<Phone> getPhones() {
 		return phones;
 	}
 
-	public void setPhones(List<Phone> phones) {	
+	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
 	}
-	
+
 	public List<Address> getAddress() {
 		return address;
 	}
@@ -145,7 +145,7 @@ public class Person implements Serializable {
 	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
-	
+
 	public List<Email> getEmail() {
 		return emails;
 	}
@@ -153,7 +153,7 @@ public class Person implements Serializable {
 	public void setEmail(List<Email> emails) {
 		this.emails = emails;
 	}
-	
+
 	public List<Webpage> getWebpage() {
 		return webpage;
 	}
@@ -162,7 +162,6 @@ public class Person implements Serializable {
 		this.webpage = webpage;
 	}
 
-
 	public List<Education> getEducation() {
 		return education;
 	}
@@ -170,7 +169,7 @@ public class Person implements Serializable {
 	public void setEducation(List<Education> education) {
 		this.education = education;
 	}
-	
+
 	public List<Certification> getCertification() {
 		return certification;
 	}
@@ -179,7 +178,6 @@ public class Person implements Serializable {
 		this.certification = certification;
 	}
 
-	
 	public List<ProfessionalExperience> getProfExperience() {
 		return profExperience;
 	}
@@ -206,91 +204,176 @@ public class Person implements Serializable {
 
 	public Person() {
 	}
+
 	@Override
 	public String toString() {
 		return "Person [idPerson=" + idPerson + ", birthdate=" + birthdate + ", firstName=" + firstName + ", gender="
 				+ gender + ", lastName=" + lastName + ", middleName=" + middleName + ", phones=" + phones + "]";
 	}
-	
+
 	public String getFullName() {
-		return this.firstName + " "+ this.lastName;
+		return this.firstName + " " + this.lastName;
 	}
-	
+
 	public String getPrimaryPhoneNumber() {
 		for (Phone phone : phones) {
 			if (phone.getPrimaryContactNumber()) {
 				return phone.toString();
-			}		
+			}
 		}
-		return "";		
+		return "";
 	}
-	
-	
+
 	public String getPrimaryEmail() {
 		for (Email email : emails) {
 			if (email.isPrimaryEmail()) {
 				return email.toString();
-			}		
+			}
 		}
-		return "";		
+		return "";
 	}
-	
+
 	public String getPrimaryStreetAddress() {
 		for (Address address : address) {
 			if (address.isPrimaryAddress()) {
 				return address.getStreetAddress();
-			}		
+			}
 		}
-		return "";		
+		return "";
 	}
-	
+
 	public String getPrimaryCity() {
 		for (Address address : address) {
 			if (address.isPrimaryAddress()) {
 				return address.getCity();
-			}		
+			}
 		}
-		return "";		
+		return "";
 	}
-	
-	
+
 	public String getPrimaryCo() {
 		for (Address address : address) {
 			if (address.isPrimaryAddress()) {
 				return address.getCo();
-			}		
+			}
 		}
-		return "";		
+		return "";
 	}
-	
+
 	public String getPrimaryCoForProfile() {
 		for (Address address : address) {
-			if (address.isPrimaryAddress() && address.getCo() != null) {			
+			if (address.isPrimaryAddress() && address.getCo() != null) {
 				return address.getCoWithCOForProfile();
-			}		
+			}
 		}
-		return "";		
+		return "";
 	}
-	
-	
-	//TODO better solution?
+
+	// TODO better solution?
 	public int getPrimaryZipCode() {
 		for (Address address : address) {
 			if (address.isPrimaryAddress()) {
 				return address.getZipCode();
-			}		
+			}
 		}
-		return -1;		
+		return -1;
 	}
 
-	public String filterCompetence(String searchStr){
+	public String filterCompetence(String searchStr) {
 		String searchResult = "";
 		for (PersonCompetence personCompetence : personCompetence) {
-			if(personCompetence.getCompetence().getCompetenceName().toLowerCase().contains(searchStr.toLowerCase())) {
+			if (personCompetence.getCompetence().getCompetenceName().toLowerCase().contains(searchStr.toLowerCase())) {
 				searchResult += personCompetence.getCompetence().getCompetenceName() + ", ";
 			}
 		}
-		
-		return searchResult.substring(0, searchResult.length()-2);
+
+		return searchResult.substring(0, searchResult.length() - 2);
+	}
+
+	public String getLinkedInLink() {
+		String link = "";
+		for (Webpage webpage : webpage) {
+			if (webpage.getType().getTypeName() == "LINKEDIN") {
+				if(!webpage.getLink().startsWith("http")) {
+					link = "http://" + webpage.getLink();
+				}
+				else {
+					link = webpage.getLink();
+				}
+				
+			} else {
+				link = "https://www.linkedin.com";
+			}
+		}
+		return link;
+	}
+
+	public String getGithubLink() {
+		String link = "";
+		for (Webpage webpage : webpage) {
+			if (webpage.getType().getTypeName() == "GITHUB") {
+				if(!webpage.getLink().startsWith("http")) {
+					link = "http://" + webpage.getLink();
+				}
+				else {
+					
+				}
+				link = webpage.getLink();
+			} else {
+				link = "https://www.github.com";
+			}
+		}
+		return link;
+	}
+
+	public String getTwitterLink() {
+		String link = "";
+		for (Webpage webpage : webpage) {
+			if (webpage.getType().getTypeName() == "TWITTER") {
+				if(!webpage.getLink().startsWith("http")) {
+					link = "http://" + webpage.getLink();
+				}
+				else {
+					link = webpage.getLink();
+				}
+			} else {
+				link = "https://www.twitter.com";
+			}
+		}
+		return link;
+	} 
+
+	public String getHomepageLink() {
+		String link = "";
+		for (Webpage webpage : webpage) {
+			if (webpage.getType().getTypeName() == "HEMSIDA") {
+				if(!webpage.getLink().startsWith("http")) {
+					link = "http://" + webpage.getLink();
+				}
+				else {
+					link = webpage.getLink();
+				}
+			} else {
+				link = "https://www.minhemsida.nu";
+			}
+		}
+		return link;
+	}
+
+	public String getFacebookLink() {
+		String link = "";
+		for (Webpage webpage : webpage) {
+			if (webpage.getType().getTypeName() == "FACEBOOK") {
+				if(!webpage.getLink().startsWith("http")) {
+					link = "http://" + webpage.getLink();
+				}
+				else {
+					link = webpage.getLink();
+				}
+			} else {
+				link = "https://www.facebook.com";
+			}
+		}
+		return link;
 	}
 }
