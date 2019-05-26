@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'Kategorier'})"></div>
+<body>
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<div class="col main pt-5 mt-3">
+						<h1 class="display-4 d-none d-sm-block">Kategorier</h1>
+
+						<a th:href="@{/phone/}">Visa mina telefonnummer</a> &nbsp;&nbsp;
+						<a th:href="@{/addresses/}">Visa mina adresser</a> &nbsp;&nbsp;
+						<a th:href="@{/webpages/}">Visa mina websidor</a> &nbsp;&nbsp;
+						<a th:href="@{/emails/}">Visa mina e-postadresser</a> &nbsp;&nbsp;
+						<p></p>
+						<div class="col-10">
+							<table class="table">
+								<thead class="thead-dark">
+									<tr>
+										<!--  <th scope="col">Id</th> -->	
+										<th scope="col">Kompetens</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-th-each="type: ${types}">
+										<td data-th-text="${type.getTypeName()}">Kategori</td>
+										<td scope="row">
+									<!-- ONLY ADMIN SHOULD BE ALLOWED TO ADD, EDIT, DELETE TYPES	-->
+											<!--  <a th:href="@{/types/add}">Lägg till</a> | -->
+										<!-- 	<ath:href="@{/types/edit/{typeid}(typeid=${type.idType})}">Ändra</a> | -->
+										<!-- 	<a th:href="@{/types/remove/{typeid}(typeid=${type.idType})}">Ta bort</a> -->
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+					<!--  <a th:href="@{/types/add}">Lägg till ny kategori</a> -->	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</body>
+</html>
