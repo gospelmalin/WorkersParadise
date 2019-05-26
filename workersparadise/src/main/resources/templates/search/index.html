@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
+<div th:replace="fragments/_headtag :: headtag(title=${'Kompetenssök'})"></div>
 <body>
 	<div th:replace="fragments/_navbarSearch"></div>
 	<div class="container">
 		<div class="row">
 			<div class="offset-lg-2 col-lg-6 mt-5 mb-5">
-				<h3 class="text-center">Visar resultat för sökning<br><small class="text-muted" th:text="${searchStr}"></small></h3>
+				<h3 class="text-center">Visar profiler med sökt kompetens<br><small class="text-muted" th:text="${searchStr}"></small></h3>
 			</div>
 		</div>
 		<div class="row">			
@@ -20,7 +20,7 @@
 		        <p  class="card-text">
 		        	<small data-th-text="${personCompetence.person.getAllCompetences()}" class="text-muted">Last updated 3 mins ago</small>
 		        </p>
-		        <a th:href="@{/profile/{personid}(personid=${personCompetence.person.getIdPerson()})}" class="btn btn-primary">Go somewhere</a>
+		        <a th:href="@{/profile/{personid}(personid=${personCompetence.person.getIdPerson()})}" class="btn btn-primary">Visa profil</a>
 			  </div>
 			</div>
 		</div>
