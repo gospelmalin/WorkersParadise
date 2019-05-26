@@ -38,7 +38,6 @@ public class SearchController {
 			loop++;
 		}
 		List<PersonCompetence> noDuplicatespcList = pcList;
-		noDuplicatespcList.add(pcList.get(0));
 		for (int i = 0; i < pcList.size(); i++) {
 			int counter = 0;
 			for (int j = 0; j < noDuplicatespcList.size(); j++) {
