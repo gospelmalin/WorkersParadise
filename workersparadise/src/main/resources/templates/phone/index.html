@@ -14,49 +14,44 @@
 			</div>
 			<div class="col-10">
 				<div class="row row-offcanvas row-offcanvas-left">
-
-					<!-- Content -->
-					<div class="col main pt-5 mt-3">
-						<h1 data-th-text="${person.getFullName()}"
-							class="display-4 d-none d-sm-block">Förnamn Efternamn</h1>
-						<p class="lead d-none d-sm-block">
-							Hantera telefonnummer <a href="add">Lägg till nytt telefonnummer</a>
-						</p>
-						<div class="col-10">
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-					<!-- 
-						<th scope="col">Id</th>
-						<th scope="col">Personid</th>
-							 -->
-						<th scope="col">Landkod</th>
-						<th scope="col">Telefonnummer</th>
-						<th scope="col">Kategori</th>
-						<th scope="col">Prim�r</th>						
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr data-th-each="phone: ${phones}">
-					<!-- 
-						<td data-th-text="${phone.id.getIdPhone()}">Id</td>
-						<td data-th-text="${phone.person.getIdPerson()}">Personid</td> -->
-						<td data-th-text="${phone.countryPrefix}">Landkod</td>		
-						<td data-th-text="${phone.phoneNumber}">Telefonnummer</td>
-						<td data-th-text="${phone.type.typeName}">Kategori</td>
-						<td data-th-text="${phone.primaryContactNumber}">Prim�r</td>
-						<td scope="row">
-						<a th:href="@{/phone/edit/{phoneid}(phoneid=${phone.id.getIdPhone()})}">�ndra</a> |
-							<a th:href="@{/phone/remove/{phoneid}(phoneid=${phone.id.getIdPhone()})}">Ta bort</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+				<!-- Content -->
+					<div class="col main mt-3">
+						<div class="col-lg-6">
+							<div class="card">
+							  <h5 class="card-header">Hantera telefonnummer</h5>
+							  <div class="card-body">
+						  		<table class="table table-hover">
+									<thead>
+										<tr>
+											<th scope="col">Landkod</th>
+											<th scope="col">Telefonnummer</th>
+											<th scope="col">Kategori</th>
+											<th scope="col">Primär</th>						
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-th-each="phone: ${phones}">
+											<td data-th-text="${phone.countryPrefix}">Landkod</td>		
+											<td data-th-text="${phone.phoneNumber}">Telefonnummer</td>
+											<td data-th-text="${phone.type.typeName}">Kategori</td>
+											<td data-th-text="${phone.primaryContactNumber}">Primär</td>
+											<td scope="row">
+											<a th:href="@{/phone/edit/{phoneid}(phoneid=${phone.id.getIdPhone()})}">Ändra</a> |
+												<a th:href="@{/phone/remove/{phoneid}(phoneid=${phone.id.getIdPhone()})}">Ta bort</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="subheading mb-2">
+						      		<p class="card-text">
+						      			<a href="add">Lägg till nytt telefonnummer</a>
+									</p>
+								</div>
+							  </div>
+							</div>
 						</div>
 					</div>
-					<!-- Content end -->
-
 				</div>
 			</div>
 		</div>
