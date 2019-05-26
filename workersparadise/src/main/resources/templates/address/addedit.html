@@ -1,43 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>LÃ¤gg till/Ã¤ndra adress</title>
-</head>
+<div
+	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra adress'})"></div>
 <body>
-	<div class="col-sm-8" data-layout-fragment="content">
-			<h1>LÃ¤gg till/Ã¤ndra adress</h1>
-			<form data-th-action="@{/addresses/add}" data-th-object="${address}"
-						method="post">
-				 <!-- Adress-Id: -->
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<!-- Content -->
+					<div class="offset-3 col-6">
+						<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+							data-th-action="@{/addresses/save}" 
+							data-th-object="${address}" method="post">
+						
 				  <input type="hidden" data-th-field="*{id.idAddress}" readonly="readonly" placeholder="id"/>
-				<!--	personid:--> 
-				<input type="hidden" data-th-field="*{id.idPerson}" readonly="readonly"  />
-					<!-- TODO Hanteringen av C/O i Address fÃ¶r att det skulle bli bra pÃ¥ profilvisningen blir inte lika bra vid save - sparar C/O fast det inte finns -->
-					<p>C/O <input type="text" data-th-field="*{co}" placeholder="C/O"/></p> 			
-					<p>Gatuadress: <input type="text" data-th-field="*{streetAddress}" placeholder="Gatuadress"/> 
-					<p>Postnummer: <input type="text" data-th-field="*{zipCode}" placeholder="Postnummer"/> 	
-					<p>Postadress: <input type="text" data-th-field="*{city}" placeholder="Postadress"/> 
-					<!--  <p>PrimÃ¤radress: <input type="text" data-th-field="*{primaryAddress}" placeholder="PrimÃ¤radress"/> 	-->
-					<p>PrimÃ¤radress: <input type="checkbox" name= "primaryAddress" th:checked="*{primaryAddress}" placeholder="PrimÃ¤radress"/>	
-				<!-- <p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Ange typ"/> -->
-				<div class="form-group blu-margin">
-				<label for="competence">Kategori</label> 
-				    <select class="form-control" data-th-field="*{type.idType}">
-				      <option value="0">VÃ¤lj kategori</option>	
-				    	<option data-th-each="type : ${types}" 
-				    		data-th-value="${type.idType}" 
-				    		data-th-text="${type.typeName}">
-			    		</option>
-				    </select>
-				</div> 				
-					<input type="submit" value="Submit" /> <input type="reset"
-							value="Reset" />
+				<input type="hidden" data-th-field="*{id.idPerson}" readonly="readonly" placeholder="personid" />
+					
+						<h3 class="mb-3">LÄGG TILL/ÄNDRA ADRESS</h3>
+							<div class="form-group blu-margin">
+								<label for="co">C/O</label> 
+					<input type="text" data-th-field="*{co}" class="form-control" placeholder="C/O"/>	
+					</div>
+
+							<div class="form-group">
+								<label for="streetAddress">Gatuadress</label> 		
+					<input type="text" data-th-field="*{streetAddress}" class="form-control" placeholder="Gatuadress"/> 
+					</div>
+
+							<div class="form-group">
+								<label for="zipCode">Postnummer</label> 
+					<input type="text" data-th-field="*{zipCode}" class="form-control" placeholder="Postnummer"/> 	
+					</div>
+
+							<div class="form-group">
+								<label for="city">Postadress</label> 
+					<input type="text" data-th-field="*{city}" class="form-control" placeholder="Postadress"/> 
+					</div>
+				
+				<div class="form-group">
+								<label for="type">Kategori</label> <select
+									class="form-control" data-th-field="*{type.idType}">
+									<option value="0">Välj kategori</option>
+									<option data-th-each="type : ${types}"
+										data-th-value="${type.idType}" data-th-text="${type.typeName}">
+									</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="primaryAddress">Primäradress (visas på profilsidans "Om mig")</label><br>
+					<input type="checkbox" name= "primaryAddress" th:checked="*{primaryAddress}" placeholder="Primäradress"/>	
+					</div>
+							
+							<p>
+					<input type="submit" value="Spara" /> <input type="reset"
+							value="Nollställ" /> <input type="button" value="Avbryt"
+									onclick="location.href='/addresses/'" />
 					</p>
+					<a href="/addresses/">Visa mina adresser</a>
 			  	</form>
 		
-				<a href="/addresses/">Visa adresser</a>
+				
 	</div>
 </body>
 </html>
