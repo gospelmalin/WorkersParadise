@@ -7,11 +7,16 @@ import java.util.TimeZone;
 import javax.validation.Valid;
 
 import com.yhsipi.workersparadise.entities.Person;
+import com.yhsipi.workersparadise.entities.Users;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.yhsipi.workersparadise.service.PersonService;
+import com.yhsipi.workersparadise.service.UserService;
 
 
 
@@ -28,6 +34,8 @@ public class PersonController {
 	
 	@Autowired
 	private PersonService personService;
+	@Autowired
+	private UserService userService;
 	
 	 @InitBinder
 	    public void initBinder(WebDataBinder binder) {
@@ -37,13 +45,53 @@ public class PersonController {
 	        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	    }
 	
+	 
+	 @GetMapping("/")
+	 	public String Person(Model model) {
+		
+			// Get logged in user
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			Users user = userService.findByUsername(authentication.getName());
+			
+			Person person = personService.findOne(user.person.getIdPerson()).get();
+			
+			if (person == null) {
+				person = new Person();
+				person.setIdPerson(user.person.getIdPerson());
+			}
+	
+			model.addAttribute("person", person);
+			return "person/index";
+		}
+	 
+	 @PostMapping("/save")
+		public String savePerson(@Valid Person person, BindingResult result, Model model) {
+			
+			if(result.hasErrors()) {
+				// log
+				System.out.println("\n################ Save Errors in Person ################\n#" + person + "\n# ");
+				
+				// log all errors
+				for (ObjectError error : result.getAllErrors()) {
+					System.out.println("# " + error.toString());
+				} 
+				model.addAttribute("person", person);
+				return "person/index";
+			}
+			personService.savePerson(person);
+			return "redirect:/persons/";
+		}
+	 
+	 
+	 //OLD
 	// FindAll
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/all")
 	public String getPersons(Model model) {
 		model.addAttribute("persons", personService.findAll());
-		return "/person/index";
+		return "/person/allpersons";
 	}
 	
+	/*
 	// Add -> AddForm
     @GetMapping("/addperson")
     public String addForm(Model model) {
@@ -78,6 +126,7 @@ public class PersonController {
 		return "redirect:/persons/";
 	}
 	
+	*/
 	/*
 	// save or update person
 		// 1. @ModelAttribute bind form value

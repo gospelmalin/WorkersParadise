@@ -1,41 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>Certifieringar och utmärkelser</title>
-</head>
+<div th:replace="fragments/_headtag :: headtag(title=${'Kompetenssök'})"></div>
 <body>
-	<div th:replace="fragments/_navbar"></div>
-	<p>
-		Sökresultat för sökning på: <span th:text="${searchStr}"></span>
-	</p>
-                    <form method="get" data-th-action="@{/search/}">
-                    <input type="text"placeholder="Sök efter kompetens" name="searchStr"/>
-                    <button type="submit">Sök</button>
-                    </form>
-
-	<div class="col" data-layout-fragment="content">
-		<table class="table">
-			<thead class="thead-dark">
-
-				<tr>
-					<th scope="col">Namn</th>
-					<th scope="col">Kompetens</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr data-th-each="personCompetence: ${personCompetences}">
-					<td data-th-text="${personCompetence.person.getFullName()}">Namn</td>
-					<td data-th-text="${personCompetence.person.filterCompetence(searchStr)}">Kompetens</td>
-					<td scope="row"><a
-						th:href="@{/profile/{personid}(personid=${personCompetence.person.getIdPerson()})}">Profil</a>
-
-					</td>
-				</tr>
-			</tbody>
-		</table>
+	<div th:replace="fragments/_navbarSearch"></div>
+	<div class="container">
+		<div class="row">
+			<div class="offset-lg-2 col-lg-6 mt-5 mb-5">
+				<h3 class="text-center">Visar profiler med sökt kompetens<br><small class="text-muted" th:text="${searchStr}"></small></h3>
+			</div>
+		</div>
+		<div class="row">			
+			<div data-th-each="personCompetence: ${personCompetences}" class="card ml-3 mr-3 mb-5" style="width: 18rem;">
+	      	<img src="../img/profile.jpg" class="card-img" alt="...">
+			  <div class="card-body">
+			    <h3 data-th-text="${personCompetence.person.getFullName()}" class="card-title mb-5">Namn</h3>
+		        <h5  class="card-title">Matchade kompetenser</h5>
+		        <p data-th-text="${personCompetence.person.filterCompetence(searchStr)}" class="card-text">matchande kompetneser</p>
+		        <h5 class="card-title">Alla kompetenser</h5>
+		        <p  class="card-text">
+		        	<small data-th-text="${personCompetence.person.getAllCompetences()}" class="text-muted">Last updated 3 mins ago</small>
+		        </p>
+		        <a th:href="@{/profile/{personid}(personid=${personCompetence.person.getIdPerson()})}" class="btn btn-primary">Visa profil</a>
+			  </div>
+			</div>
+		</div>
 	</div>
 	<div th:replace="fragments/_footer"></div>
 </body>

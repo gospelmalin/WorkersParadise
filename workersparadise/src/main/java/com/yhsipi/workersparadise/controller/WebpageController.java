@@ -38,7 +38,7 @@ public class WebpageController {
 	}
 
 		
-	//FindAll by logged in person - Get the logged in user and get his/her educations
+	//FindAll by logged in person - Get the logged in user and get his/her webpages
 	@RequestMapping(value = "/")
 	public String getWebpagesByPerson(Model model) {
 		
@@ -96,7 +96,7 @@ public class WebpageController {
 		// if person is null get person from logged in user
 		if (webpage.getPerson()== null || webpage.getPerson().getIdPerson()==0) {
 			
-			System.out.println("\n################ Save new Experience ################\n# ");
+			System.out.println("\n################ Save new Webpage ################\n# ");
 			
 			// user
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

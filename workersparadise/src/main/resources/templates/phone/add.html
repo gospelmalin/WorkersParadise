@@ -1,24 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>LÃ¤gg till/Ã¤ndra telefonnummer</title>
-</head>
+<div
+	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra utbildning'})"></div>
 <body>
-	<div class="col-sm-8" data-layout-fragment="content">
-		<h1>LÃ¤gg till/Ã¤ndra telefonnummer</h1>
-		<form data-th-action="@{/phone/add}" data-th-object="${phone}"	method="post">
-				<p>Telefon-ID <input type="hidden" data-th-field="*{id.idPhone}" />
- 				<p>Person-ID: <input type="number" data-th-field="*{id.idPerson}" /></p>
-				<p>Landkod <input type="text" data-th-field="*{countryPrefix}" placeholder="Landkod"/></p> 			
-				<p>Kategori: <input type="text" data-th-field="*{type.idType}" placeholder="Kategori-kod"/></p>		
-				<p>Telefonnummer<input type="text" data-th-field="*{phoneNumber}" placeholder="Telefonnummer"/></p>
-				<p>PrimÃ¤r<input type="text" data-th-field="*{primaryContactNumber}" placeholder="PrimÃ¤r"/></p>
-		 		<input type="submit" value="Submit" />
-				<input type="reset"	value="Reset" />
-		</form> 
-		<a href="/phone/">Visa alla telefonnummer</a>
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
+			</div>
 		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+					<!-- Content -->
+					<div class="offset-3 col-6">
+						<form class="shadow-lg p-3 mb-5 bg-white rounded mt-5 col-md-auto"
+							data-th-action="@{/phone/save}" data-th-object="${phone}"
+							method="post">
+
+							<input type="hidden" data-th-field="*{id.idPhone}"
+								readonly="readonly" placeholder="id" /> <input type="hidden"
+								data-th-field="*{id.idPerson}" readonly="readonly"
+								placeholder="personid" />
+
+							<h3 class="mb-3">LÄGG TILL/ÄNDRA TELEFONNUMMER</h3>
+							<div class="form-group blu-margin">
+								<label for="countryPrefix">Landskod</label> <input type="text"
+									data-th-field="*{countryPrefix}" class="form-control"
+									placeholder="Landkod" />
+							</div>
+
+							<div class="form-group">
+								<label for="type">Välj kategori</label> <select
+									class="form-control" data-th-field="*{type.idType}">
+									<option value="0">Välj kategori</option>
+									<option data-th-each="type : ${types}"
+										data-th-value="${type.idType}" data-th-text="${type.typeName}">
+									</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="phoneNumber">Telefonnummer</label> <input
+									type="text" data-th-field="*{phoneNumber}" class="form-control"
+									placeholder="Telefonnummer" />
+							</div>
+
+							<div class="form-group">
+								<label for="primaryContactNumber">Primärt kontaktnummer
+									(visas i profilens "Om mig" )</label> <br>
+								<input type="checkbox" data-th-field="*{primaryContactNumber}"
+									placeholder="Primär" />
+							</div>
+
+							<input type="submit" value="Spara" /> <input type="reset"
+								value="Nollställ" /> <input type="button" value="Avbryt"
+								onclick="location.href='/phone/'" />
+							<p>
+							<p>
+								<a href="/phone/">Visa alla mina telefonnummer</a>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div th:replace="fragments/_footer"></div>
+		</div>
+	</div>
 </body>
 </html>

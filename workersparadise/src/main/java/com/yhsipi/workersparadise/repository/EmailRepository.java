@@ -19,5 +19,7 @@ public final static String FIND_BY_PERSON_QUERY = "SELECT e FROM Email e LEFT JO
 	 public List<Email> findByPerson(@Param("id") int id);
 
 	public Optional<Email> findById(EmailPK id);
+	
+	public void deleteById(EmailPK id);
 
 }

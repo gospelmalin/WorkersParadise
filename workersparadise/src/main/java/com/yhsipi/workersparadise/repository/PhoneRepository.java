@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.yhsipi.workersparadise.entities.Certification;
 import com.yhsipi.workersparadise.entities.Phone;
 import com.yhsipi.workersparadise.entities.PhonePK;
 
@@ -20,5 +19,5 @@ public final static String FIND_BY_PERSON_QUERY = "SELECT ph FROM Phone ph LEFT 
 	
 	public Optional<Phone> findById(PhonePK id);
 
-
+	public void deleteById(PhonePK id);
 }

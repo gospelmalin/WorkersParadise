@@ -1,12 +1,16 @@
 package com.yhsipi.workersparadise.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -16,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yhsipi.workersparadise.entities.Address;
 import com.yhsipi.workersparadise.entities.AddressPK;
+import com.yhsipi.workersparadise.entities.Email;
+import com.yhsipi.workersparadise.entities.EmailPK;
 import com.yhsipi.workersparadise.entities.Person;
+import com.yhsipi.workersparadise.entities.Users;
 import com.yhsipi.workersparadise.service.AddressService;
 import com.yhsipi.workersparadise.service.PersonService;
 import com.yhsipi.workersparadise.service.TypeService;
+import com.yhsipi.workersparadise.service.UserService;
 
 @Controller
 @RequestMapping(value = "/addresses")
@@ -29,15 +37,138 @@ public class AddressController {
 	private AddressService addressService;
 	@Autowired
 	private TypeService typeService;
+	@Autowired
+	private UserService userService;
+	
+	public AddressController() {
+		super();
+	}
 	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
+	
+	//FindAll by logged in person - Get the logged in user and get his/her addresses
+	@RequestMapping(value = "/")
+	public String getAddressesByPerson(Model model) {
+		
+		// Get logged in user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Users user = userService.findByUsername(authentication.getName());
+		
+		// models based on user
+		model.addAttribute("addresses", addressService.findByPerson(user.person.getIdPerson()));
+		model.addAttribute("person", user.person);
+		return "/address/index";
+	}
+			
+		// Create new email
+	// Add -> AddForm
+		@GetMapping("/add")
+		public String addAddress(Model model) {
+				
+		// Models
+		model.addAttribute("address",  new Address());
+		model.addAttribute("types", typeService.findAll());
+		
+		return "/address/addedit";
+		}
+		
+		//Edit - update addresses - show data for logged in person only
+		@GetMapping("/edit/{addressid}")
+		public String editAddress(@PathVariable int addressid, Model model) {
+			
+			// logged in user
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			Users user = userService.findByUsername(authentication.getName());
+			
+			// addressPK @PathId @loggedinuserPersonId
+			AddressPK pk = new AddressPK();
+			pk.setIdAddress(addressid);
+			pk.setIdPerson(user.person.getIdPerson());
 
+			// Address
+			Address address = addressService.findOne(pk).get();
+			
+			// models based on loggedin user
+			model.addAttribute("address", addressService.findOne(pk).get());
+			model.addAttribute("type", address.getType());
+			model.addAttribute("types", typeService.findAll());
+			
+			return "/address/addedit";
+
+		}
+		
+		 // Save address or create new
+	    // Save
+	    @PostMapping("/save")
+		public String saveAddress(@Valid Address address, BindingResult result, Model model) {
+
+			// if person is null get person from logged in user
+			if (address.getPerson()== null || address.getPerson().getIdPerson()==0) {
+				
+				System.out.println("\n################ Save new Address ################\n# ");
+				
+				// user
+				Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+				Users user = userService.findByUsername(authentication.getName());
+				
+				AddressPK apk = address.getId();
+				apk.setIdPerson(user.person.getIdPerson());
+				address.setId(apk);
+			}
+			
+			// Error handling
+			if (result.hasErrors()) {
+				
+				AddressPK pk = address.getId();
+				
+				// log
+				System.out.println("\n################ Error when saving Address ################\n#" + addressService.findOne(pk).get() + "\n# ");
+				
+				// log all errors
+				for (ObjectError error : result.getAllErrors()) {
+					System.out.println("# " + error.toString());
+				} 
+							
+				// models for retry
+				model.addAttribute("address", addressService.findOne(pk).get());
+				model.addAttribute("types", typeService.findAll());
+				return "/address/addedit";
+			}
+
+			// Save if all is OK
+			addressService.saveAddress(address);
+
+			return "redirect:/addresses/";
+		}
+	    
+	    // Delete a phone
+	    @Transactional // <- Important to get delete to work
+		@RequestMapping(value = "/remove/{id}")
+		public String deleteAddress(@PathVariable int id) {
+			
+			// email
+	    	AddressPK pk = new AddressPK();
+			pk.setIdAddress(id);
+			
+			// user, person id
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			Users user = userService.findByUsername(authentication.getName());
+			pk.setIdPerson(user.person.getIdPerson());
+			
+			// Delete
+			addressService.deleteAddress(pk);
+			
+			return "redirect:/addresses/";
+		}
+
+	/*
+	//OLD - might be used for admin, otherwise remove?
 	// FindAll
-			@RequestMapping(value = "/")
+			@RequestMapping(value = "/all")
 			public String getAddresses(Model model) {
 				model.addAttribute("addresses", addressService.findAll());
 				return "/address/index";
@@ -105,5 +236,5 @@ public class AddressController {
 				addressService.deleteAddress(addressService.findOne(apk).get());		
 				return "redirect:/addresses/";
 			}
-	
+	*/
 }

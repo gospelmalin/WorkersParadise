@@ -1,39 +1,76 @@
 <!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-
-<head>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'Person'})"></div>
 <body>
-<div th:replace="fragments/_navbar"></div>
-	<div class="col" data-layout-fragment="content">
-		<table class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">Förnamn</th>
-					<th scope="col">Mellannamn</th>
-					<th scope="col">Efternamn</th>
-					<th scope="col">Kön</th>
-					<th scope="col">Födelsedatum</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr data-th-each="person : ${persons}">
-					<td data-th-text="${person.firstName}">Förnamn</td>
-					<td data-th-text="${person.middleName}">Mellannamn</td>
-					<td data-th-text="${person.lastName}">Efternamn</td>
-					<td data-th-text="${person.gender}">Kön</td>
-					<td data-th-text="${person.birthdate}">Födelsedatum</td>
-					<td scope="row">
-							<a th:href="@{/persons/edit/{personid}/(personid=${person.idPerson})}">Ändra</a> |
-						   <a th:href="@{/persons/remove/{personid}/(personid=${person.idPerson})}">Ta bort</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
 	</div>
-	<div th:replace="fragments/_footer"></div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+
+				<div class="col-lg-6 mt-lg-3">
+				<div class="card">
+					<h5 class="card-header">Redigera personuppgifter </h5>
+					<div class="card-body">
+						<form 
+						data-th-action="@{/persons/save}"
+							data-th-object="${person}" method="post">
+	
+							<input type="hidden" data-th-field="*{idPerson}" />
+							
+								<div class="form-group">
+								<label for="firstName">Förnamn</label>
+								<input type="text" data-th-field="*{firstName}"
+									class="form-control" placeholder="Förnamn"/>
+							</div>
+							
+							<div class="form-group">
+								<label for="middleName">Mellannamn</label>
+								<input type="text" data-th-field="*{middleName}"
+									class="form-control" placeholder="Mellannamn"/>
+							</div>
+							
+							<div class="form-group">
+								<label for="lastName">Efternamn</label>
+								<input type="text" data-th-field="*{lastName}"
+									class="form-control" placeholder="Efternamn"/>
+							</div>
+						
+							<div class="form-group">
+								<label for="gender">Kön</label>
+								<input type="text" data-th-field="*{gender}"
+									class="form-control" placeholder="Kön"/>
+							</div>
+							
+							<div class="form-group">
+								<label for="birthdate">Födelsedatum</label>
+								<input type="date" data-th-field="*{birthdate}"
+									class="form-control col-lg-5" placeholder="Födelsedatum"/>
+
+							</div>
+	
+							<div class="form-group text-right">
+								<input type="submit" value="Spara" /> 
+								<input type="reset"	value="Återställ" /> 
+								<input type="button" value="Avbryt" th:onclick="'location.href = \'' + @{/account/dashboard} + '\''" />
+							</div>
+						</form>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
 </body>
 </html>

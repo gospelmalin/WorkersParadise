@@ -1,56 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>Addresser</title>
-</head>
+<div th:replace="fragments/_headtag :: headtag(title=${'Adress'})"></div>
 <body>
-	<div th:replace="fragments/_navbar"></div>
-			<div class="col" data-layout-fragment="content">
-				<table class="table">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Id</th>
-							<!--<th scope="col">Person</th> -->
-							<th scope="col">Personid</th>
-							<th scope="col">Förnamn</th>
-							<th scope="col">Efternamn</th>
-							<th scope="col">C/O</th>
-							<th scope="col">Gatuaddress</th>
-							<th scope="col">Postnummer</th>		
-							<th scope="col">Postadress</th>
-							<th scope="col">Primäradress</th>
-							<th scope="col">Kategori</th>		
-							<!--<th scope="col">Län</th> -->			
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-th-each="address: ${addresses}">
-							<td data-th-text="${address.getId().getIdAddress()}">Id</td>
-							<!--<td data-th-text="${address.person.getFullName()}">Person</td> -->
-							<td data-th-text="${address.person.getIdPerson()}">Personid</td>
-							<td data-th-text="${address.person.getFirstName()}">Förnamn</td>
-							<td data-th-text="${address.person.getLastName()}">Efternamn</td>
-							<td data-th-text="${address.getCo()}">C/O</td>
-							<td data-th-text="${address.getStreetAddress()}">>Gatuadress</td>
-							<td data-th-text="${address.getZipCode()}">Postnummer</td>
-							<td data-th-text="${address.getCity()}">Postadress</td>
-							<td data-th-text="${address.isPrimaryAddress()}">Primäradress</td>
-							<td data-th-text="${address.type.getTypeName()}">Kategori</td>
-							<!--<td data-th-text="${address.getCounty()}">Län</td> -->
-							<td scope="row">
-								<!--  <a th:href="@{/addresses/person/{addressid}(personid=${address.getId().getIdPerson()}/add}">Lägg till</a> |-->
-								<a th:href="@{/addresses/person/{personid}/add(personid=${address.getId().getIdPerson()})}">Lägg till</a> |
-								<a th:href="@{/addresses/edit/{personid}/{addressid}(personid=${address.getId().getIdPerson()},addressid=${address.getId().getIdAddress()})}">Ändra</a> |
-							   <a th:href="@{/addresses/remove/{personid}/{addressid}(personid=${address.getId().getIdPerson()},addressid=${address.getId().getIdAddress()})}">Ta bort</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
 			</div>
-		  	<a th:href="@{/addresses/add}">Lägg till ny adress</a>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+				<!-- Content -->
+					<div class="col main mt-3">
+						<div class="col-lg-10">
+							<div class="card">
+							  <h5 class="card-header">Hantera adresser</h5>
+							  <div class="card-body">
+						  		<table class="table table-hover">
+									<thead>
+										<tr>
+											<th scope="col">C/O</th>
+											<th scope="col">Gatuaddress</th>
+											<th scope="col">Postnummer</th>		
+											<th scope="col">Postadress</th>
+											<th scope="col">Primäradress</th>
+											<th scope="col">Kategori</th>			
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr data-th-each="address: ${addresses}">
+											<td data-th-text="${address.getCo()}">C/O</td>
+											<td data-th-text="${address.getStreetAddress()}">>Gatuadress</td>
+											<td data-th-text="${address.getZipCode()}">Postnummer</td>
+											<td data-th-text="${address.getCity()}">Postadress</td>
+											<td data-th-text="${address.isPrimaryAddress()}">Prim�radress</td>
+											<td data-th-text="${address.type.getTypeName()}">Kategori</td>
+											<td scope="row">
+												<a th:href="@{/addresses/edit/{addressid}(addressid=${address.getId().getIdAddress()})}">Ändra</a> |
+											   <a th:href="@{/addresses/remove/{addressid}(addressid=${address.getId().getIdAddress()})}">Ta bort</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="subheading mb-2">
+						      		<p class="card-text">
+						      			<a href="add">Lägg till ny adress</a>
+									</p>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div th:replace="fragments/_footer"></div>
+		</div>
+	</div>
 </body>
 </html>

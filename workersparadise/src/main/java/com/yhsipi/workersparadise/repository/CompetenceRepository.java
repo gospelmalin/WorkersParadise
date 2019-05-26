@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import com.yhsipi.workersparadise.entities.Competence;
 //import com.yhsipi.workersparadise.entities.CompetencePK;
 
@@ -16,6 +18,6 @@ public interface CompetenceRepository extends JpaRepository<Competence, Integer>
 	public List<Competence> findAllByOrderByCompetenceNameAsc();
 
 	@Query(nativeQuery = true, value = "SELECT * FROM competence c WHERE c.competence_name LIKE %:searchStr%")
-	public List<Competence> findByCompetenceName(String searchStr);
+	public List<Competence> findByCompetenceName(@Param("searchStr") String searchStr);
 
 }

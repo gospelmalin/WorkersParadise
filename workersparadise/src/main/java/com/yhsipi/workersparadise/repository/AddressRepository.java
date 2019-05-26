@@ -22,4 +22,6 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
 	 public List<Address> findByPerson(@Param("id") int id);
 
 	public Optional<Address> findById(AddressPK id);
+	
+	public void deleteById(AddressPK id);
 }

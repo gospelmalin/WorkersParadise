@@ -2,56 +2,62 @@
 <html  xmlns:th="http://www.thymeleaf.org">
 <div th:replace="fragments/_headtag :: headtag(title=${'Erfarenheter'})"></div>
 <div class="container-fluid" id="main">
-<div class="row">
-<div class="col-12">
-<div th:replace="fragments/_navbar"></div>
-</div>
-</div>
-<div class="row">
-<div class="col-2">
-<div th:replace="fragments/_sidebar"></div> 
-</div> 
-<div class="col-10">
-    <div class="row row-offcanvas row-offcanvas-left">
-<!-- Content -->
-	    <div class="col main pt-5 mt-3">
-            <h1 data-th-text="${person.getFullName()}" class="display-4 d-none d-sm-block">
-                Förnamn Efternamn
-            </h1>
-            <p class="lead d-none d-sm-block">Hantera erfarenheter <a href="add">Lägg till ny erfarenhet</a></p>
-            <div class="col-10">
-	         	<table class="table">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Företag</th>
-							<th scope="col">Titel</th>
-							<th scope="col">Beskrivning</th>
-							<th scope="col">Startdatum</th>
-							<th scope="col">Slutdatum</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-th-each="experience : ${experiences}">
-							<td data-th-text="${experience.company.companyName}">Företag</td>
-							<td data-th-text="${experience.title}">Titel</td>
-							<td data-th-text="${experience.description}">Beskrivning</td>
-							<td data-th-text="${experience.startDate}">Start</td>
-							<td data-th-text="${experience.endDate}">Slut</td>
-							<td scope="row">
-								<a th:href="@{/experience/edit/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ändra</a> |
-								<a th:href="@{/experience/remove/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ta bort</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-            </div>
-		</div><!-- Content end -->
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
 	</div>
-</div>
-</div>
-<div class="row">
-<div th:replace="fragments/_footer"></div>
-</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div> 
+		</div> 
+		<div class="col-10">
+		    <div class="row row-offcanvas row-offcanvas-left">
+			<!-- Content -->
+				<div class="col main mt-3">
+					<div class="col-lg-10">
+						<div class="card">
+						  <h5 class="card-header">Hantera erfarenheter</h5>
+						  <div class="card-body">
+					  		<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Företag</th>
+										<th scope="col">Titel</th>
+										<th scope="col">Beskrivning</th>
+										<th scope="col">Startdatum</th>
+										<th scope="col">Slutdatum</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-th-each="experience : ${experiences}">
+										<td data-th-text="${experience.company.companyName}">Företag</td>
+										<td data-th-text="${experience.title}">Titel</td>
+										<td data-th-text="${experience.description}">Beskrivning</td>
+										<td data-th-text="${experience.startDate}">Start</td>
+										<td data-th-text="${experience.endDate}">Slut</td>
+										<td scope="row">
+											<a th:href="@{/experience/edit/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ändra</a> |
+											<a th:href="@{/experience/remove/{experienceid}/(experienceid=${experience.getId().getIdProfExperience()})}">Ta bort</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="subheading mb-2">
+					      		<p class="card-text">
+					      			<a href="add">Lägg till ny erfarenhet</a>
+								</p>
+							</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
 </div>
 </html>
