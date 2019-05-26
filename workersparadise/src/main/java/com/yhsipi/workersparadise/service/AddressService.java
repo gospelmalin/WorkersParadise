@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.yhsipi.workersparadise.entities.Address;
 import com.yhsipi.workersparadise.entities.AddressPK;
-import com.yhsipi.workersparadise.entities.Education;
-import com.yhsipi.workersparadise.entities.EducationPK;
 import com.yhsipi.workersparadise.repository.AddressRepository;
 
 @Service
@@ -37,6 +35,10 @@ public class AddressService {
 
 	public void deleteAddress(Address address) {
 		addressRepository.delete(address);
+	}
+	
+	public void deleteAddress(AddressPK id) {
+		addressRepository.deleteById(id);
 	}
 
 }

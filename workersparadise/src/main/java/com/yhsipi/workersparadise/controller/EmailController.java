@@ -115,7 +115,7 @@ public class EmailController {
 				EmailPK pk = email.getId();
 				
 				// log
-				System.out.println("\n################ Error when saving Phone ################\n#" + emailService.findOne(pk).get() + "\n# ");
+				System.out.println("\n################ Error when saving Email ################\n#" + emailService.findOne(pk).get() + "\n# ");
 				
 				// log all errors
 				for (ObjectError error : result.getAllErrors()) {
