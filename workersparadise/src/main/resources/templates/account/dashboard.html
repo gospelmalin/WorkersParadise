@@ -53,9 +53,9 @@
 							  <h5 th:text="${person.getFullName()}" class="card-header">Info</h5>
 							  <div class="card-body">
 							    <h5 class="card-title">Om mig</h5>
-							    <p class="card-text" th:text=${person.about.aboutSummary} ></p>
+							    <p class="card-text" th:text="*{person.about != null }? *{person.about.aboutSummary} : 'info saknas'"></p>
 							     <h5 class="card-title">Mina intressen</h5>
-							    <p class="card-text" th:text=${person.about.interests}></p>
+							    <p class="card-text" th:text="*{person.about != null }? *{person.aboubout.interests} : 'info saknas'"></p>
 							    <p class="text-muted text-right"><a href="/about/">redigera</a></p>
 							  </div>
 							</div>
