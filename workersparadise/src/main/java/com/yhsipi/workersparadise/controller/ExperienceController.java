@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+
+import com.yhsipi.workersparadise.entities.Company;
 import com.yhsipi.workersparadise.entities.ProfessionalExperience;
 import com.yhsipi.workersparadise.entities.ProfessionalExperiencePK;
 import com.yhsipi.workersparadise.entities.Users;
@@ -82,6 +84,7 @@ public class ExperienceController {
 			
 		// Models
 		model.addAttribute("experience",  new ProfessionalExperience());
+		model.addAttribute("newCompany", new Company());
 		model.addAttribute("companies", companyService.findAll());
 		
 		return "/experience/edit";
@@ -127,6 +130,7 @@ public class ExperienceController {
 		// models based on loggedin user
 		model.addAttribute("experience", experienceService.findOne(pk).get());
 		model.addAttribute("company", experience.getCompany());
+		model.addAttribute("newCompany", new Company());
 		model.addAttribute("companies", companyService.findAll());
 		
 		return "/experience/edit";

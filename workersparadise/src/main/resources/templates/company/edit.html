@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/_headtag :: headtag(title=${'ADD A TITLE HERE'})"></div>
+<body>
+<div class="container-fluid" id="main">
+	<div class="row">
+		<div class="col-12">
+			<div th:replace="fragments/_navbar"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
+			<div th:replace="fragments/_sidebar"></div>
+		</div>
+		<div class="col-10">
+			<div class="row row-offcanvas row-offcanvas-left">
+				<div class="col main mt-3">
+			<div class="row">
+				
+					<div class="col-lg-4">
+					<div class="card">
+						<h5 class="card-header">Skapa nytt företag</h5>
+					  	<div class="card-body">	
+							<form data-th-action="@{/companies/add}" data-th-object="${company}"	method="post">
+								<input type="hidden" data-th-field="*{idCompany}" />
+								<div class="form-group">
+									<label for="companyName">Företag</label> <input
+										data-th-field="*{companyName}" type="text" class="form-control"
+										placeholder="Ange företagsnamn">
+								</div>
+								<div class="form-group">
+									<label for="companyDescription">Beskrivning</label>
+									<textarea rows="10" data-th-field="*{companyDescription}"
+										class="form-control" placeholder="Ange beskrivning av företaget"></textarea>
+								</div>
+								<div class="form-group text-right">
+									<input type="submit" value="Spara" /> 
+									<input type="button" value="Avbryt" th:onclick="'location.href = \'' + @{/experience/} + '\''" />
+								</div>
+							</form>
+							
+							<div class="card-text">
+							<h5>Befintliga företag <br>
+							<small class="text-muted">klicka för att redigera företag</small></h5>
+								<span data-th-each="company : ${companies}">
+									<a 	th:text="${company.companyName} + ' | '"
+										th:href="@{/companies/edit/{companyid}/(companyid=${company.idCompany})}">Ändra</a>
+								</span>	
+							</div>
+						</div>
+				  	</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div th:replace="fragments/_footer"></div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.yhsipi.workersparadise.controller;
 
+import java.net.URI;
+
 import javax.validation.Valid;
 
 import com.yhsipi.workersparadise.entities.Company;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.yhsipi.workersparadise.service.CompanyService;
 
 
@@ -31,30 +35,34 @@ public class CompanyController {
 	}
 	
 	// Add -> AddForm
-    @GetMapping("/addcompany")
+    @GetMapping("/add")
     public String addForm(Model model) {
         model.addAttribute("company", new Company());
-        return "/company/addcompany";
+        model.addAttribute("companies", companyService.findAll());
+        return "/company/edit";
     }
 
     // Edit -> AddForm
     @GetMapping("/edit/{id}")
     public String editCompany(@PathVariable int id, Model model) {
         model.addAttribute("company", companyService.findOne(id));
-        return "/company/addcompany";
+        model.addAttribute("companies", companyService.findAll());
+        return "/company/edit";
     }    
     
     // Save
-    @PostMapping("/addcompany")
+    @PostMapping("/add")
     public String saveCompany(@Valid Company company, BindingResult result, Model model){
-    	
+
     	if (result.hasErrors()) {
-    		return "/company/addcompany";
+    		model.addAttribute("company", company);
+    		model.addAttribute("companies", companyService.findAll());
+    		return "/company/edit";
     	}
     	
     	companyService.saveCompany(company);
     	
-        return "redirect:/companies/";
+        return "redirect:/experience/";
     }
     
     // Delete
