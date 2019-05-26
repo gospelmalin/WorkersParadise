@@ -35,5 +35,9 @@ public class EmailService {
 	public void deleteEmail(Email email) {
 		emailRepository.delete(email);
 	}
+	
+	public void deleteEmail(EmailPK id) {
+		emailRepository.deleteById(id);
+	}
 
 }
