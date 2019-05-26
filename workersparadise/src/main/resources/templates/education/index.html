@@ -14,49 +14,52 @@
 		</div>
 		<div class="col-10">
 			<div class="row row-offcanvas row-offcanvas-left">
-			
 				<!-- Content -->
-			 <div class="col main pt-5 mt-3">
-			   <h1 data-th-text="${person.getFullName()}" class="display-4 d-none d-sm-block">
-                FÃ¶rnamn Efternamn
-            </h1>
-            <p class="lead d-none d-sm-block">Hantera utbildningar <a href="add">LÃ¤gg till ny utbildning</a></p>
-			 <div class="col-10">
-			<table class="table">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">Utbildningsnamn</th>
-						<th scope="col">Beskrivning</th>
-						<th scope="col">Lärosäte</th>
-						<th scope="col">Startdatum</th>
-						<th scope="col">Slutdatum</th>
-						<th scope="col">Nivå</th> 
-						<th scope="col">Betyg</th>
-						 <th scope="col">Program?</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr data-th-each="education : ${educations}">
-			
-						<td data-th-text="${education.educationName}">Utbildningsnamn</td>
-					   <td data-th-text="${education.educationDescription}">Beskrivning</td>
-					   <td data-th-text="${education.school}">Lärosäte</td>
-						<td data-th-text="${education.educationStartDate}">Startdatum</td>
-					  	<td data-th-text="${education.educationEndDate}">Slutdatum</td>
-						<td data-th-text="${education.educationLevel}">Nivå</td>
-					 	<td data-th-text="${education.educationGrade}">Betyg</td>
-						<td data-th-text="${education.isProgram}">Program</td>
-						<td scope="row">
-								<a th:href="@{/educations/edit/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ändra</a> |
-								<a th:href="@{/educations/remove/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}">Ta bort</a>							
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>	<!-- Content end -->
-
+				<div class="col main mt-3">
+					<div class="col-lg-11">
+						<div class="card">
+						  <h5 class="card-header">Hantera utbildningar</h5>
+						  <div class="card-body">
+					  		<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Utbildningsnamn</th>
+										<th scope="col">Beskrivning</th>
+										<th scope="col">LÃ¤rosÃ¤te</th>
+										<th scope="col">Startdatum</th>
+										<th scope="col">Slutdatum</th>
+										<th scope="col">NivÃ¥</th> 
+										<th scope="col">Betyg</th>
+										<th scope="col">Program?</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-th-each="education : ${educations}">
+										<td data-th-text="${education.educationName}">Utbildningsnamn</td>
+									 	<td data-th-text="${education.educationDescription}">Beskrivning</td>
+									 	<td data-th-text="${education.school}">LÃ¤rosÃ¤te</td>
+										<td data-th-text="${education.educationStartDate}">Startdatum</td>
+										<td data-th-text="${education.educationEndDate}">Slutdatum</td>
+										<td data-th-text="${education.educationLevel}">NivÃ¥</td>
+										<td data-th-text="${education.educationGrade}">Betyg</td>
+										<td data-th-text="${education.isProgram}">Program</td>
+										<td scope="row">
+											<a th:href="@{/educations/edit/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}"><small>Ã„ndra</small></a> |     
+											<a th:href="@{/educations/remove/{personid}/{educationid}(personid=${education.getId().getIdPerson()},educationid=${education.getId().getIdEducation()})}"><small>Ta bort</small></a>							
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="subheading mb-2">
+					      		<p class="card-text">
+					      			<a href="add">LÃ¤gg till ny utbildning</a>
+								</p>
+							</div>
+						  </div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
