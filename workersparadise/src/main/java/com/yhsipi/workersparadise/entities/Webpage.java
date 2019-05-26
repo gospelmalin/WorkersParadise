@@ -69,6 +69,33 @@ public class Webpage implements Serializable {
 			else return null;
 			
 		}
+	//TODO TEST
+		public String getTwitterLink() {
+			if (this.getType().getIdType()==9) {
+			return this.link;
+			}
+			//else return "www.instagram.com";
+			else return null;
+			
+		}
+	//TODO TEST
+		public String getHomepageLink() {
+			if (this.getType().getIdType()==4) {
+			return this.link;
+			}
+			//else return "www.instagram.com";
+			else return null;
+			
+		}
+	//TODO TEST
+		public String getFacebookLink() {
+			if (this.getType().getIdType()==8) {
+			return this.link;
+			}
+			//else return "www.instagram.com";
+			else return null;
+			
+		}
 
 	public void setLink(String link) {
 		this.link = link;

@@ -35,5 +35,9 @@ public class WebpageService {
 	public void deleteWebpage(Webpage webpage) {
 		webpageRepository.delete(webpage);
 	}
+	
+	public void deleteWebpage(WebpagePK id) {
+		webpageRepository.deleteById(id);
+	}
 
 }

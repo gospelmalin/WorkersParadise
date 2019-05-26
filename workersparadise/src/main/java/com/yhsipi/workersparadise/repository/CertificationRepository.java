@@ -6,11 +6,8 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-
 import com.yhsipi.workersparadise.entities.Certification;
 import com.yhsipi.workersparadise.entities.CertificationPK;
-import com.yhsipi.workersparadise.entities.EducationPK;
 
 public interface CertificationRepository extends JpaRepository<Certification, Integer>{
 

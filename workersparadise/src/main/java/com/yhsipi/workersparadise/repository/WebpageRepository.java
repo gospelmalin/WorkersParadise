@@ -19,5 +19,7 @@ public final static String FIND_BY_PERSON_QUERY = "SELECT w FROM Webpage w LEFT 
 	 public List<Webpage> findByPerson(@Param("id") int id);
 
 	public Optional<Webpage> findById(WebpagePK id);
+	
+	public void deleteById(WebpagePK id);
 
 }
