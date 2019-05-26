@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yhsipi.workersparadise.entities.Phone;
 import com.yhsipi.workersparadise.entities.PhonePK;
 import com.yhsipi.workersparadise.entities.Users;
-import com.yhsipi.workersparadise.entities.Webpage;
-import com.yhsipi.workersparadise.entities.WebpagePK;
 import com.yhsipi.workersparadise.service.PhoneService;
 import com.yhsipi.workersparadise.service.TypeService;
 import com.yhsipi.workersparadise.service.UserService;
