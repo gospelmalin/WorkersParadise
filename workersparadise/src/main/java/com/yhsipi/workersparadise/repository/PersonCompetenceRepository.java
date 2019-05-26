@@ -21,6 +21,6 @@ public final static String FIND_BY_PERSON_QUERY = "SELECT pc FROM PersonCompeten
 	public Optional<PersonCompetence> findById(int id);
 
 	@Query(nativeQuery = true, value = "SELECT * FROM person_competence pc where pc.id_competence = :competenceId")
-	public List<PersonCompetence> findByCompetence(int competenceId);
+	public List<PersonCompetence> findByCompetence(@Param("competenceId")int competenceId);
 
 }
