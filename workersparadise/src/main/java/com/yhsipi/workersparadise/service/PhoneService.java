@@ -31,6 +31,10 @@ public class PhoneService {
 	public void deletePhone(Phone phone) {
 		phoneRepository.delete(phone);
 	}
+	
+	public void deletePhone(PhonePK id) {
+		phoneRepository.deleteById(id);
+	}
 
 	public List<Phone> findByPerson(int personId) {
 		return phoneRepository.findByPerson(personId);
