@@ -1,43 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'PAGE TITLE'})"></div>
-<head>
-<meta charset="UTF-8">
-<title>Telefonnummer</title>
-</head>
+<div th:replace="fragments/_headtag :: headtag(title=${'Telefonnummer'})"></div>
 <body>
-<div th:replace="fragments/_navbar"></div>
-		<div class="col" data-layout-fragment="content">
+	<div class="container-fluid" id="main">
+		<div class="row">
+			<div class="col-12">
+				<div th:replace="fragments/_navbar"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<div th:replace="fragments/_sidebar"></div>
+			</div>
+			<div class="col-10">
+				<div class="row row-offcanvas row-offcanvas-left">
+
+					<!-- Content -->
+					<div class="col main pt-5 mt-3">
+						<h1 data-th-text="${person.getFullName()}"
+							class="display-4 d-none d-sm-block">Förnamn Efternamn</h1>
+						<p class="lead d-none d-sm-block">
+							Hantera telefonnummer <a href="add">Lägg till nytt telefonnummer</a>
+						</p>
+						<div class="col-10">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
+					<!-- 
 						<th scope="col">Id</th>
 						<th scope="col">Personid</th>
+							 -->
 						<th scope="col">Landkod</th>
-						<th scope="col">Typ</th>
 						<th scope="col">Telefonnummer</th>
-						<th scope="col">Primär</th>						
+						<th scope="col">Kategori</th>
+						<th scope="col">Prim�r</th>						
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr data-th-each="phone: ${phones}">
+					<!-- 
 						<td data-th-text="${phone.id.getIdPhone()}">Id</td>
-						<td data-th-text="${phone.person.getIdPerson()}">Personid</td>
-						<td data-th-text="${phone.countryPrefix}">Landkod</td>
-						<td data-th-text="${phone.type.typeName}">Typ</td>
+						<td data-th-text="${phone.person.getIdPerson()}">Personid</td> -->
+						<td data-th-text="${phone.countryPrefix}">Landkod</td>		
 						<td data-th-text="${phone.phoneNumber}">Telefonnummer</td>
-						<td data-th-text="${phone.primaryContactNumber}">Primär</td>
+						<td data-th-text="${phone.type.typeName}">Kategori</td>
+						<td data-th-text="${phone.primaryContactNumber}">Prim�r</td>
 						<td scope="row">
-							<a th:href="@{/phone/edit/{personid}/{phoneid}(personid=${phone.person.getIdPerson()},phoneid=${phone.id.getIdPhone()})}">Ändra</a>
-							<a th:href="@{/phone/remove/{personid}/{phoneid}(personid=${phone.person.getIdPerson()},phoneid=${phone.id.getIdPhone()})}">Ta bort</a>
+						<a th:href="@{/phone/edit/{phoneid}(phoneid=${phone.id.getIdPhone()})}">�ndra</a> |
+							<a th:href="@{/phone/remove/{phoneid}(phoneid=${phone.id.getIdPhone()})}">Ta bort</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+						</div>
+					</div>
+					<!-- Content end -->
+
+				</div>
+			</div>
 		</div>
-	  	<a th:href="@{/phone/add}">Lägg till ett telefonnummer</a>
-		<div th:replace="fragments/_footer"></div>
+		<div class="row">
+			<div th:replace="fragments/_footer"></div>
+		</div>
+	</div>
 </body>
 </html>
 
