@@ -4,16 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 //import org.hibernate.annotations.Cascade;
 
@@ -74,7 +65,21 @@ public class Person implements Serializable {
 	//bi-directional one-to-one association to About 
 	@OneToOne(mappedBy="person") 
 	private About about;
-	
+
+
+	@Lob
+	@Column(name="image")
+	private byte[] image;
+
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	public About getAbout() {
 		return about;
 	}

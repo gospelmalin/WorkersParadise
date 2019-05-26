@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div
+        th:replace="fragments/_headtag :: headtag(title=${'WP -> Översikt'})"></div>
+<body>
+<div class="container-fluid" id="main">
+    <div class="row">
+        <div class="col-12">
+            <div th:replace="fragments/_navbar"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <div th:replace="fragments/_sidebar"></div>
+        </div>
+        <div class="col-10">
+            <div class="row row-offcanvas row-offcanvas-left">
+                <div class="col main pt-5 mt-3">
+
+
+                    <div class="float-right">
+                        <img src="https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg" class="rounded-circle img-fluid" alt="Cinque Terre">
+                        <br>
+                        <div class="file btn btn-primary" style="position: relative; overflow: hidden; margin-left: 75px;">
+                            Ny bild
+                            <input type="file" name="file" style="position: absolute; font-size: 50px; opacity: 0; right: 0; top: 0;"/>
+                        </div>
+                    </div><br>
+
+
+
+                    <div class="col-lg-8 col-md-12 row placeholders mb-5">
+                        <div class="col-6 col-sm-3 placeholder text-center">
+                            <img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getProfExperience())})}"
+                                 class="mx-auto img-fluid rounded-circle"
+                                 alt="Generic placeholder thumbnail">
+                            <h4>Erfarenheter</h4>
+                            <span class="text-muted"><a href="/experience/add">Lägg till ny erfarenhet</a></span>
+                        </div>
+                        <div class="col-6 col-sm-3 placeholder text-center">
+                            <img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getEducation())})}"
+                                 class="mx-auto img-fluid rounded-circle"
+                                 alt="Generic placeholder thumbnail">
+                            <h4>Utbildningar</h4>
+                            <span class="text-muted"><a href="/educations/add">Lägg till ny utbildning</a></span>
+                        </div>
+                        <div class="col-6 col-sm-3 placeholder text-center">
+                            <img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getPersonCompetence())})}"
+                                 class="mx-auto img-fluid rounded-circle"
+                                 alt="Generic placeholder thumbnail">
+                            <h4>Kompetenser</h4>
+                            <span class="text-muted"><a href="/personcompetences/add">Lägg till ny kompetens</a></span>
+                        </div>
+                        <div class="col-6 col-sm-3 placeholder text-center">
+                            <img th:src="@{//placehold.it/100/dddddd/fff?text={count}(count=${#lists.size(person.getCertification())})}"
+                                 class="mx-auto img-fluid rounded-circle"
+                                 alt="Generic placeholder thumbnail">
+                            <h4>Certifikat</h4>
+                            <span class="text-muted"><a href="/certifications/add">Lägg till nytt certifikat</a></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-8 mb-2">
+                            <div class="card">
+                                <h5 th:text="${person.getFullName()}" class="card-header">Info</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">Om mig</h5>
+                                    <p class="card-text" th:text=${person.about.aboutSummary} ></p>
+                                    <h5 class="card-title">Mina intressen</h5>
+                                    <p class="card-text" th:text=${person.about.interests}></p>
+                                    <p class="text-muted text-right"><a href="/about/">redigera</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4 mb-2">
+                            <div class="card">
+                                <h5 class="card-header">Adress</h5>
+                                <div class="card-body">
+                                    <div class="subheading mb-3">
+                                        <p class="card-text">
+                                            <span th:text="${person.getFullName()}"></span><br />
+                                            <span th:text="${person.getPrimaryStreetAddress()}">gata</span><br />
+                                            <span th:text="*{person.getPrimaryZipCode() &gt; 0 }? *{person.getPrimaryZipCode()  } : '' ">postnr</span>
+                                            <span th:text="${person.getPrimaryCity()}">ort</span><br />
+                                        </p>
+                                    </div>
+                                    <p class="text-muted text-right"><a href="#">redigera</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-2">
+                            <div class="card">
+                                <h5 class="card-header">Kontakt</h5>
+                                <div class="card-body">
+                                    <div class="subheading mb-5 pb-4">
+                                        <p class="card-text">
+                                            Telefon: <span th:text="${person.getPrimaryPhoneNumber()}">telefon</span><br />
+                                            Mail:    <span th:text="${person.getPrimaryEmail()}">epost</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div th:replace="fragments/_footer"></div>
+    </div>
+</div>
+</body>
+</html>
