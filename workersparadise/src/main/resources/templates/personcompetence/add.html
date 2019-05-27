@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'Lägg till/Ändra personlig kompetens'})"></div>
+<div th:replace="fragments/_headtag :: headtag(title=${'Lï¿½gg till/ï¿½ndra personlig kompetens'})"></div>
 <body>
 <div class="container-fluid" id="main">
 	<div class="row">
@@ -27,21 +27,21 @@
 				<h3>HANTERA PERSONLIG KOMPETENS</h3>
 				<div class="form-group blu-margin">
 
-				<label for="competence">Välj personlig kompetens eller <a href="/competences/add">klicka här </a> för att lägga till ny kompetens</label> 
+				<label for="competence">VÃ¤lj personlig kompetens eller <a href="/competences/add">klicka hÃ¤r </a> fÃ¶r att lÃ¤gga till ny kompetens</label>
 				    <select class="form-control" data-th-field="*{competence.idCompetence}">
-				      <option value="0">Välj kompetens</option>	
+				      <option value="0">VÃ¤lj kompetens</option>
 				    	<option data-th-each="competence : ${competences}" 
 				    		data-th-value="${competence.idCompetence}" 
 				    		data-th-text="${competence.competenceName}">
 			    		</option>
 				    </select>
 				</div> 
-					<!-- <p>Förnamn: <input type="text" data-th-field="*{person.firstName}" placeholder="Förnamn"/>  -->
+					<!-- <p>Fï¿½rnamn: <input type="text" data-th-field="*{person.firstName}" placeholder="Fï¿½rnamn"/>  -->
 					<!-- <p>Efternamn: <input type="text" data-th-field="*{person.lastName}" placeholder="Efternamn"/> -->
 			<div class="form-group"></div>
 
 					<input type="submit" value="Spara" /> <input type="reset"
-							value="Nollställ" /> <input type="button"
+							value="Ã…terstÃ¤ll" /> <input type="button"
 							value="Avbryt" onclick="location.href='/personcompetences/'" />
 					<p><p>
 					<p><a href="/competences/">Visa Alla kompetenser</a> &nbsp;&nbsp;	<a href="/personcompetences/">Visa mina kompetenser</a> </p>
