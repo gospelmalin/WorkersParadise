@@ -1,5 +1,13 @@
 package com.yhsipi.workersparadise.controller;
 
+import com.yhsipi.workersparadise.entities.Person;
+import com.yhsipi.workersparadise.entities.Users;
+import com.yhsipi.workersparadise.repository.PersonRepository;
+import com.yhsipi.workersparadise.service.PersonService;
+import com.yhsipi.workersparadise.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,11 +21,19 @@ import java.io.IOException;
 public class UploadController {
 
     // Path for imageuploading
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private PersonService personService;
 
     @GetMapping("/profilepicture")
     public ModelAndView viewUploadImage() {
+        // Get logged in user
         ModelAndView model = new ModelAndView();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Users user = userService.findByUsername(authentication.getName());
 
+        model.addObject("person", personService.findOne(user.person.getIdPerson()).get());
         model.setViewName("upload/profileimageupload");
         return model;
     }
@@ -25,13 +41,24 @@ public class UploadController {
 
     @PostMapping("/upload/imageupload/new")
     public String uploadFile( MultipartFile file) throws IOException {
-
+        ModelAndView model = new ModelAndView();
+        Person p = new Person();
         FileInputStream inputStream = (FileInputStream) file.getInputStream();
 
-        //you can use inputStream object which currently has your "file" data
         System.out.println("Image data " + inputStream.read());
-        // you can process this to fetch your data.
-        return  "file uploaded successfully ";
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Users user = userService.findByUsername(authentication.getName());
+        Person pID = personService.findOne(user.person.getIdPerson()).get();
+        System.out.println("Personid: " + pID);
+
+        p.setIdPerson(user.person.getIdPerson());
+        p.setImage(file.getBytes());
+
+        personService.savePerson(p);
+
+        return "redirect:/profilepicture/";
     }
     @PostMapping("/upload/imageupload/delete")
     public String deleteFile() {
