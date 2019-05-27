@@ -47,6 +47,9 @@ public class Webpage implements Serializable {
 	}
 
 	public String getLink() {
+		if(!link.startsWith("http")) {
+			return "https://" + link;
+		}
 		return this.link;
 	}
 	
