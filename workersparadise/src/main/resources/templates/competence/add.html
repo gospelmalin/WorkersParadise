@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra kompetens'})"></div>
+<div th:replace="fragments/_headtag :: headtag(title=${'LÃ¤gg till/Ã¤ndra kompetens'})"></div>
 <body>
 <div class="container-fluid" id="main">
 	<div class="row">
@@ -21,7 +21,7 @@
 					data-th-object="${competence}" method="post">
 				  <input type="hidden" data-th-field="*{idCompetence}" readonly="readonly" placeholder="id"/>	
 					
-				  <h3 class="mb-3">LÄGG TILL/ÄNDRA KOMPETENS</h3>
+				  <h3 class="mb-3">LÃ„GG TILL/Ã„NDRA KOMPETENS</h3>
 					<div class="form-group blu-margin">
 					<div class="form-group">
 							<label for="competenceName">Kompetens</label> <input
@@ -30,7 +30,7 @@
 						</div>
 						
 					<input type="submit" value="Spara" /> <input type="reset"
-							value="Nollställ" /> <input type="button"
+							value="Ã…terstÃ¤ll" /> <input type="button"
 							value="Avbryt" onclick="location.href='/competences/'" />
 					</p>
 			  	</form>
