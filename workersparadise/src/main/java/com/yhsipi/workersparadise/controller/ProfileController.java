@@ -1,5 +1,7 @@
 package com.yhsipi.workersparadise.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import com.yhsipi.workersparadise.entities.Person;
 import com.yhsipi.workersparadise.service.PersonService;
 import com.yhsipi.workersparadise.service.UserService;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ProfileController {
@@ -52,4 +55,9 @@ public class ProfileController {
         model.addAttribute("person",p);
         return "profile/profile";
     }
+
+
+
+
+
 }

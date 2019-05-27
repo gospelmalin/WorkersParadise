@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
                 
                 // URLs
-                .antMatchers("/", "/search/**", "/profile/**", "/profil/**", "/account/register", "/login").permitAll()
+                .antMatchers("/", "/search/**", "/profile/**", "/profil/**", "/account/register", "/login", "upload/imageupload/new", "upload/imageupload/delete").permitAll()
                 
                 // Webapp
                 .antMatchers("/bootstrap/**","/css/**","/fontawesome-free/**", "/img/**", "/jquery/**",
@@ -105,7 +105,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling()
         ;
-        http.httpBasic().disable();
+        http.httpBasic().and().cors().and().csrf().disable();
 
     }
 

@@ -101,6 +101,7 @@ public class AccountController {
             model.setViewName("account/register");
         } else {
             userService.saveUser(user);
+
             model.addObject("msg", "User has been registered successfully!");
             model.addObject("user", new Users());
             model.setViewName("account/login");
@@ -117,6 +118,7 @@ public class AccountController {
 		Users user = userService.findByUsername(authentication.getName());
 		
         ModelAndView model = new ModelAndView();
+
         model.addObject("person", personService.findOne(user.person.getIdPerson()).get());
         model.setViewName("account/dashboard");
 
