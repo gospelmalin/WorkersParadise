@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div
-	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra certifikat'})"></div>
+	th:replace="fragments/_headtag :: headtag(title=${'LÃ¤gg till/Ã¤ndra certifikat'})"></div>
 <body>
 	<div class="container-fluid" id="main">
 		<div class="row">
@@ -24,7 +24,7 @@
 							<input type="hidden" data-th-field="*{id.idCertification}" placeholder="id"/> 
 							<input type="hidden" data-th-field="*{id.idPerson}" />
 
-							<h3 class="mb-3">LÄGG TILL/ÄNDRA CERTIFIKAT</h3>
+							<h3 class="mb-3">LÃ„GG TILL/Ã„NDRA CERTIFIKAT</h3>
 							<div class="form-group blu-margin">
 								<label for="certificationName">Utbildningsnamn</label> <input
 									type="text" data-th-field="*{certificationName}"
@@ -32,14 +32,14 @@
 							</div>
 
 							<div class="form-group">
-								<label for="certificationDescription">Lärosäte</label>
+								<label for="certificationDescription">LÃ¤rosÃ¤te</label>
 									<textarea rows="3" data-th-field="*{certificationDescription}"
-									class="form-control" placeholder="Beskriv certifieringen här" /></textarea>
+									class="form-control" placeholder="Beskriv certifieringen hÃ¤r" /></textarea>
 							</div>
 
 							<div class="form-group"></div>
 							<input type="submit" value="Spara" /> <input type="reset"
-								value="Nollställ" /> <input type="button" value="Avbryt"
+								value="Ã…terstÃ¤ll" /> <input type="button" value="Avbryt"
 								onclick="location.href='/educations/'" />
 							<div>
 								<a href="/certifications/">Visa certifikat</a>
