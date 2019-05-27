@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div
-	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra e-post'})"></div>
+	th:replace="fragments/_headtag :: headtag(title=${'LÃ¤gg till/Ã¤ndra e-post'})"></div>
 <body>
 	<div class="container-fluid" id="main">
 		<div class="row">
@@ -26,7 +26,7 @@
 								data-th-field="*{id.idPerson}" readonly="readonly"
 								placeholder="personid" />
 
-							<h3 class="mb-3">LÄGG TILL/ÄNDRA E-POST</h3>
+							<h3 class="mb-3">LÃ„GG TILL/Ã„NDRA E-POST</h3>
 							<div class="form-group blu-margin">
 								<label for="emailAddress">E-post</label> <input type="text"
 									data-th-field="*{emailAddress}" class="form-control"
@@ -36,7 +36,7 @@
 							<div class="form-group">
 								<label for="type">Kategori</label> <select
 									class="form-control" data-th-field="*{type.idType}">
-									<option value="0">Välj kategori</option>
+									<option value="0">VÃ¤lj kategori</option>
 									<option data-th-each="type : ${types}"
 										data-th-value="${type.idType}" data-th-text="${type.typeName}">
 									</option>
@@ -44,15 +44,15 @@
 							</div>
 
 							<div class="form-group">
-								<label for="primaryEmail">Primär e-postadress (visas på
+								<label for="primaryEmail">Primï¿½r e-postadress (visas pÃ¥
 									profilsidans "Om mig")</label> <br>
 								<input type="checkbox" data-th-field="*{primaryEmail}"
-									placeholder="Detta är min primära epost-adress" />
+									placeholder="Detta Ã¤r min primÃ¤ra epost-adress" />
 							</div>
 
 							<p>
 								<input type="submit" value="Spara" /> <input type="reset"
-									value="Nollställ" /> <input type="button" value="Avbryt"
+									value="Ã…terstÃ¤ll" /> <input type="button" value="Avbryt"
 									onclick="location.href='/emails/'" />
 							<p>
 							<p>
