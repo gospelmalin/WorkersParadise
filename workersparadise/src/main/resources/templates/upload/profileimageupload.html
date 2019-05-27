@@ -22,6 +22,8 @@
                                 <h5 class="card-header"></h5>
                                 <div class="card-body">
                                     <img src="https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg" class="rounded-circle img-fluid" alt="Cinque Terre">
+                                    <img th:src="@{'data:image/jpeg;base64,'+${person.image }}" class="rounded-circle img-fluid" alt="Cinque Terre">
+
                                     <br>
                                     <form method="POST" enctype="multipart/form-data" action="/upload/imageupload/new">
                                     <div class="file btn btn-primary" style="position: relative; overflow: hidden; margin-left: 75px;">

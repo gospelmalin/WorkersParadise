@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 @Controller
 public class UploadController {
@@ -32,6 +34,7 @@ public class UploadController {
         ModelAndView model = new ModelAndView();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Users user = userService.findByUsername(authentication.getName());
+        Person getPerson = personService.findOne(user.person.getIdPerson()).get();
 
         model.addObject("person", personService.findOne(user.person.getIdPerson()).get());
         model.setViewName("upload/profileimageupload");
@@ -40,18 +43,17 @@ public class UploadController {
 
 
     @PostMapping("/upload/imageupload/new")
-    public String uploadFile( MultipartFile file) throws IOException {
+    public String uploadFile(@Valid Person p, MultipartFile file) throws IOException {
         ModelAndView model = new ModelAndView();
-        Person p = new Person();
-        FileInputStream inputStream = (FileInputStream) file.getInputStream();
+        Person ps = new Person();
+        //FileInputStream inputStream = (FileInputStream) file.getInputStream();
 
-        System.out.println("Image data " + inputStream.read());
-
+       // System.out.println("Image data " + inputStream.read());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Users user = userService.findByUsername(authentication.getName());
-        Person pID = personService.findOne(user.person.getIdPerson()).get();
-        System.out.println("Personid: " + pID);
+        //Person pID = personService.findOne(user.person.getIdPerson()).get();
+       // System.out.println("Personid: " + pID);
 
         p.setIdPerson(user.person.getIdPerson());
         p.setImage(file.getBytes());
