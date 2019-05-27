@@ -11,7 +11,9 @@
 		</div>
 		<div class="row">			
 			<div data-th-each="personCompetence: ${personCompetences}" class="card ml-3 mr-3 mb-5" style="width: 18rem;">
-	      	<img src="../img/profile.jpg" class="card-img" alt="...">
+	      	<img th:if="${personCompetence.person.getGender()} == 'K'" src="../img/profile-K.jpg" class="card-img" alt="...">
+	      	<img th:if="${personCompetence.person.getGender()} == 'M'" src="../img/profile.jpg" class="card-img" alt="...">
+	      	
 			  <div class="card-body">
 			    <h3 data-th-text="${personCompetence.person.getFullName()}" class="card-title mb-5">Namn</h3>
 		        <h5  class="card-title">Matchade kompetenser</h5>
