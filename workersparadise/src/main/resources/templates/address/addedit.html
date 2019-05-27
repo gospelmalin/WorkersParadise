@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div
-	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra adress'})"></div>
+	th:replace="fragments/_headtag :: headtag(title=${'LÃ¤gg till/Ã¤ndra adress'})"></div>
 <body>
 	<div class="container-fluid" id="main">
 		<div class="row">
@@ -24,7 +24,7 @@
 				  <input type="hidden" data-th-field="*{id.idAddress}" readonly="readonly" placeholder="id"/>
 				<input type="hidden" data-th-field="*{id.idPerson}" readonly="readonly" placeholder="personid" />
 					
-						<h3 class="mb-3">LÄGG TILL/ÄNDRA ADRESS</h3>
+						<h3 class="mb-3">LÃ„GG TILL/Ã„NDRA ADRESS</h3>
 							<div class="form-group blu-margin">
 								<label for="co">C/O</label> 
 					<input type="text" data-th-field="*{co}" class="form-control" placeholder="C/O"/>	
@@ -48,7 +48,7 @@
 				<div class="form-group">
 								<label for="type">Kategori</label> <select
 									class="form-control" data-th-field="*{type.idType}">
-									<option value="0">Välj kategori</option>
+									<option value="0">VÃ¤lj kategori</option>
 									<option data-th-each="type : ${types}"
 										data-th-value="${type.idType}" data-th-text="${type.typeName}">
 									</option>
@@ -56,13 +56,13 @@
 							</div>
 
 							<div class="form-group">
-								<label for="primaryAddress">Primäradress (visas på profilsidans "Om mig")</label><br>
-					<input type="checkbox" name= "primaryAddress" th:checked="*{primaryAddress}" placeholder="Primäradress"/>	
+								<label for="primaryAddress">PrimÃ¤radress (visas pÃ¥ profilsidans "Om mig")</label><br>
+					<input type="checkbox" name= "primaryAddress" th:checked="*{primaryAddress}" placeholder="Primï¿½radress"/>	
 					</div>
 							
 							<p>
 					<input type="submit" value="Spara" /> <input type="reset"
-							value="Nollställ" /> <input type="button" value="Avbryt"
+							value="Ã…terstÃ¤ll" /> <input type="button" value="Avbryt"
 									onclick="location.href='/addresses/'" />
 					</p>
 					<a href="/addresses/">Visa mina adresser</a>
