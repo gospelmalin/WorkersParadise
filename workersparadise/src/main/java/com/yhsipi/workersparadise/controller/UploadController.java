@@ -36,6 +36,10 @@ public class UploadController {
         Users user = userService.findByUsername(authentication.getName());
         Person getPerson = personService.findOne(user.person.getIdPerson()).get();
 
+        System.out.println(getPerson.getImage().toString());
+
+        //byte[] encoded = Base64.getEncoder().encode(getPerson.getImage().getBytes());
+
         model.addObject("person", personService.findOne(user.person.getIdPerson()).get());
         model.setViewName("upload/profileimageupload");
         return model;

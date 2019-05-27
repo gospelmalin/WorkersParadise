@@ -69,7 +69,6 @@ public class Person implements Serializable {
     @Column(name="image")
     private byte[] image;
 
-
     public byte[] getImage() {
         return image;
     }
