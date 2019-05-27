@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div
-	th:replace="fragments/_headtag :: headtag(title=${'Lägg till/ändra utbildning'})"></div>
+	th:replace="fragments/_headtag :: headtag(title=${'LÃ¤gg till/Ã¤ndra utbildning'})"></div>
 <body>
 	<div class="container-fluid" id="main">
 		<div class="row">
@@ -26,7 +26,7 @@
 								data-th-field="*{id.idPerson}" readonly="readonly"
 								placeholder="personid" />
 
-							<h3 class="mb-3">LÄGG TILL/ÄNDRA TELEFONNUMMER</h3>
+							<h3 class="mb-3">LÃ„GG TILL/Ã„NDRA TELEFONNUMMER</h3>
 							<div class="form-group blu-margin">
 								<label for="countryPrefix">Landskod</label> <input type="text"
 									data-th-field="*{countryPrefix}" class="form-control"
@@ -34,9 +34,9 @@
 							</div>
 
 							<div class="form-group">
-								<label for="type">Välj kategori</label> <select
+								<label for="type">VÃ¤lj kategori</label> <select
 									class="form-control" data-th-field="*{type.idType}">
-									<option value="0">Välj kategori</option>
+									<option value="0">VÃ¤lj kategori</option>
 									<option data-th-each="type : ${types}"
 										data-th-value="${type.idType}" data-th-text="${type.typeName}">
 									</option>
@@ -50,14 +50,14 @@
 							</div>
 
 							<div class="form-group">
-								<label for="primaryContactNumber">Primärt kontaktnummer
+								<label for="primaryContactNumber">PrimÃ¤rt kontaktnummer
 									(visas i profilens "Om mig" )</label> <br>
 								<input type="checkbox" data-th-field="*{primaryContactNumber}"
-									placeholder="Primär" />
+									placeholder="Primï¿½r" />
 							</div>
 
 							<input type="submit" value="Spara" /> <input type="reset"
-								value="Nollställ" /> <input type="button" value="Avbryt"
+								value="Ã…terstÃ¤ll" /> <input type="button" value="Avbryt"
 								onclick="location.href='/phone/'" />
 							<p>
 							<p>
