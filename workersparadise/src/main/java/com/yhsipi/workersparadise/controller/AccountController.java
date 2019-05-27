@@ -73,6 +73,49 @@ public class AccountController {
     }
 
 
+    @GetMapping("/account/changepassword")
+    public ModelAndView changepasswordVie(Principal authuser) {
+        ModelAndView model = new ModelAndView();
+            Users user = new Users();
+            model.addObject("user", user);
+            model.setViewName("account/resetpassword");
+            return model;
+        }
+
+    @PostMapping("/account/changepassword")
+    public String changepassword(@Valid Users userinputs, BindingResult bindingResult) {
+        ModelAndView model = new ModelAndView();
+
+            // Get logged in user
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Users user = userService.findByUsername(authentication.getName());
+
+            Users tuser = new Users();
+
+
+        //TODO: Snygga till denna lösning, borde inte behöva läsa in hela användare + validera inputen, hantera felmeddelanden
+            tuser.setIdUser(user.getIdUser());
+            tuser.setUsername(user.getUsername());
+            tuser.setPassword(userinputs.getPassword());
+            tuser.setDateCreated(user.getDateCreated());
+            tuser.setUrl(user.getUrl());
+            tuser.setEnabled(user.getEnabled());
+            tuser.setPerson(user.getPerson());
+
+
+            System.out.println(tuser.getUsername());
+            System.out.println(tuser.getPassword());
+            System.out.println(tuser.getDateCreated());
+            System.out.println(tuser.getUrl());
+            System.out.println(tuser.getEnabled());
+            System.out.println(tuser.getIdUser());
+            userService.saveUser(tuser);
+            return "redirect:/account/dashboard";
+
+        }
+
+
+
     @PostMapping("/account/register")
     public ModelAndView createUser(@Valid Users user, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();

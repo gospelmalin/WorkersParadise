@@ -36,7 +36,10 @@ public class UploadController {
         Users user = userService.findByUsername(authentication.getName());
         Person getPerson = personService.findOne(user.person.getIdPerson()).get();
 
+
         System.out.println(getPerson.getImage().toString());
+
+
 
         //byte[] encoded = Base64.getEncoder().encode(getPerson.getImage().getBytes());
 
@@ -61,7 +64,6 @@ public class UploadController {
 
         p.setIdPerson(user.person.getIdPerson());
         p.setImage(file.getBytes());
-
         personService.savePerson(p);
 
         return "redirect:/profilepicture/";
