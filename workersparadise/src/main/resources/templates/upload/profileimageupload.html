@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div
+        th:replace="fragments/_headtag :: headtag(title=${'WP -> Översikt'})"></div>
+<body>
+<div class="container-fluid" id="main">
+    <div class="row">
+        <div class="col-12">
+            <div th:replace="fragments/_navbar"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <div th:replace="fragments/_sidebar"></div>
+        </div>
+        <div class="col-10">
+            <div class="row row-offcanvas row-offcanvas-left">
+                <div class="col main pt-5 mt-3">
+                    <div class="row">
+                        <div class="col-lg-8 mb-2">
+                            <div class="card">
+                                <h5 class="card-header"></h5>
+                                <div class="card-body">
+                                    <img src="https://t3.ftcdn.net/jpg/00/64/67/80/240_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg" class="rounded-circle img-fluid" alt="Cinque Terre">
+                                 <!--   <img th:src="@{'data:image/jpeg;base64,'+${person.image }}" class="rounded-circle img-fluid" alt="Cinque Terre"> -->
+
+                                    <br>
+                                    <form method="POST" enctype="multipart/form-data" action="/upload/imageupload/new">
+                                    <div class="file btn btn-primary" style="position: relative; overflow: hidden; margin-left: 75px;">
+                                        Välj bild...
+                                        <input type="file" name="file" style="position: absolute; font-size: 50px; opacity: 0; right: 0; top: 0;"/>
+                                    </div><br><hr>
+                                        <div class="file btn btn-success" style="position: relative; overflow: hidden; margin-left: 75px;">
+                                            Ladda upp
+                                            <input type="submit" name="file" style="position: absolute; font-size: 50px; opacity: 0; right: 0; top: 0;"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div th:replace="fragments/_footer"></div>
+    </div>
+</div>
+</body>
+</html>
